@@ -1,0 +1,23 @@
+page#devicespecs .product-name,
+page#compare .product-name{font-size:4vw;}
+/* .carousel{display:none;} */
+/* Ad Slides */
+
+page#devicespecs .carousel-item img,
+page#compare .carousel-item img{width:60%;}
+page#devicespecs .carousel-control-next, page#devicespecs .carousel-control-prev,
+page#compare .carousel-control-next, page#compare .carousel-control-prev{top: 30%;bottom: 30%;}
+page#devicespecs .carousel-indicators,
+page#compare .carousel-indicators{margin-bottom:0}
+page#devicespecs .carousel-indicators button,
+page#compare .carousel-indicators button{
+  background-color:black;
+  width:3vw;
+  border:none;
+  border-radius:unset;
+  transition-duration:0.3s;
+}
+page#devicespecs .carousel-indicators .active,
+page#compare .carousel-indicators .active{ transform:scaleX(2); margin:0 4%}
+#products-ads{margin-bottom:10%;}
+

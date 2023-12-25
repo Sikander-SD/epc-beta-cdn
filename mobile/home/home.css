@@ -1,0 +1,248 @@
+page#home {
+  padding-top:12%;
+}
+
+/* header */
+
+page#home header{
+  display:flex;
+  width:100%;
+  border-radius:0 0 10vw 10vw;
+  position:fixed;
+  top:0;
+  background: linear-gradient(180deg, #fff 0%, #fff7 100%);
+  z-index:10;
+  padding-top:1%;
+}
+page#home header .left{
+  width:10%;
+  display:flex;
+} 
+page#home header .mid{  width:70%;}
+page#home header .right{
+  width:30%;
+  display:flex;
+}
+page#home header .icon{
+  width:9vw;
+  height:9vw;
+  margin:auto;
+  padding:1vw;
+  display:flex;
+  border:none;
+}
+page#home header .premium{display:flex;  justify-content:center;}
+page#home header img{vertical-align:unset;}
+page#home header .crown{padding:0;margin:auto 7%}
+page#home header .mid p{
+  margin:auto 0;
+  padding-top:2%;
+  font-family:ABeeZee;
+  font-weight:600;  
+}
+page#home header .right .filter{position:relative;}
+page#home header .right .filter p{
+  position:absolute;
+  bottom:-10%; right:10%;
+  color:var(--color-accent-c);
+  font-size:4vw;
+  font-weight:700;  
+}
+page#home header .left .icon{display:none}
+page#home header .left .active{display:block;}
+
+/* Ad Slides */
+
+page#home .carousel-item {height: 70vw;background-position: center;background-repeat: no-repeat;background-size: contain;}
+page#home .carousel-item div{height: 100%;}
+page#home .carousel-control-next, .carousel-control-prev{top: 30%;bottom: 30%;}
+page#home .carousel-indicators{margin-bottom:-3%}
+page#home .carousel-indicators [data-bs-target]{
+  background-color:black;
+  width:3vw;
+  border:none;
+  border-radius:none;
+}
+
+/* div#search-query show searched term*/
+
+#search-query p{
+  display:flex;
+  overflow-x:scroll;
+  border:solid 1px #ccc;
+  border-radius:3vw;
+  background:#ccc;
+  text-align:left;
+  padding:1% 2%;
+  width:90%
+}
+#search-query div{margin:auto; width:4%; height:auto}
+#search-query{display:flex;}
+/* Products */
+
+/* list view */
+
+page#home section.list.active{display:flex;position: relative;}
+page#home section.list .left{
+  width:30%; 
+  /* border:solid 1px; */
+}
+page#home section.list .right{/*   border:solid 1px; */width:70%;padding:0 2%;}
+page#home section.list .right .mid{
+  text-align: justify;
+  font-size:4vw;
+  margin:2% 0;
+}
+page#home section.list .right .bottom{
+/*   border:solid; */
+  display:flex;
+  text-align:center;
+}
+page#home section.list .right .bottom .left{width:70%;}
+page#home section.list .right .bottom .right{transform:translateY(-10%)}
+page#home section.list .product-colors{
+  position:unset;
+  display:flex;
+  tify-content:space-between;
+}  
+page#home section.list .product-colors div{width:27%;height:1.3vw;margin:auto;}
+
+/* item view */
+page#home section.item .r1,
+page#home section.item .r2,
+page#home section.item .r3,
+page#home section.item .r4{margin:2% 0;}
+page#home section.item .product-img{width:80%;}
+page#home section.item .menu{
+/*   border:solid 1px; */
+  left:3%;top:5%;
+  width:10%;
+}
+
+page#home section.item .product-name{font-size:unset;padding:0;}
+page#home section.item .product-colors div{border-radius:50%;}
+page#home section.item .menu img{width:100%;}
+page#home section.item .menu button{margin:40% auto;border:none;}
+page#home section.item .r3{padding:1% 5%;text-align: justify;font-size: small;}
+page#home section.item .r4{display:flex;text-align:center;}
+page#home section.item .r4 .left{width:50%;margin:auto;}
+page#home section.item .r4 .right{width:50%;padding:0 5%;}
+page#home section.item .product-price{font-size:5vw;}
+page#home section.item .buy{font-weight:600}
+
+/* MODALs */
+
+.modal-content{
+  background:none;
+  height:95vh;
+  width:100vw;
+}
+.modal-dialog{
+  top:1%;
+  margin:0;
+}
+.modal-header{
+  border-bottom:solid 1px;
+  padding:1% 5%;
+  background:white;
+}
+.modal-header .title-font{font-size:5vw;font-family:unset;}
+.modal-footer{
+/*   border:solid; */
+  padding:0 5%;
+  background:white;
+  position:fixed;
+  bottom:0;
+  width:100%;  
+}
+.modal-body{
+  background:white;
+  overflow:scroll;
+  display:flex;
+  padding:0;
+}
+.modal button{
+  font-size:4vw;
+}
+.modal button p{
+  font-size:3.5vw;
+  position:absolute;
+  right:1%;bottom:0;
+  color:var(--color-accent-c);
+  font-weight:bolder;
+}
+
+/* Filter Modal */
+
+page#home #filterModal .left{width:30%;padding:0;border-right:solid 1px;}
+page#home #filterModal .left button.active{background:#ccc;border:none}
+page#home #filterModal .left button{
+  position:relative;
+  border:none;
+  border-right:solid 1px;
+  border-radius:unset;
+  width:101%;
+  margin:0;
+  font-weight:600;  
+  padding:10%;
+  padding-left:0;
+  padding-right:10%;  
+}
+page#home #filterModal .right{width:70%;padding:2%;}
+page#home #filterModal .right button{margin:3% 0;}
+page#home #filterModal .right div[id]:not(.active){display:none;}
+page#home #filterModal .right div#ram button:after,
+page#home #filterModal .right div#storage button:after{content:"GB";font-size:3vw}
+page#home #filterModal .right div#rear button:after{content:"MP";font-size:3vw}
+page#home #filterModal .right div#front button:after{content:"MP";font-size:3vw}
+page#home #filterModal .right div#display button:after{content:" inch";font-size:3vw}
+page#home #filterModal .right div#battery button:after{content:" mAh";font-size:3vw}
+page#home #filterModal .right div#price input{width:40%;margin-top:5%;font-size:5vw}
+page#home #filterModal .right div#price span{margin:0 3%;}
+page#home #filterModal .right div#price container{
+  font-size:3vw;
+  display:flex;
+  justify-content:space-between;
+  padding-right:17%;
+  color:#777
+}
+page#home #filterModal input{padding:0 5%;}
+
+/* Sort Modal */
+
+page#home #sortModal .modal-body{display:block;}
+page#home #sortModal .modal-body .top{
+  border-bottom:solid 1px;
+  height:60%;  
+  padding:5%;
+}
+
+page#home #sortModal .modal-body .bottom{
+  width:100%;
+  margin-top:5%;
+  display:flex;
+  justify-content:center;
+}
+page#home #sortModal .modal-body .bottom div{
+  width:40%;
+  text-align:center;
+  display:flex;
+}
+page#home #sortModal .bottom span{font-size:4vw;}
+page#home #sortModal .bottom p{
+  border:solid 1px;
+  width:4vw;
+  height:4vw;  
+  border-radius:50%;
+  margin:auto 5%;  
+}
+page#home #sortModal .modal-body .bottom div.active p{
+  background:black;
+  outline: 1px solid #000;
+  border:solid 2px white
+}
+page#home #sortModal .modal-footer{
+  padding:unset;
+  justify-content:center;
+  height:30%;  
+}

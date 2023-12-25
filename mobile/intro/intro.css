@@ -1,0 +1,274 @@
+.carousel-item{background:white;}
+
+/* slide1 */
+[class *="page-"]{
+    position:absolute;
+    background:none;
+    width:100vw;
+    height:100vh;
+}
+
+[class *="page-"] div{
+    border:solid 1px;
+    width:140%;
+    height:140%;
+    background:#d0d0d0;
+    position:absolute;
+}
+.page-1 div{
+    transform: rotate(45deg);
+    top:-60%;
+    right:60%;
+    opacity:0.8;
+}
+.page-1 p{    
+    font-size:8vw;
+    font-weight:600;
+    position:absolute;
+    top:5%;
+    left:10%;
+}
+.page-2 div{
+    transform:rotate(-30deg);
+    top:-60%;    
+    right:-80%;
+    opacity:0.8;
+}
+.page-2 p{
+    font-size:8vw;
+    font-weight:600;
+    position:absolute;
+    top:20%;
+    left:50%;
+}
+.page-3 div{
+    transform: rotate(30deg);
+    bottom:20%;
+    right:-40%;
+}
+.page-3 div:last-child{background:none;border:none;}
+.page-3 img{ 
+    width:70%;
+    position:absolute;
+    right:10%;
+    bottom:5%;
+} 
+.page-3 p{
+    font-size:4.2vw;
+    font-weight:500;
+    position:absolute;
+    right:20%;
+    bottom:1%;
+}
+.page-3 div:last-child p{right:30%;bottom:-3%;}
+.page-4 div{
+    transform: rotate(30deg);
+    bottom:-90%;
+    right:5%;
+}
+
+.slide1 .btn{
+  position:fixed;
+  bottom:4%; left:0;
+  width:100%;
+  padding:0;
+}
+.slide1 button,.slide5 button{
+  background:none;
+  border:none;
+  padding:0;
+}
+.slide1 .btn img{width:60%;}
+
+/* Animation Effects */
+
+@keyframes page-scale {0% {scale: 175%;}100% {scale: 100%;}}
+.page-1 {
+  animation: page-scale 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0.19s 1 normal both,
+                opacity 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0.19s 1 normal both;
+}
+.page-2 {
+  animation: page-scale 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0.64s 1 normal both,
+                opacity 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 0.64s 1 normal both;
+}
+.page-3 div:first-child{
+  animation: page-scale 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 1.05s 1 normal both,
+                opacity 0.8s cubic-bezier(0.5, 0.35, 0.15, 1) 1.05s 1 normal both;
+}
+
+/* slide2 */
+
+section.top{text-align: center;}
+section.top p{margin:0;}
+section.top p+p:before{
+  content:'AI';
+  display:inline-block;
+  margin-right:1%;
+  font-size:6vw;
+  font-weight:700;
+  transform: rotate(-30deg);
+}
+#Vector_9{transform:rotateY(40deg)}
+#Vector_4{transform:translateX(82%) translateY(125%) rotateX(150deg)}
+section.top svg{
+  width:18%;
+  transform:translateX(-175%) translateY(-36%);
+}
+section.middle{
+  position:relative;
+  text-align:center;
+}
+section.middle .blob{width:100%;}
+section.middle .remote{position:absolute; top:-10%;right:10%; width:22%;}
+section.middle .boy img{ width:70%; margin-left:10%;}
+section.middle .search-box svg{ width:90%; }
+section.middle .boy{ position:absolute; top:13%; width:100%}
+section.middle .search-box{
+  position:absolute;
+  bottom:20%;
+  width:100%;
+  padding:0 7%;
+  font-size:7vw;
+  font-weight:600;
+  font-family:ABeeZee;
+  letter-spacing:-2px;
+}
+section.middle .input{
+  border:solid 1px;
+  border-radius:25px;
+  background:#d5d5d5;  
+}
+section.bottom .gaming{position:absolute;bottom:5%;width:100%;}
+section.bottom img{ width:100%; margin-left:4%}
+
+/* animation effects*/
+.remote {animation: bounce-in-top 1.5s 1s both;}
+.boy {animation: scale 1.5s cubic-bezier(0.5, 0.35, 0.15, 1) 0.2s 1 normal both;}
+.search-box .g1 {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.03s 1 normal both;}
+.search-box .a  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.06s 1 normal both;}
+.search-box .m  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.09s 1 normal both;}
+.search-box .i  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.12s 1 normal both;}
+.search-box .n1 {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.15s 1 normal both;}
+.search-box .g2 {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.18s 1 normal both;}
+.search-box .p  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.21s 1 normal both;}
+.search-box .h  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.24s 1 normal both;}
+.search-box .o  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.27s 1 normal both;}
+.search-box .n2 {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.30s 1 normal both;}
+.search-box .e  {animation: opacity 0.2s cubic-bezier(0.5, 0.35, 0.15, 1) 1.33s 1 normal both;}
+
+/* slide3 */
+.slide3 h1{
+  position:absolute;
+  top:4%;
+  margin:0;
+  width:100%;
+}
+.views + div{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background: linear-gradient(180deg, #fff 0%, rgba(0,0,0,0) 25%);
+}
+.slide3 .views img{width:140%;}
+.slide3 .views+div img{width:50%;margin:5%;}
+.slide3 button{
+  margin:20% 5%;
+  width:12%;
+  height:6%;
+  padding:0;
+  border:solid 1px rgba(0,0,0,0.2);
+  border-radius:25px;
+  background:#d4d4d4;
+}
+.slide3 button.active{color:lime; border:solid; }
+.slide3 .views div:not(.active){visibility:hidden !important;}
+
+.list-view{
+  position:absolute;
+  top:25%;
+  animation: slide-in-from-right 1.5s 0.5s ease-in-out forwards,
+                opacity 1.5s cubic-bezier(0.5, 0.35, 0.15, 1) 0.5s 1 normal both;
+}
+.item-view{
+  position:absolute;
+  top:11%;
+  animation: slide-in-from-right 1.5s 1.2s ease-in-out forwards,
+                opacity 1.5s cubic-bezier(0.5, 0.35, 0.15, 1) 1.2s 1 normal both;
+}
+.grid-view{
+  position:absolute;
+  top:-5%;
+  animation: slide-in-from-right 1.5s 1.9s ease-in-out forwards,
+                opacity 1.5s cubic-bezier(0.5, 0.35, 0.15, 1) 1.9s 1 normal both;
+}
+
+/* slide4 */
+
+.slide4 p{font-size:4vw; font-weight:500; margin-bottom:1%;}
+.slide4 h1:last-child{font-size:6vw;}
+.slide4 .middle{
+  position:relative;
+  text-align:center;
+}
+.slide4 .compare svg{width:50vh;}
+
+/* animation effect */
+.slide4 .compare #Phone1{
+  animation: slide-in-from-left 1s 0.5s ease-in-out forwards,
+                 opacity 1s cubic-bezier(0.5, 0.35, 0.15, 1) 0.5s 1 normal both;
+}
+.slide4 .compare #Phone2{
+  animation: slide-in-from-right 1s 0.5s ease-in-out forwards,
+                opacity 1s cubic-bezier(0.5, 0.35, 0.15, 1) 0.5s 1 normal both;
+}
+.slide4 .compare #righthand{
+  animation: opacity 1s cubic-bezier(0.5, 0.35, 0.15, 1) 2s 1 normal both;
+}
+.slide4 .compare #Selected{
+  animation: opacity 0.4s cubic-bezier(0.5, 0.35, 0.15, 1) 2.5s 1 normal both;
+}
+
+/* slide5 */
+
+.slide5 {text-align:center;overflow-y:scroll;}
+.slide5 .top img{
+  width:10%;
+  transform:rotate(31deg);
+}
+.slide5 .middle img{width:80%;}
+.slide5 .bottom{
+  position:fixed;
+  bottom:5%;
+  width:100%;
+}
+.slide5 .bottom p{
+  font-weight:700;
+}
+.slide5 .yes{
+  border:solid 1px rgba(0,0,0,0.3);
+  border-radius:25px;
+  width:auto;
+  padding:2% 7%;
+  font-size:5vw;
+  font-weight:500;
+  
+}
+.slide5 .yes:active{color:green;border:solid 1px;}
+
+.slide5 .btn-prev{
+  position:fixed;
+  top:1%;
+  left:-4%;
+  width:20%;
+}
+.slide5 .skip{
+  position:fixed;
+  bottom:4%;
+  right:5%;
+  font-size:4vw;
+  animation: opacity 2s cubic-bezier(0.5, 0.35, 0.15, 1) 2.5s 1 normal both;
+}
+
+/* progress bar */
+.progress-bar{bottom:2%}
+

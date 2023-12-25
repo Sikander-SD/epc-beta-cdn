@@ -1,0 +1,243 @@
+/*   Device Images Slides    */
+
+
+:root{--info-color:black;}
+/* default */
+#device-imgs .carousel-item{/*slides*/
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+#device-imgs .carousel-item > div{height:100vw;}
+.carousel-indicators { /* dots */
+/*   border:solid red 1px; */
+  bottom: -4%;  
+}
+/* ----------------------------------slide 1 and slide 2------------------------------ */
+.slide-1,
+.slide-2{
+/*   border: solid red;   */
+  position:relative;
+  display:flex;
+}
+.slide-1 > div,
+.label-block,
+.promo{
+  position:absolute;
+}
+
+/* ----------------------------------slide 1 */
+.slide-1 .device-image-container {
+  position:unset;
+/*   border: solid red 1px; */
+  display: flex;
+  margin:auto;
+  margin-top:25%;
+  width:50%;
+  height:50%;
+}
+.slide-1 .device-image-container img{
+/*     border: solid 1px; */
+    width:100% !important;
+    max-height:100%;
+}
+
+.slide-1 .device-name{
+/*   border: solid red 1px; */
+  color:var(--info-color);
+  opacity:0.2;
+  text-align:center;
+  width:100%;
+  font-size:10vw;
+  font-weight:800;
+  bottom:13%;
+}
+
+.slide-1 .promo,
+.slide-2 .promo{
+/*   border: solid red 1px; */
+  font-size:10px;
+  font-weight:600;
+  text-align:right;
+  color:var(--info-color);
+  bottom:0; right:1%;
+}
+
+.label-block {
+/*     border: solid red 1px; */
+  max-width:27%;
+  min-width:20%;
+}
+.label-block .head,
+.special-features > div{display:flex;}
+.label-block .icon{
+/*   border: solid red 1px; */
+  width:12px;
+  height:12px;
+  display:inline-block;
+  background-size:cover;
+}
+.label-block .label{
+  display:flex;
+/*   border: solid red 1px; */
+  line-height: 1.3;
+  font-size:1.8vw;
+  font-family:verdana;
+  font-weight:600;
+  box-shadow: 3px 3px 5px 1px rgb(0 0 0 / 22%);
+  background-color:white;
+  padding:0 4%;
+  margin:auto;
+  margin-left:5%;
+}.label-block .label:not(.wifi .label){text-transform:uppercase;}
+
+.label-block .info{
+/*   border: solid green 1px; */
+  font-size:7px;
+  line-height:9px;
+  font-weight:500;
+  text-transform:capitalize;
+  margin:auto;
+  overflow:scroll;
+  color:var(--info-color);
+}
+.camera-back{
+/*     border: solid green; */
+    min-width:35vw;
+    margin-left:2vw;
+}
+.camera-front{
+/*     border: solid green; */
+    margin-left:72%;
+}
+.wifi{  
+/*     border: solid green 1px; */  
+top:0;  
+margin-left:28%;  
+text-align:center;  
+width:15%;  
+}
+.bluetooth{
+/*     border: solid green 1px; */
+    top:0;
+    margin-left:47%;
+  text-align:center;
+}
+.nfc{
+/*     border: solid green 1px; */
+    top:16%;
+    margin:0;
+    margin-left:55%;
+}
+.flash-light{
+/*       border: solid green 1px; */
+  top:10%;
+  margin-left:35%;
+}
+.cpu{
+/*     border: solid green; */
+    top:24%;
+    margin-left:2vw;
+}
+.gpu{
+/*     border: solid green; */
+    top:49%;
+    margin-left:2vw;
+}
+.ram{
+/*     border: solid green; */
+    top:61%;
+    margin-left:2vw;
+}
+.storage{
+  /*     border: solid green; */
+  top:73%;
+  margin-left:2vw;
+}
+.charging-port{
+/*     border: solid green; */
+    top:77%;
+    margin-left:30%;
+    min-width:35vw;
+}
+.audio-jack{
+/*     border: solid green; */
+    top:87%;
+    margin-left:60%;
+}
+.battery{
+/*     border: solid green; */
+    top:77%;
+    margin-left:73%;
+}
+.os{
+/*     border: solid green; */
+    top:67%;
+    margin-left:73%;
+}
+.display{
+/*     border: solid green; */
+    top:34%;
+    margin-left:73%;
+}
+.network{
+/*     border: solid green; */
+    top:19%;
+    margin-left:73%;
+}
+.special-features{
+/*     border: solid green 1px; */
+    top:85%;
+    margin-left:2%;
+}
+.special-features > div{
+/*     border: solid green 1px; */
+  margin:4% 0;  
+}
+.special-features span.info{
+/*   border: solid green 1px; */
+  margin-left:6px;
+}
+
+/* ----------------------------------slide 2 */
+.slide-2 div{
+  text-align:center;
+}
+.slide-2 .img-tag{
+    border:solid #00000082 1px;  
+/*     border: solid red; */
+    text-transform:uppercase;
+    font-weight:800;
+    background:yellow;
+    color:red;
+    text-align:center;
+    padding:1px 8px;
+    border-radius:10vw;
+}
+.left.img-tag,
+.right.img-tag{
+/*     border: solid red; */
+    margin-top:5%;
+}
+.slide-2 .left img,
+.slide-2 .right img { 
+/*   border: solid red; */  
+width:40% !important;
+max-height:85%;
+margin-top:5%;
+}
+.top.img-tag,
+.bottom.img-tag{
+/*       border: solid red; */
+display:inline-block;  
+}
+.slide-2 .top-bottom{
+/*     border: solid red; */
+    min-height:60%;
+}
+.slide-2 .block-top img,
+.slide-2 .block-bottom img {  
+/* border: solid red;   */
+width:100% !important;
+  justify-content:center;
+}

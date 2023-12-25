@@ -1,0 +1,43 @@
+section#table tr:nth-child(even){  background:#1a1a1a;}
+section#table tr:nth-child(odd){ background:#292d33;}
+section#table th.c1,
+section#table .btn-1{
+ background:#fd767c;
+}
+section#table th.c2,
+section#table .btn-2{
+ background:#f1c50e;
+}
+section#table th.c3,
+section#table .btn-3{
+ background:#2cccc4;
+}
+section#table input{
+ background-color: inherit;
+ text-align:center;
+ border: none;
+ border-radius:unset;
+ outline:none;
+ width:100%;
+ font-size:max(2vw,15px);
+ font-weight:500;
+}
+section#table tbody{ color:white; }
+section#table tbody td.c0{
+ background:unset;
+ opacity:0.7;
+}
+section#table th:not(.c0){transition-duration:0.3s;}
+section#table th:not(.c0):hover{min-width:70vw;}
+section#table td[id$="-Image"]{
+    height: 160px;
+    background:white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+section#table td[id$="-Price"]{
+ color:var(--color-v-green);
+}
+section#table tfoot a {  border:solid white;}
+section#table tfoot a[href="#"]{visibility:hidden;}

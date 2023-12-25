@@ -1,0 +1,9 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="trashCanWithCross">
+<path id="Vector" d="M32.5 10L30 35H10L7.5 10" stroke="black" stroke-width="1.5"/>
+<path id="Vector_2" d="M12.5 10V7.5375C12.5 7.20427 12.5656 6.8743 12.6932 6.56644C12.8207 6.25858 13.0076 5.97884 13.2432 5.74322C13.7191 5.26734 14.3645 5 15.0375 5H24.9625C25.2957 5 25.6257 5.06563 25.9336 5.19316C26.2414 5.32068 26.5212 5.50759 26.7568 5.74322C26.9924 5.97884 27.1793 6.25858 27.3068 6.56644C27.4344 6.8743 27.5 7.20427 27.5 7.5375V10" stroke="black" stroke-width="1.5"/>
+<path id="Vector_3" d="M5 10H35" stroke="black" stroke-width="1.5"/>
+<path id="Vector_4" d="M15 17.5L25 27.5" stroke="black" stroke-width="1.5"/>
+<path id="Vector_5" d="M25 17.5L15 27.5" stroke="black" stroke-width="1.5"/>
+</g>
+</svg>

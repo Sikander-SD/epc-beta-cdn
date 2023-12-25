@@ -1,0 +1,15 @@
+<svg width="50" height="48" viewBox="0 0 50 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="compare">
+<rect id="Rectangle 80" x="22.5" y="3.5" width="27" height="44" rx="3.5" stroke="black"/>
+<line id="Line 54" x1="31" y1="6.5" x2="37" y2="6.5" stroke="black"/>
+<circle id="Ellipse 34" cx="36" cy="43" r="2" stroke="black"/>
+<path id="Line 55" d="M39 6.5H40" stroke="black" stroke-linecap="round"/>
+<rect id="Rectangle 80_2" x="0.5" y="0.5" width="27" height="44" rx="3.5" stroke="black"/>
+<line id="Line 54_2" x1="9.5" y1="3.5" x2="14.5" y2="3.5" stroke="black" stroke-linecap="round"/>
+<circle id="Ellipse 34_2" cx="14" cy="40" r="2" stroke="black"/>
+<path id="Line 55_2" d="M17 3.5H18" stroke="black" stroke-linecap="round"/>
+<rect id="change" x="0.5" y="5.5" width="27" height="30" stroke="black"/>
+<rect id="change_2" x="22.5" y="9.5" width="27" height="30" stroke="black"/>
+<path id="ab" d="M8.5 28.5L13.3205 15.9667C13.4286 15.6855 13.6988 15.5 14 15.5V15.5C14.3012 15.5 14.5714 15.6855 14.6795 15.9667L17.7692 24M19.5 28.5L17.7692 24M11 24H17.7692M38 25C41.8629 27.3 42.2422 28.6091 38.2274 30.8733C38.0805 30.9562 37.9116 31 37.7429 31H34C33.4477 31 33 30.5523 33 30V25M38 25C40.9605 22.2044 41.5744 20.7938 38.2076 19.1023C38.0731 19.0346 37.9218 19 37.7712 19H34C33.4477 19 33 19.4477 33 20V25M38 25H33" stroke="black" stroke-width="1.5"/>
+</g>
+</svg>

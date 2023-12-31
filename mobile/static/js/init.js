@@ -456,7 +456,7 @@ function newNotification(title,body,img,tstamp){
 	div.setAttribute("aria-live","assertive");
 	div.setAttribute("aria-atomic","true");
 	div.innerHTML =   `<div class="toast-header">
-		<img src=${img ||ROOT_PATH+"/static/images/notificationBell.svg"} class="rounded me-2">
+		<img src=${img ||ROOT+"/static/images/notificationBell.svg"} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
 		<small class="text-body-secondary">${tstamp}</small>
 		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

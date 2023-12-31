@@ -447,3 +447,24 @@ function modalLoad(id,type) {
 
 // Capital Case custome function
 String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.toUpperCase())}
+
+// notification function
+function newNotification(title,body,img,tstamp){
+	const div = document.createElement("div")
+	div.className = "toast slide-in-from-right";
+	div.role="alert";
+	div.setAttribute("aria-live","assertive");
+	div.setAttribute("aria-atomic","true");
+	div.innerHTML =   `<div class="toast-header">
+		<img src=${img ||ROOT_PATH+"/static/images/notificationBell.svg"} class="rounded me-2">
+		<strong class="me-auto">${title}</strong>
+		<small class="text-body-secondary">${tstamp}</small>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	  </div>
+	  <div class="toast-body">${body}</div>
+	`
+	document.querySelector(".toast-container").appendChild(div)
+	new bootstrap.Toast(div,{"delay":8000,"autohide":true}).show()
+	div.addEventListener('hidden.bs.toast', () => {div.remove()})
+}
+

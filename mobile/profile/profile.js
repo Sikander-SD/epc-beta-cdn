@@ -508,12 +508,12 @@ noti_btn.addEventListener("click",e=>{
   JSON.parse(localStorage.noti||'[]').forEach(n=>{
     const T = new Date(n.id)
     const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
-    newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
+    _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
   })
 })
 
 const page_noti = document.querySelector("page#notifications");
-const newNotification = (title,body,tlog,tid)=>{
+const _newNotification = (title,body,tlog,tid)=>{
   const acc = page_noti.querySelector(".accordion");
   const noti = document.createElement("div");
   
@@ -557,8 +557,10 @@ SSE_Event.addEventListener("message",e=>{
     data.noti.forEach(n=>{
       if ("Notification" in window && !page_noti.classList.contains("active")){
         if (Notification.permission !== "granted") Notification.requestPermission()
-        if (Notification.permission === "granted")new Notification(n.title,{body:n.body})
+        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
       }
+      // when default notifications are not working
+      if (!page_noti.classList.contains("active")) newNotification(n.title,n.body,null,n.id)
     })
   }
 });
@@ -899,6 +901,8 @@ SSE_Event.addEventListener("message",e=>{
 			if (Notification.permission !== "granted") Notification.requestPermission()
 			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
 		}
+        // when default notifications are not working
+        newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
         return
       }//show in chats
       data.reply.forEach(reply=>{

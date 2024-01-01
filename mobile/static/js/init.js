@@ -35,6 +35,8 @@ SSE_Event.addEventListener("message",e=>{
 				if (Notification.permission !== "granted") Notification.requestPermission()
 				if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
 			}
+			// when default notifications are not working
+			newNotification(n.title,n.body,null,n.id)
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
 		reply = {title:"Customer-Support Replied to your message!", id:data.reply[0].id, body:"click to open message!"}
@@ -46,6 +48,8 @@ SSE_Event.addEventListener("message",e=>{
 			if (Notification.permission !== "granted") Notification.requestPermission()
 			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
 		}
+		// when default notifications are not working
+		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
 	}
 });
 
@@ -450,13 +454,17 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 
 // notification function
 function newNotification(title,body,img,tstamp){
+	if (tstamp.match("[0-9]{5}")){
+		const T = new Date(tstamp)
+	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
+	}
 	const div = document.createElement("div")
 	div.className = "toast slide-in-from-right";
 	div.role="alert";
 	div.setAttribute("aria-live","assertive");
 	div.setAttribute("aria-atomic","true");
 	div.innerHTML =   `<div class="toast-header">
-		<img src=${img ||ROOT+"/static/images/notificationBell.svg"} class="rounded me-2">
+		<img src=${ROOT+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
 		<small class="text-body-secondary">${tstamp}</small>
 		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

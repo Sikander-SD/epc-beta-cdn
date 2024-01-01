@@ -461,7 +461,7 @@ page:not(.active){
 }
 
 /* toast */
-.toast{
+.toast:not(.slide-in-from-right){
   position: fixed;
   bottom: 10%;
   left: 50%;

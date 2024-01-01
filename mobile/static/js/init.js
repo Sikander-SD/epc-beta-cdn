@@ -440,8 +440,9 @@ function populateCarousel(id) {
 function modalLoad(id,type) {
   if (!type) throw ValueError("Please provide the filetype or content type one of html | txt | json")
 	
-  if ("about terms policy".includes(id)) url = ROOT+"/files/"
-  else url = "../server/?file="
+  // if ("about terms policy".includes(id)) url = ROOT+"/files/"
+  // else url = "../server/?file="
+  url = "../server/?file="
 	
   fetch(url+id+"."+type)
   .then(response=>{

@@ -458,7 +458,7 @@ function modalLoad(id,type) {
 String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.toUpperCase())}
 
 // notification function
-function newNotification(title,body,img,tstamp){
+function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	if (tstamp.match("[0-9]{5}")){
 		const T = new Date(tstamp)
 	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
@@ -477,7 +477,7 @@ function newNotification(title,body,img,tstamp){
 	  <div class="toast-body">${body}</div>
 	`
 	document.querySelector(".toast-container").appendChild(div)
-	new bootstrap.Toast(div,{"delay":8000,"autohide":true}).show()
+	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
 	div.addEventListener('hidden.bs.toast', () => {div.remove()})
 }
 

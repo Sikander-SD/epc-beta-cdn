@@ -555,10 +555,10 @@ SSE_Event.addEventListener("message",e=>{
     
     // show notifications
     data.noti.forEach(n=>{
-      if ("Notification" in window && !page_noti.classList.contains("active")){
-        if (Notification.permission !== "granted") Notification.requestPermission()
-        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
-      }
+      // if ("Notification" in window && !page_noti.classList.contains("active")){
+      //   if (Notification.permission !== "granted") Notification.requestPermission()
+      //   if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
+      // }
       // when default notifications are not working
       if (!page_noti.classList.contains("active")) newNotification(n.title,n.body,null,n.id)
     })
@@ -896,11 +896,11 @@ SSE_Event.addEventListener("message",e=>{
         reply = {title:"Customer-Support Replied to your message!", id:data.reply[0].id, body:"click to open message!"}
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-		// show popup notification  
-		if ("Notification" in window){
-			if (Notification.permission !== "granted") Notification.requestPermission()
-			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		}
+	// // show popup notification  
+	// if ("Notification" in window){
+	// 	if (Notification.permission !== "granted") Notification.requestPermission()
+	// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+	// }
         // when default notifications are not working
         newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
         return

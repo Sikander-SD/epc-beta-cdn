@@ -151,8 +151,8 @@ button#back-page img{width:50%;}
 /* custom colors */
 
 :root{
-  --color-male-off:#87e8fd6e;
-  --color-female-off:#f087fd6e;
+  --color-male-off:#87e8fd5f;
+  --color-female-off:#f087fd5f;
   --color-male-on:#46deff;
   --color-female-on:#f087fd;
 /*   app colors  */

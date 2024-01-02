@@ -56,8 +56,8 @@ SSE_Event.addEventListener("message",e=>{
 // scroll events
 const SCROLL = {"x":0,"y":0,"left":false,"top":false};
 window.addEventListener('scroll', e=>{
-  const scrollX  = window.pageXOffset;
-  const scrollY  = window.pageYOffset;
+  const scrollX  = Number(window.pageXOffset.toFixed());
+  const scrollY  = Number(window.pageYOffset.toFixed());
   
   if (scrollX > SCROLL.x) SCROLL.left = true
   else SCROLL.left = false
@@ -65,7 +65,7 @@ window.addEventListener('scroll', e=>{
   else SCROLL.top = false
 
   // console.log(SCROLL)
-toast([SCROLL.x,SCROLL.y,SCROLL.left,SCROLL.top,(window.scrollY || window.pageYOffset ) + window.innerHeight, document.body.clientHeight].join(" "))
+// toast([SCROLL.x,SCROLL.y,SCROLL.left,SCROLL.top,(window.scrollY || window.pageYOffset ) + window.innerHeight, document.body.clientHeight].join(" "))
   SCROLL.x = scrollX; SCROLL.y = scrollY;  
 });
 
@@ -380,11 +380,12 @@ function compressImage(inputImage, callback,quality=0.7, maxWidth=100, maxHeight
 
 // Function to check if the user has scrolled to the bottom of the page
 function isScrolledToBottom() {
-  const windowHeight = window.innerHeight;
-  const documentHeight = document.body.clientHeight-2;//2 is for safety margin
-  const scrollTop = window.scrollY || window.pageYOffset;
+  const windowHeight = Number(window.innerHeight.toFixed());
+  const documentHeight = Number(document.body.clientHeight.toFixed())-2;//2 is for safety margin
+  const scrollTop = Number((window.scrollY || window.pageYOffset).toFixed());
 
   // Check if the user has scrolled to the bottom (with a small buffer)
+  toast([scrollTop + windowHeight, documentHeight].join(" "))
   return scrollTop + windowHeight >= documentHeight;
 }
 

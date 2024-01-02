@@ -57,7 +57,7 @@ function setBgColor(image) {
     var r = document.querySelector(':root');
     r.style.setProperty('--info-color', 'white');
     // r.style.setProperty('--icon-background-color', `rgb(${color.join(',')})` );
-    document.querySelectorAll(".label-block .icon").forEach(icon=>icon.style.backgroundImage = icon.style.backgroundImage.replace("Black","White"));    
+    document.querySelectorAll(".label-block .icon").forEach(icon=>icon.style.backgroundImage = icon.style.backgroundImage.replace("black","white"));    
   }
 };//END:setBgColor()
 // set info text in 1st and 2nd slide images
@@ -162,7 +162,7 @@ function slideImage1() {
         var fingerprint_icon = icon_.cloneNode()
         var fingerprint_info = document.createElement("span");  
         
-        fingerprint_icon.style.backgroundImage = `url(${path_ICONS}/Black/fingerprint.png)`
+        fingerprint_icon.style.backgroundImage = `url(${ROOT}/static/images/icons/black/fingerprint.png)`
         fingerprint_info.setAttribute("class","info")
         fingerprint_info.innerHTML = "fingerprint sensor";        
         
@@ -177,7 +177,7 @@ function slideImage1() {
         var water_proof_icon = icon_.cloneNode()
         var water_proof_info = document.createElement("span")
         
-        water_proof_icon.style.backgroundImage = `url(${path_ICONS}/Black/water-proof.png)`;
+        water_proof_icon.style.backgroundImage = `url(${ROOT}/static/images/icons/black/water-proof.png)`;
         water_proof_info.setAttribute("class","info")      
         water_proof_info.innerHTML = (x.includes("splash")?"splash proof": (x.includes("resistant")?"water resistant": "water proof"));  
         
@@ -190,8 +190,8 @@ function slideImage1() {
     else{
       info.classList.add("info");
       info.innerHTML = setInfo(l)
-      if (l=="os") icon_.style.backgroundImage = `url(${path_ICONS}/Black/`+device_DATA.os.toLowerCase().match(/android|ios/g)+".png)"
-      else icon_.style.backgroundImage = `url(${path_ICONS}/Black/`+l.replace(/-back|-front/g,"")+".png)"
+      if (l=="os") icon_.style.backgroundImage = `url(${ROOT}/static/images/icons/black/`+device_DATA.os.toLowerCase().match(/android|ios/g)+".png)"
+      else icon_.style.backgroundImage = `url(${ROOT}/static/images/icons/black/`+l.replace(/-back|-front/g,"")+".png)"
       
       // append sub-elements to block
       head.appendChild(icon_)

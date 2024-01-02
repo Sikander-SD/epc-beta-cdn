@@ -381,7 +381,7 @@ function compressImage(inputImage, callback,quality=0.7, maxWidth=100, maxHeight
 // Function to check if the user has scrolled to the bottom of the page
 function isScrolledToBottom() {
   const windowHeight = window.innerHeight;
-  const documentHeight = document.body.clientHeight;
+  const documentHeight = document.body.clientHeight-2;//2 is for safety margin
   const scrollTop = window.scrollY || window.pageYOffset;
 
   // Check if the user has scrolled to the bottom (with a small buffer)

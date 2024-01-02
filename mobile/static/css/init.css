@@ -503,7 +503,6 @@ page:not(.active){
 }
   
 /* Notifications */
-
 .toast-header img{width:8%;}
 .toast-header small{font-size:10px;}
 .toast-container .toast > div{padding:1% 2% 1% 2%}

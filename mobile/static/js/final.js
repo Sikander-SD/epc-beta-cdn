@@ -177,7 +177,8 @@ const SYNC = ()=>{
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
   // get localStorage data to sync with server
-  const data = JSON.parse(localStorage)
+  const data = {};
+  Object.keys(localStorage).forEach(k=>data[k] = JSON.parse(localStorage[k]))
     
   // send to server
   fetch("../server/", {

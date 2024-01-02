@@ -459,7 +459,7 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
-	if (tstamp.match("[0-9]{5}")){
+	if (tstamp && tstamp.match("[0-9]{5}")){
 		const T = new Date(tstamp)
 	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
 	}

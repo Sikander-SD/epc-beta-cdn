@@ -385,7 +385,7 @@ function isScrolledToBottom() {
   const scrollTop = Number((window.scrollY || window.pageYOffset).toFixed());
 
   // Check if the user has scrolled to the bottom (with a small buffer)
-  toast([scrollTop + windowHeight, documentHeight].join(" "))
+  // toast([scrollTop + windowHeight, documentHeight].join(" "))
   return scrollTop + windowHeight >= documentHeight;
 }
 

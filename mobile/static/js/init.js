@@ -65,6 +65,7 @@ window.addEventListener('scroll', e=>{
   else SCROLL.top = false
 
   // console.log(SCROLL)
+toast([SCROLL.x,SCROLL.y,SCROLL.left,SCROLL.top,(window.scrollY || window.pageYOffset ) + window.innerHeight, document.body.clientHeight].join(" "))
   SCROLL.x = scrollX; SCROLL.y = scrollY;  
 });
 

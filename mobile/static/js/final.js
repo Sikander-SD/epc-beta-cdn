@@ -166,10 +166,7 @@ if (localStorage.alert_dot){
 
 // add notification container into the page body
 const NotiContainer = document.createElement("div")
-NotiContainer.setAttribute("aria-live","polite")
-NotiContainer.setAttribute("aria-atomic","true")
-NotiContainer.className="position-relative"
-NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div>'
+NotiContainer.id="notification-container"
 document.body.appendChild(NotiContainer)
 
 // on session start: sync localStorage to the server

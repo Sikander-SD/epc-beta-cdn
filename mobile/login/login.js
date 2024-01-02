@@ -212,7 +212,7 @@ function OTPAuth() {
   const number = FORMOTP.number.value || "";
   const OTP = FORMOTP.otp.value || "";
   const data = { region:region,  phone:number,  otp: OTP  };
-  console.log("OTPAuth()<- ",data);
+  // console.log("OTPAuth()<- ",data);
 
   // reset phone and otp input.style
   FORMOTP.number.parentNode.classList.remove("failed");

@@ -173,7 +173,6 @@ NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div
 document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every hour
-setInterval(SYNC,1*60*60*1000)
 const SYNC = ()=>{
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
@@ -200,3 +199,5 @@ const SYNC = ()=>{
   })
     
 };//END: SYNC()
+setInterval(SYNC,1*60*60*1000)
+

@@ -31,10 +31,10 @@ SSE_Event.addEventListener("message",e=>{
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
 	    data.noti.forEach(n=>{
 			// show popup notification
-			if ("Notification" in window){
-				if (Notification.permission !== "granted") Notification.requestPermission()
-				if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-			}
+			// if ("Notification" in window){
+			// 	if (Notification.permission !== "granted") Notification.requestPermission()
+			// 	if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+			// }
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
 	    })
@@ -44,10 +44,10 @@ SSE_Event.addEventListener("message",e=>{
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
 	    
 		// show popup notification  
-		if ("Notification" in window){
-			if (Notification.permission !== "granted") Notification.requestPermission()
-			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		}
+		// if ("Notification" in window){
+		// 	if (Notification.permission !== "granted") Notification.requestPermission()
+		// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+		// }
 		// when default notifications are not working
 		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
 	}

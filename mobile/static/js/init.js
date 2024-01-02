@@ -458,16 +458,16 @@ function modalLoad(id,type) {
 String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.toUpperCase())}
 
 // notification function
-function newNotification(title,body,img,tstamp,duration=8000){
+function newNotification(title,body,img,tstamp){
 	if (tstamp.match("[0-9]{5}")){
 		const T = new Date(tstamp)
 	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
 	}
-
-  const block = document.getElementById("notification-container");
-  
-  const div = document.createElement("div");
-	div.className = "notification slide-in-from-right";
+	const div = document.createElement("div")
+	div.className = "toast slide-in-from-right";
+	div.role="alert";
+	div.setAttribute("aria-live","assertive");
+	div.setAttribute("aria-atomic","true");
 	div.innerHTML =   `<div class="toast-header">
 		<img src=${ROOT+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
@@ -476,16 +476,8 @@ function newNotification(title,body,img,tstamp,duration=8000){
 	  </div>
 	  <div class="toast-body">${body}</div>
 	`
-  block.appendChild(div);	
-
-  div.style.display = "block";
-  
-  setTimeout(() => {
-    div.style.display = "none";
-    block.removeChild(div);
-  }, duration);
-
-	// document.querySelector(".toast-container").appendChild(div)
-	// new bootstrap.Toast(div,{"delay":8000,"autohide":false}).show()
-	// div.addEventListener('hidden.bs.toast', () => {div.remove()})
+	document.querySelector(".toast-container").appendChild(div)
+	new bootstrap.Toast(div,{"delay":8000,"autohide":true}).show()
+	div.addEventListener('hidden.bs.toast', () => {div.remove()})
 }
+

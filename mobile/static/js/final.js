@@ -174,6 +174,7 @@ document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every hour
 const SYNC = ()=>{
+  if (!localStorage.userProfileData) return
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
   // get localStorage data to sync with server

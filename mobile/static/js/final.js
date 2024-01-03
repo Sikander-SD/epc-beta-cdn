@@ -174,12 +174,13 @@ document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every hour
 const SYNC = ()=>{
-  if (!localStorage.userProfileData) return
+  if (!localStorage.userProfileData || !localStorage.dictHasChanged) return
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
   // get localStorage data to sync with server
   const data = {};
   Object.keys(localStorage).forEach(k=>data[k] = JSON.parse(localStorage[k]))
+  delete data.dictHasChanged;
     
   // send to server
   fetch("../server/", {
@@ -194,7 +195,7 @@ const SYNC = ()=>{
     // if (!e.ok) throw Error(e.status)
     // update localStorage
     if (e.ok){
-      
+      localStorage.dictHasChanged = false
       //       NOT DEFINED YET
       
     }

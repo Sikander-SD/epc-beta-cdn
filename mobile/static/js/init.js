@@ -18,7 +18,7 @@ const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
 // dispaly screen orientation
 const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 // load more products
-let product_page = 1, waiting_flag = true; page_end = false;
+let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
 

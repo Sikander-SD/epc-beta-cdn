@@ -205,6 +205,6 @@ function SYNC(){
       localStorage.dataChanged = JSON.stringify(data);
     }
   })  
-})//END: SYNC()
+}//END: SYNC()
 setInterval(SYNC,1*60*60*1000)
 

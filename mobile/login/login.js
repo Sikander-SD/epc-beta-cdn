@@ -256,7 +256,7 @@ function OTPAuth() {
 
 // store and set user data
 function userProfile(data) {
-  console.log("userProfile",data)//check structure of data
+  // console.log("userProfile",data)//check structure of data
   
   // Convert the user profile data{} to a JSON string '{}'
   localStorage.userProfileData = JSON.stringify(data.userProfileData);

@@ -1,6 +1,6 @@
 // ---------------------------- localStorage events
 // create Event
-function localStorageChanged(key, oldValue, newValue) {
+export function localStorageChanged(key, oldValue, newValue) {
   // ignore if values are same
   if (JSON.stringify(oldValue) === JSON.stringify(newValue)) return  
   // Create Event
@@ -11,7 +11,7 @@ function localStorageChanged(key, oldValue, newValue) {
   e.newValue = newValue;
   // Trigger Event
   window.dispatchEvent(e);
-}
+};
 
 // Override the default setItem method of localStorage to Trigger Event
 const localStorage_setItem = localStorage.setItem;

@@ -176,6 +176,7 @@ page_edit_profile.querySelector(".nav-btns .btn-next").addEventListener("click",
       Object.keys(data).forEach(k=>profile[k] = data[k]);
       userProfileData.profile = profile;
       localStorage.userProfileData = JSON.stringify(userProfileData);
+      localStorage.dictHasChanged = true;
   
       // show | update profile
       setProfile( page_profile.querySelector(".top .profile"),
@@ -473,6 +474,7 @@ settings_opt.forEach(opt=>{
       data[opt.id] = inp.checked;      
       // update
       localStorage.userSettings = JSON.stringify(data);
+      localStorage.dictHasChanged = true;	    
     })
   }
 })
@@ -833,7 +835,7 @@ const sendChat = (chat,data)=>{
     const temp = JSON.parse(localStorage.Temp || '{}');
     if (temp.chats && temp.chats[data.title]){
       delete temp.chats[data.title][chat.id];
-      localStorage.Temp = JSON.stringify(temp);
+      localStorage.Temp = JSON.stringify(temp);	    
     }
   })
   // save to localStorage and retry on click

@@ -36,13 +36,13 @@ function localStorageChanged(key, oldValue, newValue) {
   window.dispatchEvent(e);
 };
 
-// // Override the default setItem method of localStorage to Trigger Event
-// const localStorage_setItem = localStorage.setItem;
-// localStorage.setItem = (key, value)=>{
-//   const oldValue = localStorage.getItem(key);
-//   localStorage_setItem.call(localStorage, key,value); // call origianl setItem()
-//   localStorageChanged(key, oldValue, value); // Trigger Event
-// };
+// Override the default setItem method of localStorage to Trigger Event
+const localStorage_setItem = localStorage.setItem;
+localStorage.setItem = (key, value)=>{
+  const oldValue = localStorage.getItem(key);
+  localStorage_setItem.call(localStorage, key,value); // call origianl setItem()
+  localStorageChanged(key, oldValue, value); // Trigger Event
+};
 
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{

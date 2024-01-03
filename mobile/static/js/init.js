@@ -1,9 +1,7 @@
 /*      NOTE
 This modul includes only those definitions and statements which are independent to other moduls | statements | definitions.
 */
-root_ = `${ROOT}/static/js/customeEvents.js`
-
-import {localStorageChanged} from root_
+import(`${ROOT}/static/js/customeEvents.js`).then(m=> const {localStorageChanged} = m)
 
 // .active the target element triggered by source element.clicked
 const activate_target = [];

@@ -173,15 +173,21 @@ NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div
 document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every hour
-window.addEventListener("localStorageChanged",e=>{
-  // get the csrf_token
-  const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
+function SYNC(){
   // get localStorage data to sync with server
   const data = {};  
   Object.keys(localStorage).forEach(k=>{
-    if ("introDone session setItem".includes(k)) return
+    if ("introDone session".includes(k)) return
     data[k] = JSON.parse(localStorage[k])
   })
+
+  // check changes
+  if (JSON.stringify(data) !== (localStorage.dataChanged || ""){
+    // get changed data only
+  }else return
+  
+  // get the csrf_token
+  const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
   
   // send to server
   fetch("../server/", {
@@ -195,7 +201,10 @@ window.addEventListener("localStorageChanged",e=>{
   .then(e=>{
     // if (!e.ok) throw Error(e.status)
     // update localStorage
-    if (e.ok){}
+    if (e.ok){
+      localStorage.dataChanged = JSON.stringify(data);
+    }
   })  
-})//END: localStorageChanged Event
+})//END: SYNC()
+setInterval(SYNC,1*60*60*1000)
 

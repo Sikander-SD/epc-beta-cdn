@@ -176,8 +176,7 @@ page_edit_profile.querySelector(".nav-btns .btn-next").addEventListener("click",
       Object.keys(data).forEach(k=>profile[k] = data[k]);
       userProfileData.profile = profile;
       localStorage.userProfileData = JSON.stringify(userProfileData);
-      localStorage.dictHasChanged = true;
-  
+	    
       // show | update profile
       setProfile( page_profile.querySelector(".top .profile"),
              ["userimg","username","userid","email","phone"] );
@@ -474,7 +473,6 @@ settings_opt.forEach(opt=>{
       data[opt.id] = inp.checked;      
       // update
       localStorage.userSettings = JSON.stringify(data);
-      localStorage.dictHasChanged = true;	    
     })
   }
 })

@@ -123,23 +123,25 @@ class LCS{
   // register the id of the liked product in userProfileData
   like(el){
     // get
-    const id = el.parentNode.parentNode.getAttribute("id");
+    const id = el.parentNode.parentNode.id;
     const userProfileData = JSON.parse(localStorage.userProfileData);
-    const like = userProfileData.lcs.like;
+    const like = new Set(userProfileData.lcs.like);
     const svg = el.querySelector('svg');
     const heart = el.querySelector('path');
     
     // set
-    if (like.includes(id)){
+    if (like.has(id)){         // remove like
       svg.setAttribute('fill', 'none');
-      heart.setAttribute('stroke', 'black');
-      like.splice(like.indexOf(id), 1);
-    }else{
+      heart.setAttribute('stroke', 'black');      
+      like.delete(id);
+      like.add("-"+id)// to indicate the server that this id should be removed from liked products
+    }else{                          // add like
       svg.setAttribute('fill', 'red');
       heart.setAttribute('stroke', 'red');
-      like.push(id);
+      like.delete("-"+id)
+      like.add(id);
     }
-    userProfileData.lcs.like = like;
+    userProfileData.lcs.like = new Array(...like);
     
     // update
     LCS.update(userProfileData);

@@ -179,7 +179,7 @@ window.addEventListener("localStorageChanged",e=>{
   // get localStorage data to sync with server
   const data = {};  
   Object.keys(localStorage).forEach(k=>{
-    if ("introDone session".includes(k)) continue
+    if ("introDone session".includes(k)) return
     data[k] = JSON.parse(localStorage[k])
   })
   

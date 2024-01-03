@@ -21,29 +21,6 @@ let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
 
-// ---------------------------- localStorage events
-// create Event
-function localStorageChanged(key, oldValue, newValue) {
-  // ignore if values are same
-  if (JSON.stringify(oldValue) === JSON.stringify(newValue)) return  
-  // Create Event
-  const e = new Event('localStorageChanged');
-  // set Event values
-  e.key = key;
-  e.oldValue = oldValue;
-  e.newValue = newValue;
-  // Trigger Event
-  window.dispatchEvent(e);
-};
-
-// Override the default setItem method of localStorage to Trigger Event
-const localStorage_setItem = localStorage.setItem;
-localStorage.setItem = (key, value)=>{
-  const oldValue = localStorage.getItem(key);
-  localStorage_setItem.call(localStorage, key,value); // call origianl setItem()
-  localStorageChanged(key, oldValue, value); // Trigger Event
-};
-
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{
 	const data = JSON.parse(event.data.replaceAll("'",'"'));

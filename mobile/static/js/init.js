@@ -485,6 +485,7 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 // return changes made in dict{} object
 function dictChanged(dictOld, dictNew) {
 	const diff = {};
+	if (JSON.stringify(dictOld) === JSON.stringify(dictNew)) return diff
 	for (const key in dictNew) {
 		if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
 			const innerDiff = dictChanged(dictOld[key], dictNew[key]);

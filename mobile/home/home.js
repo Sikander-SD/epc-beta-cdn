@@ -108,8 +108,9 @@ window.addEventListener('scroll', e=> {
 class LCS{
   constructor(){
     this.prev = null;
-		if (localStorage.lcs){ const storage_lcs = JSON.parse(localStorage.lcs) }
-		else{ const storage_lcs = {like:[],comment:[],share:[]} }
+		let storage_lcs;
+		if (localStorage.lcs) storage_lcs = JSON.parse(localStorage.lcs)
+		else storage_lcs = {like:[],comment:[],share:[]}
     LCS.update(storage_lcs);
   }
   

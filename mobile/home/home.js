@@ -109,23 +109,20 @@ class LCS{
   constructor(){
     this.prev = null;
     
-    let userProfileData = JSON.parse(localStorage.userProfileData || '{}');
     const lcs = {like:[],comment:[],share:[]};
-    
-    if (!userProfileData) userProfileData = {lcs:lcs}
-    else if (!userProfileData.lcs) userProfileData.lcs = lcs;
+    let storage_lcs = JSON.parse(localStorage.lcs || lcs);
 
-    LCS.update(userProfileData);
+    LCS.update(storage_lcs);
   }
   
-  static update(userProfileData){ localStorage.userProfileData = JSON.stringify(userProfileData) }
+  static update(lcs){ localStorage.lcs = JSON.stringify(lcs) }
   
   // register the id of the liked product in userProfileData
   like(el){
     // get
     const id = el.parentNode.parentNode.id;
-    const userProfileData = JSON.parse(localStorage.userProfileData);
-    const like = new Set(userProfileData.lcs.like);
+    const storage_lcs = JSON.parse(localStorage.lcs);
+    const like = new Set(storage_lcs.like);
     const svg = el.querySelector('svg');
     const heart = el.querySelector('path');
     
@@ -141,10 +138,10 @@ class LCS{
       like.delete("-"+id)
       like.add(id);
     }
-    userProfileData.lcs.like = new Array(...like);
+    storage_lcs.like = new Array(...like);
     
     // update
-    LCS.update(userProfileData);
+    LCS.update(storage_lcs);
   }
 
   // share the product in social media apps | copy the link  etc..
@@ -152,15 +149,15 @@ class LCS{
     // get
     const product = el.parentNode.parentNode;
     const id = product.getAttribute("id");
-    const userProfileData = JSON.parse(localStorage.userProfileData);
-    const share = userProfileData.lcs.share;
+    const storage_lcs = JSON.parse(localStorage.lcs);
+    const share = storage_lcs.share;
     
     if (!share.includes(id)){
       // set
       share.push(id);
-      userProfileData.lcs.share = share;      
+      storage_lcs.share = share;      
       // update
-      LCS.update(userProfileData);
+      LCS.update(storage_lcs);
     }
 
     // share product to social media apps

@@ -194,7 +194,7 @@ const  buttonYes = k=>{
 	if (!localStorage[k]){
 		localStorage[k] = 1;
 		// send to server
-		fetch(`../server/${k}?=1`)
+		// fetch(`../server/${k}?=1`)
 	}
 	toast("Comming Soon!");	
 }

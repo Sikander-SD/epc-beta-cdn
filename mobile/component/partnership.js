@@ -27,7 +27,7 @@ function partnershipHTML(page) {return `
         </p>
     </section>
     <section class="btn">
-        <button id="yes" onclick="buttonYes('partnership');">I'm Interested</button>
+        <button id="yes" onclick="buttonYes('partner');">I'm Interested</button>
     </section>
     
 `}

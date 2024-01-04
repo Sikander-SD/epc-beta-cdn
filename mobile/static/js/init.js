@@ -487,7 +487,7 @@ function dictChanged(dictOld, dictNew) {
 	const diff = {};
 	for (const key in dictNew) {
 		if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
-			const innerDiff = findDiff(dictOld[key], dictNew[key]);
+			const innerDiff = dictChanged(dictOld[key], dictNew[key]);
 			if (Object.keys(innerDiff).length > 0) diff[key] = innerDiff;
 		} else if (dictOld[key] !== dictNew[key]) diff[key] = dictNew[key];
 	}

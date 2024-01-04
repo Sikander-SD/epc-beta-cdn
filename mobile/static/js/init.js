@@ -483,3 +483,15 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	div.addEventListener('hidden.bs.toast', () => {div.remove()})
 }
 
+// return changes made in dict{} object
+function dictChanged(dictOld, dictNew) {
+	const diff = {};
+	for (const key in dictNew) {
+		if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
+			const innerDiff = findDiff(dictOld[key], dictNew[key]);
+			if (Object.keys(innerDiff).length > 0) diff[key] = innerDiff;
+		} else if (dictOld[key] !== dictNew[key]) diff[key] = dictNew[key];
+	}
+return diff;
+};//END: dictChanged()
+

@@ -468,7 +468,7 @@ settings_opt.forEach(opt=>{
     inp.addEventListener("click",e=>{
       // save setting to device      
       // get
-      let settings =  JSON.parse(localStorage.userSettings) || '{}');
+      let settings =  JSON.parse(localStorage.userSettings || '{}');
       // set
       settings[opt.id] = inp.checked;
       // update

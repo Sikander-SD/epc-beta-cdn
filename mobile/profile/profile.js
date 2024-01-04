@@ -369,10 +369,14 @@ function uepValidate(e) {
 // validate userid
 document.querySelector("#username input#userid").addEventListener("blur",uepValidate)
 document.querySelector("#username input#userid").addEventListener("input",uepValidate)
-// 
+// make one of email | phone constant to address the user account in database
 if (JSON.parse(localStorage.userProfileData).profile.email){
-  document.querySelector("#username div.email").style.opacity = "0.6"
-}else document.querySelector("#username div.phone").style.opacity = "0.6"
+  document.querySelector("#username div.email").style.opacity = "0.6";
+	document.querySelector("#username #email").readOnly = true;
+}else{
+	document.querySelector("#username div.phone").style.opacity = "0.6";
+	document.querySelector("#username #phone").readOnly = true;	
+}
 // validate email
 document.querySelector("#username input#email").addEventListener("blur",uepValidate)
 document.querySelector("#username input#email").addEventListener("input",uepValidate)

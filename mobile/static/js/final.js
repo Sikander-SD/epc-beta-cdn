@@ -177,9 +177,12 @@ function SYNC(){
   // get localStorage data to sync with server
   const data = {};
   Object.keys(localStorage).forEach(k=>{
-    if ("introDone session".includes(k)) return
+    if ("introDone dataChanged".includes(k)) return
     data[k] = JSON.parse(localStorage[k])
   })
+
+  // remove specific data
+  delete data.userProfileData.session
 
   // get changes only
   const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  

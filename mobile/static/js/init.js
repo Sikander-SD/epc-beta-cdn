@@ -192,10 +192,9 @@ const activateTarget = (el,prefix)=> {
 // premium button .yes
 const  buttonYes = k=>{
 	if (!localStorage[k]){
-	    localStorage[k] = 1;
-
+		localStorage[k] = 1;
 		// send to server
-		fetch("../server/?partner=1", {headers: {"Content-Type": "application/json"},})
+		fetch(`../server/${k}?=1`)
 	}
 	toast("Comming Soon!");	
 }

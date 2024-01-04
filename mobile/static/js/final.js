@@ -182,9 +182,7 @@ function SYNC(){
   })
 
   // get changes only
-  if (localStorage.hasOwnProperty("dataChanged")){
-    const changes = dictChanged(JSON.parse(localStorage.dataChanged),data)
-  }else{const changes = data}
+  const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  
   
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value;

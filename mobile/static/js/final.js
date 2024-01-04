@@ -172,7 +172,7 @@ NotiContainer.className="position-relative"
 NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div>'
 document.body.appendChild(NotiContainer)
 
-// sync localStorage to the server every hour
+// sync localStorage to the server every 10 minutes
 function SYNC(){
   // get localStorage data to sync with server
   const data = {};
@@ -186,6 +186,7 @@ function SYNC(){
 
   // get changes only
   const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  
+  if (Object.keys(changes).length==0) return
   
   // get the csrf_token
   const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value;
@@ -207,5 +208,5 @@ function SYNC(){
     }
   })  
 }//END: SYNC()
-setInterval(SYNC,1*60*60*1000)
+setInterval(SYNC,10*60*1000)
 

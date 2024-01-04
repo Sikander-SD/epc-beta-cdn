@@ -468,24 +468,24 @@ settings_opt.forEach(opt=>{
     inp.addEventListener("click",e=>{
       // save setting to device      
       // get
-      let data =  JSON.parse(localStorage.userSettings || '{}');      
+      let settings =  JSON.parse(localStorage.userSettings) || '{}');
       // set
-      data[opt.id] = inp.checked;      
+      settings[opt.id] = inp.checked;
       // update
-      localStorage.userSettings = JSON.stringify(data);
+      localStorage.userSettings = JSON.stringify(settings);
     })
   }
 })
 
 // restore settings' states
 function setupSettings() {
-  let data = localStorage.userSettings;
-  if (data) data = JSON.parse(data)
+  let settings = localStorage.userSettings;
+  if (settings) settings = JSON.parse(settings)
   else return;  
   
   settings_opt.forEach(opt=>{
     const inp = opt.querySelector("input");
-    if (inp) inp.checked = data[opt.id];
+    if (inp) inp.checked = settings[opt.id];
   })
 };
 

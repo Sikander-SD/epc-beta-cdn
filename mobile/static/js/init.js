@@ -243,7 +243,7 @@ function loadLikes(like=[]) {
 	console.log(like)
   document.querySelectorAll(".lcs").forEach(lcs=>{
     const id = lcs.parentNode.getAttribute("id");
-    const likes = new Set([...like, ...JSON.parse(localStorage.userProfileData).lcs.like]);
+    const likes = new Set([...like, ...JSON.parse(localStorage.lcs).like]);
     const svg = lcs.querySelector('#like svg');
     const heart = lcs.querySelector('#like path');
     if (likes.has(id)){

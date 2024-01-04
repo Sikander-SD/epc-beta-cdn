@@ -259,7 +259,7 @@ function userProfile(data) {
   // console.log("userProfile",data)//check structure of data
   
   // save data to localStorage
-  Object.keys(data).forEach(k=>{ localStorage[k] = JSON.stringigy(data[k]); })  
+  Object.keys(data).forEach(k=>{ localStorage[k] = JSON.stringify(data[k]); })  
   
   // set profile image and username
   if (data.userProfileData.profile.userimg){

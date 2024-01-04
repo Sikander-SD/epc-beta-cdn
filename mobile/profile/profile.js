@@ -157,7 +157,7 @@ page_edit_profile.querySelector(".nav-btns .btn-next").addEventListener("click",
     // if changes has made into the profile
     if (Object.keys(data).length) {
     
-      console.log("sending this profile data to the server:",data)
+      // console.log("sending this profile data to the server:",data)
   
       // get the csrf_token
       const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";

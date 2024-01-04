@@ -175,7 +175,7 @@ function gmailAuth() {
       },
       body: JSON.stringify(data)
     })
-    .then(response=>{//<- userProfileData{} from server
+    .then(response => {//<- {userProfileData:{lcs,profile},userSettings,...} from server
       // redirect to authentication consent
       if (response.status == 302) response.text().then(url=>window.open(url,"_self"))
       
@@ -229,7 +229,7 @@ function OTPAuth() {
     },
     body: JSON.stringify(data)
   })
-  .then(response => {//<- {userProfileData:{lcs,profile}} from server
+  .then(response => {//<- {userProfileData:{lcs,profile},userSettings,...} from server
     if(!response.ok) throw Error(response.status+" "+response.statusText);
     response.json().then(d=>{
       // proceed if server sent the user's data
@@ -258,8 +258,8 @@ function OTPAuth() {
 function userProfile(data) {
   // console.log("userProfile",data)//check structure of data
   
-  // Convert the user profile data{} to a JSON string '{}'
-  localStorage.userProfileData = JSON.stringify(data.userProfileData);
+  // save data to localStorage
+  Object.keys(data).forEach(k=>{ localStorage[k] = JSON.stringigy(data[k]); })  
   
   // set profile image and username
   if (data.userProfileData.profile.userimg){

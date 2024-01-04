@@ -25,7 +25,7 @@ function premiumHTML(page,args) {
     <section class="bottom" style="text-align:center;">
                     <div class="trigger"> <p><span>86%</span> Users are Interested,<br>ARE YOU?</p>  </div>
                     <div class="slogan">Buy Prime And Be Prime</div>
-                    <div class="btn" style="width:100%;"> <button id="yes" onclick="buttonYes('premium');">I'm Interested</button> </div>
+                    <div class="btn" style="width:100%;"> <button id="yes" onclick="buttonYes('prime');">I'm Interested</button> </div>
     </section>
 
     <style>

@@ -64,18 +64,7 @@ var cls = ["yes","skip"];
 cls.forEach(c=>{
   document.querySelector("button."+c).addEventListener("click",()=>{
     // flag this webpage to be done
-    localStorage.introDone = true
-    
-    if (c=="yes"){
-      fetch("../server/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({premium:x})
-      });
-      localStorage.premium = 1;
-      window.open('../login/','_blank');//set to "_self" after testing
-    }
+    localStorage.introDone = true    
+    if (c=="yes") localStorage.prime = 1;
   })
 })

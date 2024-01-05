@@ -143,7 +143,7 @@ document.querySelectorAll("input#mobile-devices").forEach(inp=>{
 	  const v = inp.value.trim();
 	  if (!v || v.length%2) return;
 	  
-	  fetch("../server?q="+v)
+	  fetch("../server/?q="+v)
 	    .then(response=>{// "Apple iPhone 14,Samsung S20,OnePlus 10R 5G"
 	      if (!response.ok) throw Error(response.status +" "+ response.statusText)
 	      const list = document.querySelector("datalist#names");

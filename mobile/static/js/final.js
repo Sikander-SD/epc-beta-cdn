@@ -242,9 +242,9 @@ document.querySelectorAll("[back-button-key]").forEach(el=>{
 				else clickedHistory.pop()
 			}
 		}
-	}
-});
+	});
+	
 	observer.observe(el, { attributes: true, attributeFilter: ['class'] });
 	// To disconnect the observer later (when no longer needed):
 	// observer.disconnect();
-})
+});

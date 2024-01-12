@@ -221,8 +221,8 @@ document.querySelectorAll('.carousel[swipe]').forEach(el=>{
     if (!swipeX) return;
     var currentX = e.touches[0].clientX;
     var deltaX = currentX - swipeX;  
-    if (deltaX > 0) el.querySelector("div.carousel-control-prev").click()
-    else if (deltaX < 0) el.querySelector("div.carousel-control-next").click()
+    if (deltaX > 0) document.querySelector(`div.carousel-control-prev[data-bs-target="#${el.id}"]`).click()
+    else if (deltaX < 0) document.querySelector(`div.carousel-control-next[data-bs-target="#${el.id}"]`).click()
   
     // Reset swipeX for the next touchmove event
     swipeX = null;

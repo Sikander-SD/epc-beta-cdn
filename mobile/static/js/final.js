@@ -218,6 +218,7 @@ const clickedHistory = [];
 
 // do this on back button clicked
 window.onpopstate = e=>{
+	toast("back button pressed")
 	const el = clickedHistory.reverse()[0];
 	// Perform the default back button behavior
 	if (!el) {history.back(); return}

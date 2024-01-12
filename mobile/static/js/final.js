@@ -209,3 +209,22 @@ function SYNC(){
   })  
 }//END: SYNC()
 setInterval(SYNC,10*60*1000)
+
+// *************************  gesture sliding for all .carousel elements
+
+// initial gesture value holder
+let swipeX;
+// set touch sliding for all slides
+document.querySelectorAll('.carousel[data-bs-touch="false"]').forEach(el=>{ 
+  el.addEventListener('touchstart', e=>{  swipeX = e.touches[0].clientX;});
+  el.addEventListener('touchmove', e=>{  
+    if (!swipeX) return;
+    var currentX = e.touches[0].clientX;
+    var deltaX = currentX - swipeX;  
+    if (deltaX > 0) el.querySelector("div.carousel-control-prev").click()
+    else if (deltaX < 0) el.querySelector("div.carousel-control-next").click()
+  
+    // Reset swipeX for the next touchmove event
+    swipeX = null;
+  });
+});

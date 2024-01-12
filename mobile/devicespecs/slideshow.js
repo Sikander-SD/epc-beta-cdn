@@ -102,7 +102,7 @@ function slideImage1() {
   img.setAttribute("src",path_IMAGES+device_NAME+"/main.png")
   img.classList.add("device-image");
   img.setAttribute("alt",device_NAME)
-  img.onload = ()=>setBgColor(img); //ERROR: cross-origin
+  // img.onload = ()=>setBgColor(img); //ERROR: cross-origin
   
   // append device image and device name into the slide
   div.appendChild(img)

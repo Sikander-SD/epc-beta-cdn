@@ -494,20 +494,3 @@ function dictChanged(dictOld, dictNew) {
 	}
 return diff;
 };//END: dictChanged()
-
-// *********************************** phone's Back button
-// it stores the elements as sequential history of 
-// popup | page | modal etc opened to close them in same order.
-const clickedHistory = [];
-
-window.onpopstate = e=>{
-	const el = clickedHistory.pop();
-	// Perform the default back button behavior
-	if (!el) {history.back(); return}
-	// close page
-	else if (el.nodeName === "PAGE") el.querySelector("#back-page").click()
-	// close modal
-	else if (el.nodeName === "DIV" && el.classList.contains("modal")) el.querySelector("button.btn-close").click()
-	// Prevent the default back button behavior
-	history.pushState(null, null, window.location.pathname);
-};

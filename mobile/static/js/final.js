@@ -218,7 +218,7 @@ const clickedHistory = [];
 
 // do this on back button clicked
 window.onpopstate = e=>{
-	const el = clickedHistory.pop();
+	const el = clickedHistory.reverse()[0];
 	// Perform the default back button behavior
 	if (!el) {history.back(); return}
 	// close page
@@ -233,10 +233,17 @@ window.onpopstate = e=>{
 document.querySelectorAll("[back-button-key]").forEach(el=>{
 	const observer = new MutationObserver(function(mutationsList, observer) {	
 		for (let mutation of mutationsList) {
-				if (mutation.type === 'attributes' && mutation.attributeName === 'class' && el.classList.contains('show')) clickedHistory.push(el)
-				else if (mutation.type === 'attributes' && mutation.attributeName === 'class' && el.classList.contains('active')) clickedHistory.push(el)
+			if (mutation.type === 'attributes' && mutation.attributeName === 'class'){
+				// add element
+				if (el.classList.contains('modal') && el.classList.contains('show') ||
+						el.nodeName === "PAGE" && el.classList.contains('active')
+					 ){clickedHistory.push(el)}
+				// remove element
+				else clickedHistory.pop()
+			}
 		}
-	});
+	}
+});
 	observer.observe(el, { attributes: true, attributeFilter: ['class'] });
 	// To disconnect the observer later (when no longer needed):
 	// observer.disconnect();

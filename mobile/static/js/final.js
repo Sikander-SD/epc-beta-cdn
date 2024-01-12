@@ -215,7 +215,7 @@ setInterval(SYNC,10*60*1000)
 // initial gesture value holder
 let swipeX;
 // set touch sliding for all slides
-document.querySelectorAll('.carousel[data-bs-touch="false"]:not(#carousel-login)').forEach(el=>{ 
+document.querySelectorAll('.carousel[swipe]').forEach(el=>{ 
   el.addEventListener('touchstart', e=>{  swipeX = e.touches[0].clientX;});
   el.addEventListener('touchmove', e=>{  
     if (!swipeX) return;

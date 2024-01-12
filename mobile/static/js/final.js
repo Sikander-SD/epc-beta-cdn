@@ -249,3 +249,5 @@ document.querySelectorAll("[back-button-key]").forEach(el=>{
 	// To disconnect the observer later (when no longer needed):
 	// observer.disconnect();
 });
+
+window.addEventListener("keydown",e=>{if (e.key == "GoBack")toast("back button")})

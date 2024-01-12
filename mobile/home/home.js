@@ -25,13 +25,13 @@ views.forEach((btn,i)=>{   btn.addEventListener("click",e=>{
 
 // toggle the clicked button in a group of buttons
 var a = [
-  "#sortModal .top button[toggle]",
-  "#sortModal .bottom div[toggle]",
+  "#sortModal .top button[toggle]",// toggle sort options
+  "#sortModal .bottom div[toggle]",// toggle sort order
 ];
 a.forEach(x=>toggle_2.push(x));
 // .active and toggle the clicked element or button
 var a = [
-  "#filterModal .right #usage button[toggle-3]",
+  "#filterModal .right #usage button[toggle-3]",// toggle #usage buttons
 ];
 a.forEach(x=>toggle_3.push(x));
 // .active or toggle between pages

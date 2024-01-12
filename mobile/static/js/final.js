@@ -210,3 +210,36 @@ function SYNC(){
 }//END: SYNC()
 setInterval(SYNC,10*60*1000)
 
+// *********************************** phone's Back button
+
+// it stores the elements as sequential history of opened
+// popups | pages | modals etc to close them in same order.
+const clickedHistory = [];
+
+// do this on back button clicked
+window.onpopstate = e=>{
+	const el = clickedHistory.pop();
+	// Perform the default back button behavior
+	if (!el) {history.back(); return}
+	// close page
+	else if (el.nodeName === "PAGE") el.querySelector("#back-page").click()
+	// close modal
+	else if (el.nodeName === "DIV" && el.classList.contains("modal")) el.querySelector("button.btn-close").click()
+	// Prevent the default back button behavior
+	history.pushState(null, null, window.location.pathname);
+};
+
+// add the opened popups | pages | modals etc to clickedHistory[]
+document.querySelectorAll("[back-button]").forEach(el=>{
+  if (el.nodeName === "PAGE"){}  
+  const observer = new MutationObserver((mutationsList, observer)=>{
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            if (el.classList.contains('active')) clickedHistory.push(el)
+        }
+    }
+  });
+  observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+  // To disconnect the observer later (when no longer needed):
+  // observer.disconnect();
+})

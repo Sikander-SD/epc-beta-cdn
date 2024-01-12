@@ -1,7 +1,7 @@
 function searchTabHTML() {
     const cmt = document.createComment("   search device -Modal   ");
     const modal = document.createElement("div");
-    const attrs = {class:"modal fade",id:"search-deviceModal",tabindex:"-1","aria-hidden":"true"}
+    const attrs = {class:"modal fade",id:"search-deviceModal","back-button-key":"",tabindex:"-1","aria-hidden":"true"}
     Object.keys(attrs).forEach(k=>modal.setAttribute(k,attrs[k]));
 
     modal.innerHTML = `

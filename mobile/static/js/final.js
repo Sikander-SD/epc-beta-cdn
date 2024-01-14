@@ -228,3 +228,5 @@ document.querySelectorAll('.carousel[swipe]').forEach(el=>{
     swipeX = null;
   });
 });
+
+window.addEventListener("keydown",e=>{if (e.key === "Enter")toast(e.key)})

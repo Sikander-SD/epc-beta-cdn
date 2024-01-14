@@ -230,4 +230,4 @@ document.querySelectorAll('.carousel[swipe]').forEach(el=>{
 });
 
 // window.addEventListener("keydown",e=>{if (e.key === "Enter")toast(e.key)})
-window.addEventListener("keydown",e=>toast(e.key))
+window.addEventListener("keydown",e=>alert(e.key+e.code))

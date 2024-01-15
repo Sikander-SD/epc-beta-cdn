@@ -22,30 +22,13 @@ let product_page = 1, waiting_flag = true, page_end = false;
 const SSE_Event = new EventSource('../sse/');
 
 // add loading spinner to the page
-/*
-#loading-prinner{
-position: fixed;
-  z-index: 100;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  background-color: #fff6;
-  }
-#loading-prinner div{
-	margin: auto;
-  width: 60px;
-  height: 60px;
-}
-  
-*/
 function loadingSpinner(){
-	const loading_spinner = document.createElement("div");
-	div.id = "spinner_"+document.querySelectorAll(".loading-prinner").length;
-	div.className="text-center loading-prinner";
-	div.innerHTML = `<div class="spinner-border" role="status"></div>`
-	return loading_spinner
+	const spinner = document.createElement("div");
+	spinner.id = "spinner_"+document.querySelectorAll(".loading-prinner").length;
+	spinner.className="text-center loading-prinner";
+	spinner.innerHTML = `<div class="spinner-border" role="status"></div>`
+	return spinner
 }
-
 window.addEventListener('DOMContentLoaded',e=>{
 	const loading_spinner = loadingSpinner();
 	document.body.appendChild(loading_spinner)

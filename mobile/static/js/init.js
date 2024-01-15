@@ -38,12 +38,20 @@ position: fixed;
 }
   
 */
-window.addEventListener('load',e=>{
-	const spinner = document.createElement("div");
-	div.id = "loading-prinner"; div.className="text-center";
+function loadingSpinner(){
+	const loading_spinner = document.createElement("div");
+	div.id = "spinner_"+document.querySelectorAll(".loading-prinner").length;
+	div.className="text-center loading-prinner";
 	div.innerHTML = `<div class="spinner-border" role="status"></div>`
-	document.appendChild(div)
+	return loading_spinner
+}
+
+window.addEventListener('DOMContentLoaded',e=>{
+	const loading_spinner = loadingSpinner();
+	document.body.appendChild(loading_spinner)
+	window.addEventListener('load',e=>document.body.removeChild(loading_spinner));	
 })
+
 
 
 // notify on any notifications recieved from server

@@ -371,7 +371,9 @@ section.grid.active{
 .product-img{
   padding:2%;
   margin:auto;
+	position: relative;
 }
+.product-img .loading-prinner{position: absolute;}
 .product-colors{
   position:absolute;
   right:5%;

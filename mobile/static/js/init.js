@@ -38,8 +38,13 @@ window.addEventListener('beforeunload',e=>showLoadingBar())
 // but only apply this specific requests.
 var originalFetch = window.fetch;
 window.fetch = function (...args) {
+	let valid = true
 	console.log(args)
-let valid = true
+	if (args.length == 2){
+		if (args[1].body.match(/type|client/gm))
+		{valid = false}			
+	}
+	
   if (valid) showLoadingBar();
 
   // Return the original fetch promise

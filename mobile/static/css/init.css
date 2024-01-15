@@ -522,7 +522,7 @@ page:not(.active){
   height: 3px;
   position: fixed;
   overflow: hidden;
-  z-index:100;
+  z-index:1056;
 }
 
 .loading-progress {

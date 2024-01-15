@@ -21,6 +21,31 @@ let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
 
+// add loading spinner to the page
+/*
+#loading-prinner{
+position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: #fff6;
+  }
+#loading-prinner div{
+	margin: auto;
+  width: 60px;
+  height: 60px;
+}
+  
+*/
+window.addEventListener('load',e=>{
+	const spinner = document.createElement("div");
+	div.id = "loading-prinner"; div.className="text-center";
+	div.innerHTML = `<div class="spinner-border" role="status"></div>`
+	document.appendChild(div)
+})
+
+
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{
 	const data = JSON.parse(event.data.replaceAll("'",'"'));

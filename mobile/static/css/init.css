@@ -517,8 +517,8 @@ page:not(.active){
 .loading-prinner{
 position: fixed;
   z-index: 100;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   background-color: #fff6;
   }

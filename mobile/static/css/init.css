@@ -503,10 +503,27 @@ page:not(.active){
 }
   
 /* Notifications */
+
 .toast-header img{width:8%;}
 .toast-header small{font-size:10px;}
 .toast-container .toast > div{padding:1% 2% 1% 2%}
 .toast-container{
   overflow:hidden;
   position:fixed;
+}
+
+/* Loading Spinner */
+
+.loading-prinner{
+position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: #fff6;
+  }
+.loading-prinner div{
+	margin: auto;
+  width: 60px;
+  height: 60px;
 }

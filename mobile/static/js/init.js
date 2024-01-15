@@ -21,21 +21,14 @@ let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
 
-// add loading spinner to the page
-function getLoadingSpinner(){
-	const spinner = document.createElement("div");
-	spinner.id = "spinner_"+document.querySelectorAll(".loading-prinner").length;
-	spinner.className="text-center loading-prinner";
-	spinner.innerHTML = `<div class="spinner-border" role="status"></div>`
-	return spinner
+// add loading bar to the page
+function showLoadingBar() {
+	const bar = document.createElement("div");
+	bar.className="loading-bar";
+	bar.innerHTML = `<div class="loading-progress"</div>`
+	document.body.insertBefore(bar, document.body.firstChild)
 }
-
-function showLoadingSpinner(parent=document.body) {
-	const loading_spinner = getLoadingSpinner();
-	if (parent.firstChild) parent.insertBefore(loading_spinner, parent.firstChild)
-	else parent.appendChild(loading_spinner)	
-}
-window.addEventListener('beforeunload',e=>showLoadingSpinner())
+window.addEventListener('beforeunload',e=>showLoadingBar())
 
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{

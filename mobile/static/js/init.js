@@ -30,9 +30,10 @@ function getLoadingSpinner(){
 	return spinner
 }
 
-function showLoadingSpinner() {
+function showLoadingSpinner(parent=document.body) {
 	const loading_spinner = getLoadingSpinner();
-	document.body.insertBefore(loading_spinner,document.body.firstChild)	
+	if (parent.firstChild) parent.insertBefore(loading_spinner, parent.firstChild)
+	else parent.appendChild(loading_spinner)	
 }
 window.addEventListener('beforeunload',e=>showLoadingSpinner())
 

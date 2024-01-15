@@ -22,20 +22,18 @@ let product_page = 1, waiting_flag = true, page_end = false;
 const SSE_Event = new EventSource('../sse/');
 
 // add loading spinner to the page
-function loadingSpinner(){
+function getLoadingSpinner(){
 	const spinner = document.createElement("div");
 	spinner.id = "spinner_"+document.querySelectorAll(".loading-prinner").length;
 	spinner.className="text-center loading-prinner";
 	spinner.innerHTML = `<div class="spinner-border" role="status"></div>`
 	return spinner
 }
-window.addEventListener('DOMContentLoaded',e=>{
-	const loading_spinner = loadingSpinner();
-	document.body.appendChild(loading_spinner)
-	// window.addEventListener('load',e=>document.body.removeChild(loading_spinner));	
-})
 
-
+function showLoadingSpinner() {
+	const loading_spinner = getLoadingSpinner();
+	document.body.insertBefore(loading_spinner,document.body.firstChild)	
+}
 
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{

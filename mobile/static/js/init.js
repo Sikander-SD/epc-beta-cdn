@@ -34,6 +34,7 @@ function showLoadingSpinner() {
 	const loading_spinner = getLoadingSpinner();
 	document.body.insertBefore(loading_spinner,document.body.firstChild)	
 }
+window.addEventListener('beforeunload',e=>showLoadingSpinner())
 
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{

@@ -38,6 +38,7 @@ window.addEventListener('beforeunload',e=>showLoadingBar())
 // but only apply this specific requests.
 var originalFetch = window.fetch;
 window.fetch = function (...args) {
+	console.log(args)
 let valid = true
   if (valid) showLoadingBar();
 
@@ -519,7 +520,8 @@ function dictChanged(dictOld, dictNew) {
 	const diff = {};
 	if (JSON.stringify(dictOld) === JSON.stringify(dictNew)) return diff
 	for (const key in dictNew) {
-		if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
+		if (!dictOld.hasOwnProperty(key)) diff[key] = dictNew[key]
+		else if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
 			const innerDiff = dictChanged(dictOld[key], dictNew[key]);
 			if (Object.keys(innerDiff).length > 0) diff[key] = innerDiff;
 		} else if (dictOld[key] !== dictNew[key]) diff[key] = dictNew[key];

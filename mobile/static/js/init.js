@@ -22,7 +22,8 @@ let product_page = 1, waiting_flag = true, page_end = false;
 const SSE_Event = new EventSource('../sse/');
 
 // add loading bar to the page
-function showLoadingBar() {
+function showLoadingBar(hide) {
+	if (hide){document.querySelector(".loading-bar").remove();return}
 	const bar = document.createElement("div");
 	bar.className="loading-bar";
 	bar.innerHTML = `<div class="loading-progress"</div>`

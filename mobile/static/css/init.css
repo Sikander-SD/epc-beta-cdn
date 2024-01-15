@@ -517,16 +517,22 @@ page:not(.active){
 
 /* Loading Spinner */
 
-.loading-prinner{
-position: fixed;
-  z-index: 100;
+.loading-bar {
   width: 100%;
+  height: 3px;
+  position: fixed;
+  overflow: hidden;
+  z-index:100;
+}
+
+.loading-progress {
   height: 100%;
-  display: flex;
-  background-color: #fff6;
-  }
-.loading-prinner div{
-	margin: auto;
-  width: 60px;
-  height: 60px;
+  width: 200%;
+  background: linear-gradient(to right,red,blue,green,yellow,red,blue,green,yellow,red);
+  animation: loading-bar 1.5s infinite cubic-bezier(1, 1, 0, 0);
+}
+
+@keyframes loading-bar {
+  0% {transform: translateX(-50%);}
+  100% {transform: translateX(0%);}
 }

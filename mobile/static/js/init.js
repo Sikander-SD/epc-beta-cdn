@@ -32,7 +32,7 @@ function loadingSpinner(){
 window.addEventListener('DOMContentLoaded',e=>{
 	const loading_spinner = loadingSpinner();
 	document.body.appendChild(loading_spinner)
-	window.addEventListener('load',e=>document.body.removeChild(loading_spinner));	
+	// window.addEventListener('load',e=>document.body.removeChild(loading_spinner));	
 })
 
 

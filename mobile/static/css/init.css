@@ -374,6 +374,7 @@ section.grid.active{
 	position: relative;
 }
 .product-img .loading-prinner{position: absolute;}
+.product-img .loading-prinner div { width: unset;  height: unset;}
 .product-colors{
   position:absolute;
   right:5%;

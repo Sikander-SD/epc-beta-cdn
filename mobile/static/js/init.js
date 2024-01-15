@@ -23,13 +23,35 @@ const SSE_Event = new EventSource('../sse/');
 
 // add loading bar to the page
 function showLoadingBar(hide) {
-	if (hide){document.querySelector(".loading-bar").remove();return}
+	if (hide){document.querySelectorAll(".loading-bar").forEach(x=>x.remove());return}
+	if (document.querySelector(".loading-bar")) return
 	const bar = document.createElement("div");
 	bar.className="loading-bar";
 	bar.innerHTML = `<div class="loading-progress"</div>`
 	document.body.insertBefore(bar, document.body.firstChild)
+	setTimeout(e=>bar.remove(),2*60*1000)
 }
 window.addEventListener('beforeunload',e=>showLoadingBar())
+
+
+// showLoadingBar whenever a fetch() is called or request is made to the server.
+// but only apply this specific requests.
+var originalFetch = window.fetch;
+window.fetch = function (...args) {
+let valid = true
+  if (valid) showLoadingBar();
+
+  // Return the original fetch promise
+  return originalFetch.apply(this, Array.from(args))
+    .then(function (response) {
+      if (valid) showLoadingBar(true);
+      return response;
+    })
+    .catch(function (error) {
+      if (valid) showLoadingBar(true);
+      throw error;
+    });
+};
 
 // notify on any notifications recieved from server
 SSE_Event.addEventListener("message",e=>{

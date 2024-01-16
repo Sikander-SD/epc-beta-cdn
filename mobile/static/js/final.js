@@ -71,11 +71,12 @@ search_form.addEventListener("submit",e=>{
   }
   
   const data = {q:v,page:0};
-  populateProductList("query",data);
+  populateProductList("query",data).then(e=>{
+    product_page = 1;// reset the page number
+    window.scrollTo(0,0); // scroll to top  
+    page_end = false;// reset page end flag    
+  })
   
-  product_page = 1;// reset the page number
-  window.scrollTo(0,0); // scroll to top  
-  page_end = false;// reset page end flag
 })
   
 search_form.elements.query.addEventListener("input",e=>{

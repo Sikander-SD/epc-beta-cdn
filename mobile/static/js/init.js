@@ -39,7 +39,6 @@ window.addEventListener('beforeunload',e=>showLoadingBar())
 var originalFetch = window.fetch;
 window.fetch = function (...args) {
 	let valid = true
-	console.log(args)
 	if (args.length == 2){
 		if (args[1].body.match(/type|client/gm))
 		{valid = false}			

@@ -63,7 +63,8 @@ search_form.addEventListener("submit",e=>{
   const v = input_query.value.trim();
   let v1 = "";
   if (THIS_PAGE == "home")  v1 = document.querySelector("#search-query p").innerHTML.trim();
-  if (!v || v == v1){
+  if (!v) return
+  if (v == v1){
     search_modal.querySelector(".btn-close").click();
     window.scrollTo(0,0); // scroll to top  
     return

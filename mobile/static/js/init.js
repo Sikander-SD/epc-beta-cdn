@@ -40,7 +40,7 @@ var originalFetch = window.fetch;
 window.fetch = function (...args) {
 	let valid = true
 	if (args.length == 2){
-		if (args[1].body.match(/type|client/gm))
+		if (args[1].body.match(/["]type["][:]["]client["]|["]sync["][:]/gm))
 		{valid = false}			
 	}
 	

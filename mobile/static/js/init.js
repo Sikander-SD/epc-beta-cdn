@@ -21,7 +21,7 @@ let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
 
-// add loading bar to the page
+// loading bar function
 function showLoadingBar(hide) {
 	if (hide){document.querySelectorAll(".loading-bar").forEach(x=>x.remove());return}
 	if (document.querySelector(".loading-bar")) return
@@ -33,11 +33,11 @@ function showLoadingBar(hide) {
 }
 window.addEventListener('beforeunload',e=>showLoadingBar())
 
-
 // showLoadingBar whenever a fetch() is called or request is made to the server.
 // but only apply this specific requests.
 var originalFetch = window.fetch;
 window.fetch = function (...args) {
+	console.log(args)
 	let valid = true
 	if (args.length == 2){
 		if (args[1].body.match(/["]type["][:]["]client["]|["]sync["][:]/gm))

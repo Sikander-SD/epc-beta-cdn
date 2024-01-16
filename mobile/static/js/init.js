@@ -87,7 +87,8 @@ SSE_Event.addEventListener("message",e=>{
 		// }
 		// when default notifications are not working
 		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
-	}
+	// when logged in to another device or cookies has been cleared
+	}else if (data.hasOwnProperty("logout")) window.location.reload()
 });
 
 // scroll events

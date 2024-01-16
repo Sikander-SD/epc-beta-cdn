@@ -63,13 +63,18 @@ search_form.addEventListener("submit",e=>{
   const v = input_query.value.trim();
   let v1 = "";
   if (THIS_PAGE == "home")  v1 = document.querySelector("#search-query p").innerHTML.trim();
-  if (!v || v == v1) return;
+  if (!v || v == v1){
+    search_modal.querySelector(".btn-close").click();
+    window.scrollTo(0,0); // scroll to top  
+    return
+  }
   
   const data = {q:v,page:0};
   populateProductList("query",data);
-  // reset the page number
-  product_page = 1;
-  page_end = false;
+  
+  product_page = 1;// reset the page number
+  window.scrollTo(0,0); // scroll to top  
+  page_end = false;// reset page end flag
 })
   
 search_form.elements.query.addEventListener("input",e=>{

@@ -1,536 +1,545 @@
-/*      NOTE
-This modul includes only those definitions and statements which are independent to other moduls | statements | definitions.
-*/
-
-// .active the target element triggered by source element.clicked
-const activate_target = [];
-// .active the clicked element or button
-const toggle_2 = [];
-// .active and toggle the clicked element or button
-const toggle_3 = [];
-// init parameters
-const screenPHONE = 800;//px
-// name of the current webpage
-const THIS_PAGE = window.location.pathname.split("/")[1] || null;
-// set prime member status
-const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
-// dispaly screen orientation
-const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
-// load more products
-let product_page = 1, waiting_flag = true, page_end = false;
-// SSE : server-side-evetns
-const SSE_Event = new EventSource('../sse/');
-
-// loading bar function
-function showLoadingBar(hide) {
-	if (hide){document.querySelectorAll(".loading-bar").forEach(x=>x.remove());return}
-	if (document.querySelector(".loading-bar")) return
-	const bar = document.createElement("div");
-	bar.className="loading-bar";
-	bar.innerHTML = `<div class="loading-progress"</div>`
-	document.body.insertBefore(bar, document.body.firstChild)
-	setTimeout(e=>bar.remove(),2*60*1000)
+/* ROOT */
+:roo{
+  --innerHeight: 100vh;  
+  --innerWidth: 100vw;
 }
-window.addEventListener('beforeunload',e=>showLoadingBar())
+tab.active + footer.nav{display:block;}
+page{
+  display:block;
+  padding-bottom:15%;
+}
+.full-screen{
+  height:var(--innerHeight);
+  width:var(--innerWidth);
+  overflow:hidden;
+  text-align:center;
+}
+img{width:100%;height:auto;}
+svg{height:auto;}
+.icon{width:10%;}
+.title{text-align:center;}
+.title-font{
+  text-align:center;
+  margin:2%;
+  font-size:7vw;
+  font-weight:600;
+  font-family:ABeeZee;
+}
+h5{margin:0;}
+p{font-size:5vw;margin:0;word-wrap: break-word;}
+p1{font-size:4vw;margin:auto 0;word-wrap: break-word;}
+.btn{border:none;}
+input[type="submit"],button{
+  padding:2% 8%;
+  border:solid 1px #00000033;
+  border-radius:50vw;
+  font-size:5vw;
+  font-weight:500;
+  font-family:ABeeZee;
+  background:white;
+  /*   background:#0d6afd;   color:white; */
+}
+input[type="submit"]:disabled,button:disabled{background:lightgrey;}
+button:active{border:solid 1px #000000;}
+button[toggle].active,
+button[toggle-3].active,
+button.active{background:var(--color-accent-a);}
+.center{
+  display:flex;
+  justify-content:center;
+  text-align:center;
+}
+.space-evenly{
+  display:flex;
+  justify-content:space-evenly;
+}
+.space-between{
+  display:flex;
+  justify-content:space-between;
+}
+#comp-1{
+  position:relative;
+  overflow:hidden;
+}
+#comp-1 .bg{
+  position:absolute;
+  display:flex;
+  width:100%;
+  left:0;
+  top:0;
+  z-index:-1;
+  filter:blur(5px);
+}
+#comp-1 .bg img{
+/*   width:100%; */
+  margin:auto;
+  transform:translateY(-40%);
+}
+#comp-1 .profile{
+  width: 30%;
+  margin:5% auto;
+}
+#comp-1 .userimg{
+  position:relative;
+  width: 30vw;
+  height: 30vw;
+  display:flex;
+}
+#comp-1 shade{
+  position:absolute;
+  border-radius:100%;
+/*   border:solid 3px; */
+  top:0;
+  left:0;
+  /* z-index:-1; */
+  width:100%;
+  height:100%;
+  /* background:black; */
+  box-shadow: 0px 0px 10px black;
+/*   filter: blur(10px); */
+}
+#comp-1 .userimg img{
+  border-radius:100%;
+  margin:auto;
+}
 
-// showLoadingBar whenever a fetch() is called or request is made to the server.
-// but only apply this specific requests.
-var originalFetch = window.fetch;
-window.fetch = function (...args) {
-	console.log(args)
-	let valid = true
-	if (args.length == 2){
-		if (args[1].body.match(/["]type["][:]["]client["]|["]sync["][:]/gm))
-		{valid = false}			
-	}
-	
-  if (valid) showLoadingBar();
+/* input */
 
-  // Return the original fetch promise
-  return originalFetch.apply(this, Array.from(args))
-    .then(function (response) {
-      if (valid) showLoadingBar(true);
-      return response;
-    })
-    .catch(function (error) {
-      if (valid) showLoadingBar(true);
-      throw error;
-    });
-};
+/* input:invalid{border:none;} */
+/* input:valid{border:none;border:solid green;} */
+input{
+  border:solid 1px #0001;
+  border-radius:10vw;
+  background:#00f2;
+  outline:none;
+  padding-left:3%;
+}
 
-// notify on any notifications recieved from server
-SSE_Event.addEventListener("message",e=>{
-	const data = JSON.parse(event.data.replaceAll("'",'"'));
-	// console.log(data)
-	// {noti: [ {title,body,id}, ...]  }
-	if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
-		// save to localStorage
-	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
-	    data.noti.forEach(n=>{
-			// show popup notification
-			// if ("Notification" in window){
-			// 	if (Notification.permission !== "granted") Notification.requestPermission()
-			// 	if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-			// }
-			// when default notifications are not working
-			newNotification(n.title,n.body,null,n.id)
-	    })
-	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
-		reply = {title:"Customer-Support Replied to your message!", id:data.reply[0].id, body:"click to open message!"}
-		// save to localStorage
-	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-	    
-		// show popup notification  
-		// if ("Notification" in window){
-		// 	if (Notification.permission !== "granted") Notification.requestPermission()
-		// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		// }
-		// when default notifications are not working
-		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
-	// when logged in to another device or cookies has been cleared
-	}else if (data.hasOwnProperty("logout")) window.location.reload()
-});
+footer alert-dot{
+  width:10px;
+  height:10px;
+  position:absolute;
+  top:0;
+  right:-25%;
+  /* border:white solid 1px; */
+  border-radius:100%;
+  background:red;
+}
+.slogan{
+  font-size:6vw;
+  font-weight:600;
+  font-family:AbeeZee;
+  text-align:center;
+}
+button#back-page{
+  transform:rotate(180deg);
+  border-radius:unset;
+  border:none;
+  width:8%;
+  background:none;
+  padding:0;
+  position:absolute;
+  top:0.1rem;
+  left:0;
+  z-index:1;
+}
+button#back-page img{width:50%;}
+.trigger{
+  text-align:center;
+  margin:10%;
+}
+.trigger span{
+  font-weight:bold;
+  font-size:6vw;
+  color:green;
+}
+/* custom colors */
 
-// scroll events
-const SCROLL = {"x":0,"y":0,"left":false,"top":false};
-window.addEventListener('scroll', e=>{
-  const scrollX  = Number(window.pageXOffset.toFixed());
-  const scrollY  = Number(window.pageYOffset.toFixed());
+:root{
+  --color-male-off:#87e8fd3f;
+  --color-female-off:#f087fd3f;
+  --color-male-on:#46deff;
+  --color-female-on:#f087fd;
+/*   app colors  */
+  --color-primary-a:none;
+  --color-primary-b:none;
+  --color-primary-c:none;
+  --color-secondary-a:none;
+  --color-secondary-b:none;
+  --color-secondary-c:none;
+  --color-accent-a:lime;
+  --color-accent-b:red;
+  --color-accent-c:#0075FF;
+/* Viberant */
+  --color-v-yellow:#f1c50e;
+  --color-v-red:#db545a;
+  --color-v-lightblue:#2cccc4;
+  --color-v-green:#11db0d;
+/* light   */
+  --color-l-red:#eebaaf;
+  --color-l-green:#adff2fc7;
+
+/*  colors  */
+color: maroon;
+color: darkred;
+color: brown;
+color: firebrick;
+color: red;
+color: darkorange;
+color: saddlebrown;
+color: sandybrown;
+color: peru;
+color: chocolate;
+color: orange;
+color: coral;
+color: tomato;
+color: salmon;
+color: sienna;
+color: lightsalmon;
+color: indianred;
+color: rosybrown;
+color: lightcoral;
+color: darksalmon;
+color: mistyrose;
+color: salmon;
+color: lightpink;
+color: pink;
+color: hotpink;
+color: deepskyblue;
+color: dodgerblue;
+color: cornflowerblue;
+color: steelblue;
+color: royalblue;
+color: blue;
+color: mediumblue;
+color: midnightblue;
+color: navy;
+color: darkblue;
+color: blue;
+color: slateblue;
+color: mediumslateblue;
+color: lightskyblue;
+color: skyblue;
+color: deepskyblue;
+color: powderblue;
+color: paleturquoise;
+color: lightsteelblue;
+color: lightblue;
+color: aliceblue;
+color: aqua;
+color: cyan;
+color: lightcyan;
+color: aquamarine;
+color: turquoise;
+color: mediumturquoise;
+color: darkturquoise;
+color: teal;
+color: darkcyan;
+color: cyan;
+color: springgreen;
+color: mediumspringgreen;
+color: lime;
+color: limegreen;
+color: yellowgreen;
+color: mediumseagreen;
+color: seagreen;
+color: forestgreen;
+color: green;
+color: darkgreen;
+color: green;
+color: lawngreen;
+color: chartreuse;
+color: lightgreen;
+color: palegreen;
+color: mediumaquamarine;
+color: darkolivegreen;
+color: darkseagreen;
+color: olive;
+color: olivedrab;
+color: olive;
+color: darkolivegreen;
+color: darkkhaki;
+color: olive;
+color: yellow;
+color: gold;
+color: goldenrod;
+color: darkgoldenrod;
+color: peru;
+color: chocolate;
+color: orange;
+color: darkorange;
+color: goldenrod;
+color: gold;
+color: darkkhaki;
+color: khaki;
+color: khaki;
+color: palegoldenrod;
+color: wheat;
+color: moccasin;
+color: papayawhip;
+color: blanchedalmond;
+color: navajowhite;
+color: peachpuff;
+color: seashell;
+color: beige;
+color: oldlace;
+color: floralwhite;
+color: ivory;
+color: mintcream;
+color: honeydew;
+color: aliceblue;
+color: snow;
+color: linen;
+color: white;
+color: whitesmoke;
+}
+
+
+
+/* slide navigation button */
+.nav-btns button{
+  border:none; 
+  background:none;
+  width:35%;
+}
+
+button.btn-next img{width:70%;}
+button.btn-prev img{width:50%;}
+
+.nav-btns{
+  width:100vw;
+  position:fixed;
+  left:0;
+  bottom:4%;
+  display:inline-flex;
+  justify-content:space-between;
+}
+
+/* progress bar */
+
+.progress-bar{
+  position:fixed;
+  bottom:4%;
+  transform: translateX(30%);
+  width:60vw;
+  background:none !important;
+  overflow:hidden;
+}
+.pBar{
+  position:absolute; 
+  background:black;
+  height:2px;
+}
+.progress-bar .points *{  
+  margin-left:10%;
+  background:black;
+  width:2%;
+  height:2px;
+}
+.progress-bar .points{
+  display:flex;
+  justify-content:end;
+}
+
+
+/* footer NAVIGATION */
+
+footer.nav{/* border:solid 1px; */width:100%;display:flex;justify-content:space-evenly;position:fixed;bottom:0;background: linear-gradient(180deg, #fff0 0%, #fff 100%);border-radius:10vw 10vw 0 0;z-index:111;}
+footer.nav .icon{width:11%; position:relative;}
+footer.nav svg{height:100%;width:100%;fill:none;}
+footer.nav .profile{transform:translateY(-9%);}
+footer.nav .profile svg{width:120%;}
+footer.nav .active:not(.compare) svg{fill:black;}
+footer.nav .compare.active svg #ab{stroke:white;}
+footer.nav .compare.active svg #change{fill:black;}
+g#Crown:not(.active){display:none};
+
+/* grid view */
+{}
+section.grid .menu {top:1%;}
+section.grid .menu img{width:70%;}
+section.grid .product-img a{/* display:flex; */}
+section.grid .product-colors{left:2%;right:unset; }
+section.grid .product-colors div{width:2.5vw;height:8vw;}
+section.grid .product-desc{font-size:4vw;}
+section.grid .btn-buy{padding:0 10%;}
+section.grid.active{
+  position: relative;
+/*   display:grid;
+  grid-template-rows:3fr 1fr; */
+}
+/* products */
+.product{overflow:hidden}
+.product-list{margin-top:5%}
+.product-list > div{display:block;}
+.product-list > div.active{display: grid;grid-template-columns: 1fr 1fr;}
+.product-list a{color:inherit;text-decoration:none;}
+.product-img{
+  padding:2%;
+  margin:auto;
+	position: relative;
+}
+/* .product-img .loading-prinner{position: absolute;} */
+/* .product-img .loading-prinner div { width: unset;  height: unset;} */
+.product-colors{
+  position:absolute;
+  right:5%;
+  top:0;
+}
+.product-colors div{
+  width:6vw;
+  height:6vw;
+  margin:90% auto;
+}
+.product-name{
+  text-align:center;
+  font-family:Abeezee;
+  font-weight:600;
+  font-size:4.5vw;
+  padding-right: 6%;
+}
+.product .menu{
+  position:absolute;
+  top:0; right:1%;
+  width:8%;
+  text-align:center;
+}
+.product .menu img{ width:25%;}
+.product section{background: white;}
+
+/* lcs */
+
+@keyframes show-lcs  {  0% {transform: translateX(  0vw);} 100% {transform: translateX(-17vw);} }
+@keyframes hide-lcs {   0% {transform: translateX(  -17vw);}  100% {transform: translateX(0vw);} }
+.show-lcs {animation: show-lcs  0.5s ease-in-out forwards;}
+.hide-lcs {animation: hide-lcs  0.5s ease-in-out;}
+
+.product .lcs{
+  display:grid;
+  position:absolute;
+  right:0;
+  top:6%;
+}
+.product .lcs-item{
+  left:0;
+  right:auto; 
+}
+.product .lcs button{
+  border-radius:unset;
+  border:none;
+  background:none;
+  margin:4% 0;
+}
+.product .lcs-item button{margin:20% 0;}
+.product .lcs img, .product .lcs svg{width:50%; margin:auto}
+.product .lcs-item img, .product .lcs-item svg{width:60%;}
+
+.product-price{font-weight:500;font-size:4vw;}
+.product-price:before{content:"\20b9 "}
+page#home section:not(.active),
+page:not(.active){
+  display:none;
+}
+
+.btn-buy{width:100%;}
+.btn-buy .buy{
+  width:90%;
+  font-size:4.5vw;
+  background:var(--color-l-red);
+}
+.product{
+  border:solid 1px #0004;
+  padding:0 1%;
+  position:relative;
+  margin:6% 2%;
+  border-radius:3vw;
+  text-align:center;
+}
+
+/******************* Modals *********************/
+
+.modal:not(#logout) .modal-dialog{
+  width:100%;
+  height:100%;
+  margin:0;
+}
+.modal-header{
+  padding:2%;
+  font-size:6vw;
+  font-weight:500;
+}
+
+/* toast */
+.toast:not(.slide-in-from-right){
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  border:none;
+  width:auto;
+  text-align:center;
+  padding:2% 4%;
+  border-radius:5vw;
+  font-size:x-small;
+  font-weight:500;
+  z-index:1056;/*1055 is for modals*/
+}
+
+/* Modal- #search-deviceModal */
+
+#search-deviceModal .modal-content{
+  height: auto;
+  border:none;
+  background:none;
+}
+#search-deviceModal .modal-dialog{top:0;}
+#search-deviceModal .modal-body{
+  background:none;
+  display:block;
+  padding:5% 10%;
+}
+#search-deviceModal input{
+  animation: scale-width 0.5s cubic-bezier(0.5, 0.35, 0.15, 1) forwards;
+  padding:1% 5%;
+  background:white;
+}
+#search-deviceModal p{
+  background:white;
+  margin-top:5%;
+  text-align:center;
+  padding:2%;
+  font-weight:500;
+}
   
-  if (scrollX > SCROLL.x) SCROLL.left = true
-  else SCROLL.left = false
-  if (scrollY > SCROLL.y) SCROLL.top = true
-  else SCROLL.top = false
+/* Notifications */
 
-  // console.log(SCROLL)
-// toast([SCROLL.x,SCROLL.y,SCROLL.left,SCROLL.top,(window.scrollY || window.pageYOffset ) + window.innerHeight, document.body.clientHeight].join(" "))
-  SCROLL.x = scrollX; SCROLL.y = scrollY;  
-});
-
-// progress bar left and right
-const movebar = (next = false)=> {
-  const clearit = setInterval(() => {
-    if (next) {
-      // Next slide
-      counter += animationSpeed;
-      bar.style.width = Number(bar.style.width.replace("%","")) + animationSpeed + '%';
-    } else {
-      // Prev slide
-      counter -= animationSpeed;
-      bar.style.width = Number(bar.style.width.replace("%","")) - animationSpeed + '%';
-    }
-    if (-gap >= counter || counter >= gap) {clearInterval(clearit);counter=0;}    
-  }, 10);
+.toast-header img{width:8%;}
+.toast-header small{font-size:10px;}
+.toast-container .toast > div{padding:1% 2% 1% 2%}
+.toast-container{
+  overflow:hidden;
+  position:fixed;
 }
 
-// set image resolutions for cameras based on MP
-const Reso ={"5":"~2592 x 1944p",
-		"8":"~3264 x 2448p",
-		"13":"~4160 x 3120p",
-		"16":"~4920 x 3684p",
-		"20":"~5472 x 4104p",
-		"24":"~6000 x 4500p",
-		"32":"~6720 x 5040p",
-		"48":"~8000 x 6000p",
-		"50":"~8192 x 6144p",
-		"64":"~9216 x 6912p"
-	};
-const getReso = (cam,img)=>{
-    if (!img) img = Reso[cam.split(" MP")[0]]
-    else if (!img.endsWith("p")) img+="p"	  
-    return cam+"|Image: "+img
-  }
+/* Loading Spinner */
 
-// fetch product price
-const updatePrice = url=>{
-  const xhr = new XMLHttpRequest();
-  const parser = new DOMParser();
-  url = url.startsWith("https:")?url:("https:"+url)
-  
-  return new Promise((price,err)=>{      
-    xhr.open("GET",url);
-    xhr.onreadystatechange = function() {
-      if (this.readyState === this.DONE) {
-        if (this.status === 200) {
-          const htmlDoc = parser.parseFromString(this.responseText, "text/html");
-          const p = htmlDoc.querySelector(".price").innerText.match(/[0-9](.*)[0-9]/gm)
-          //resolve
-          if (p) price(p)
-          else console.log(url,htmlDoc);err("")
-          
-        } else { console.log("Error: " + this.status);}
-      }
-    };
-    xhr.send();    
-  })
-};//END: updatePrice()
-
-// collect device and browser data for error resolving
-const collectLogs = ()=>{
-	const fullDeviceInfo = {
-		// Device Information
-		userAgent: navigator.userAgent,
-		platform: navigator.platform,
-		language: navigator.language,
-		screenWidth: window.screen.width,
-		screenHeight: window.screen.height,
-		screenResolution: `${window.screen.width}x${window.screen.height}`,
-		screenOrientation: ORIENTATION,
-		
-		// Browser Information
-		appName: navigator.appName,
-		appVersion: navigator.appVersion,
-		vendor: navigator.vendor,
-		product: navigator.product,
-		productSub: navigator.productSub,
-		userAgent: navigator.userAgent,
-		cookieEnabled: navigator.cookieEnabled,
-		online: navigator.onLine,
-		doNotTrack: navigator.doNotTrack,
-		hardwareConcurrency: navigator.hardwareConcurrency,
-		
-		// Browser Features
-		webglAvailable: !!window.WebGLRenderingContext,
-		webglVersion: (function() {
-			var canvas = document.createElement("canvas");
-			var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-			return gl ? gl.getParameter(gl.VERSION) : null;
-			})(),
-		cookiesEnabled: navigator.cookieEnabled,
-		javaEnabled: navigator.javaEnabled(),
-		
-		// Viewport and Window
-		viewportWidth: window.innerWidth,
-		viewportHeight: window.innerHeight,
-		colorDepth: window.screen.colorDepth,
-		pixelDepth: window.screen.pixelDepth,
-		
-		// Location
-		locationHref: window.location.href,
-		locationHostname: window.location.hostname,
-		locationPathname: window.location.pathname,
-		locationProtocol: window.location.protocol,
-		
-		// Timezone
-		timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-	};		
-	
-	return fullDeviceInfo;
-};//END: collectLogs()
-
-// .active the target-id and deactivate its colegues with prefix
-const activateTarget = (el,prefix)=> {
-	var target_id = el.getAttribute("target-id");
-	// console.log(target_id,prefix+target_id,document.querySelector(prefix+target_id),document.querySelector(prefix+".active"))
-	try{document.querySelector(prefix+".active").classList.remove("active")}
-	catch(err){ (prefix=="#gender .gender ")?"":console.error(err) };
-	document.querySelector(prefix+target_id).classList.add("active");
+.loading-bar {
+  width: 100%;
+  height: 3px;
+  position: fixed;
+	top:0;
+  overflow: hidden;
+  z-index:1056;
 }
 
-// premium button .yes
-const  buttonYes = k=>{
-	if (!localStorage[k]){
-		localStorage[k] = 1;
-		// send to server
-		// fetch(`../server/${k}?=1`)
-	}
-	toast("Comming Soon!");	
+.loading-progress {
+  height: 100%;
+  width: 200%;
+  background: linear-gradient(to right,red,blue,green,yellow,red,blue,green,yellow,red);
+  animation: loading-bar 1.5s infinite cubic-bezier(1, 1, 0, 0);
 }
 
-// toast message
-const toast = (body="Hello! i'm a toast message.",ms=5000)=> {
-	const p = document.createElement("p");
-	p.innerHTML = body;
-	var attrs = {"class":"toast show text-bg-primary",
-				 "style":`animation: transparency 3s ${ms/1000-3}s cubic-bezier(0.5, 0.35, 0.15, 1) both;`
-				};
-	Object.keys(attrs).forEach(k=>p.setAttribute(k,attrs[k]));
-	
-	// show
-	document.body.appendChild(p);
-	// remove
-	setTimeout(()=>{document.body.removeChild(p)}, ms);    
+@keyframes loading-bar {
+  0% {transform: translateX(-50%);}
+  100% {transform: translateX(0%);}
 }
-
-// Share must be triggered by "user activation"
-// const data = {title: "Google",text: "you can search anything on this site",url: "https://www.google.com"}
-// const data = {files:[]}// https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#shareable_file_types
-const share2Media = data=> {
-	if (data.url){
-		const tempInput = document.createElement('input');
-        tempInput.value = data.url;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-        toast("Link Copied!");
-	}
-		
-	if (!navigator.canShare) console.error("navigator.canShare() not supported.")
-	else if (navigator.canShare(data) && navigator.share) {
-		navigator.share(data)
-			.then(()=>{console.log("MDN shared successfully");})
-			.catch(err=>{console.error("Error: ",err);})
-	} else console.error("This data is not sharable or some data property not supported! data:",data);
-	
-};//END: share2Media()
-
-// init all likes on page load
-// run only after all the products has been loaded
-function loadLikes(like=[]) {
-	console.log(like)
-  document.querySelectorAll(".lcs").forEach(lcs=>{
-    const id = lcs.parentNode.getAttribute("id");
-    const likes = new Set([...like, ...JSON.parse(localStorage.lcs).like]);
-    const svg = lcs.querySelector('#like svg');
-    const heart = lcs.querySelector('#like path');
-    if (likes.has(id)){
-      svg.setAttribute('fill', 'red');
-      heart.setAttribute('stroke', 'red');
-    }
-  })
-}
-
-// server request by filter and sort;
-function populateProductList(caller,data) { return new Promise((resolve,reject)=>{
-	console.log(data)
-	const page = data.page;
-	const setData = response=>{// {data: [ [{p1},{p2}], [{p3},{p4}], [{p5},{p6}], ... ], q:"Apple iphone"}
-		const p_list = document.querySelector(".product-list");
-		const view = document.querySelector("header .left .active").className.match(/list|item|grid/gm)[0];
-		// clear the old data
-		if (!page) p_list.innerHTML = "";
-
-		if (!response.data.length) page_end = true;
-		
-		// iterate each set of  2 products
-		response.data.forEach(p=>{ //[ {p1}, {p2} ]
-		
-			// create div to hold the set of 2 products
-			var div = document.createElement("div");
-			if (view == "grid") div.classList.add("active");
-			
-			// when there's only 1 product in the set
-			let p2 = (p.length == 2)? productHTML(view,p[1],"right") : "";
-			
-			// put the products into the div
-			div.innerHTML = productHTML(view,p[0],"left") + p2;
-			
-			// put div into the webpage's .product-list
-			p_list.appendChild(div);
-		})
-		
-		// load like: the saved | liked products
-		loadLikes(response.like);
-		
-		// free-up storage
-		delete sessionStorage.products;
-		
-	};//END: setData()
-	const modifyPage = v=>{
-		// modify elements in home view
-		document.querySelector("footer.nav .icon.search").classList.add("active");
-		document.querySelector("footer.nav .icon.home").classList.remove("active");
-		document.querySelector("#carousel-ads").hidden = true;
-		document.querySelector("#search-query").hidden = false;
-		document.querySelector("#search-query p").innerHTML = v;
-	}
-	
-	// check and load data from session storage
-	// this sessionStorage is only set by either of comapre or profile tabs
-	if(sessionStorage.products){
-		response = JSON.parse(sessionStorage.products);
-		setData(response);
-		modifyPage(response.q);
-		resolve(true);
-		
-	// request data from server
-	}else{
-	  data = (data)? JSON.stringify(data) : "";
-
-	  fetch(`../server/?caller=${caller}&data=${data}`)
-		.then(response=>{
-			if(!response.ok) throw Error(response.status);
-			// response {data: [ [{p1},{p2}], [{p3},{p4}], [{p5},{p6}], ... ], q:"Apple iphone"}
-			response.json().then(response=>{
-				// console.log(response)
-		
-				// save to session storage
-				sessionStorage.products = JSON.stringify(response);
-				
-				// navigate to home page
-				if(THIS_PAGE!="home") document.querySelector("footer.nav .icon.home").onclick();
-	
-				// else
-				setData(response);
-				if(response.q) modifyPage(response.q);
-				// close the search tab
-				document.querySelector("#search-deviceModal .btn-close").click();
-				resolve(true);	
-			})
-	    })
-		.catch(err=>{
-			console.error(err)
-		});		
-	};
-	
-});//Promise()
-};//END: populateProductList(caller,data)
-
-
-// Define a function to compress an image
-function compressImage(inputImage, callback,quality=0.7, maxWidth=100, maxHeight=100) {
-  const img = new Image();
-  img.src = inputImage;
-
-  img.onload = function () {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Calculate the new dimensions to fit within maxWidth and maxHeight
-    let newWidth = img.width;
-    let newHeight = img.height;
-
-    if (newWidth > maxWidth) {
-      newWidth = maxWidth;
-      newHeight = (img.height * maxWidth) / img.width;
-    }
-
-    if (newHeight > maxHeight) {
-      newHeight = maxHeight;
-      newWidth = (img.width * maxHeight) / img.height;
-    }
-
-    canvas.width = newWidth;
-    canvas.height = newHeight;
-
-    // Draw the image on the canvas with the new dimensions
-    ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
-    // Get the compressed image as a Base64 encoded string
-    const compressedImageDataUrl = canvas.toDataURL('image/jpeg', quality);
-
-    callback(compressedImageDataUrl);
-  };
-}
-
-
-// Function to check if the user has scrolled to the bottom of the page
-function isScrolledToBottom() {
-  const windowHeight = Number(window.innerHeight.toFixed());
-  const documentHeight = Number(document.body.clientHeight.toFixed())-2;//2 is for safety margin
-  const scrollTop = Number((window.scrollY || window.pageYOffset).toFixed());
-
-  // Check if the user has scrolled to the bottom (with a small buffer)
-  // toast([scrollTop + windowHeight, documentHeight].join(" "))
-  return scrollTop + windowHeight >= documentHeight;
-}
-
-//****** ad-device-slides populate
-function populateCarousel(id) {
-	// get
-	const btns = document.querySelector(id+" .carousel-indicators");
-	const btn = document.createElement("button");
-	const inner = document.querySelector(id+" .carousel-inner");
-	const view = "grid";
-	
-	// set
-	btn.setAttribute("type","button"); btn.setAttribute("data-bs-target",id);
-	
-	fetch("../server/?adDevices="+id.replace("#",""))
-	.then(response=>{// response [ [{p1},{p2}], [{p3},{p4}], [{p5},{p6}], ... ]	  
-	  response.json().then(res=>{
-		  res.data.forEach((products,i)=>{ //[ {p1}, {p2} ]
-		    // get
-		    var div = document.createElement("div");
-		    var b = btn.cloneNode();
-			  
-		    // set
-			div.innerHTML = `
-			 <div class="product-list">                    
-				<div class="active">
-					  ${ productHTML(view,products[0],"left",true) +
-						 productHTML(view,products[1],"right",true) 
-					  }
-				</div>
-			</div>
-			 `;
-			  
-		    if (i==0){
-			    div.className = "carousel-item active";
-				b.className = "active";		
-			    b.setAttribute("aria-current","true");
-			}else div.className = "carousel-item";
-			  
-		    b.setAttribute("data-bs-slide-to",i);
-		    b.setAttribute("aria-label","Slide "+(i+1));
-		
-		    // append    
-		    inner.appendChild(div);
-		    btns.appendChild(b);
-		  })
-	  })
-	}).catch(err=>{
-		console.error(err)
-	})
-};//END: populateCarousel()
-
-// load modal's body content
-function modalLoad(id,type) {
-  if (!type) throw ValueError("Please provide the filetype or content type one of html | txt | json")
-	
-  // if ("about terms policy".includes(id)) url = ROOT+"/files/"
-  // else url = "../server/?file="
-  url = "../server/?file="
-	
-  fetch(url+id+"."+type)
-  .then(response=>{
-    if(!response.ok) return;
-    response.text().then(d=>{
-      // console.log(d)
-      if (d) document.querySelector(".modal#"+id+" .modal-body").innerHTML = d;
-    })
-  })
-};
-
-// Capital Case custome function
-String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.toUpperCase())}
-
-// notification function
-function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
-	if (tstamp && tstamp.match("[0-9]{5}")){
-		const T = new Date(tstamp)
-	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
-	}
-	const div = document.createElement("div")
-	div.className = "toast slide-in-from-right";
-	div.role="alert";
-	div.setAttribute("aria-live","assertive");
-	div.setAttribute("aria-atomic","true");
-	div.innerHTML =   `<div class="toast-header">
-		<img src=${ROOT+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
-		<strong class="me-auto">${title}</strong>
-		<small class="text-body-secondary">${tstamp}</small>
-		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-	  </div>
-	  <div class="toast-body">${body}</div>
-	`
-	document.querySelector(".toast-container").appendChild(div)
-	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
-	div.addEventListener('hidden.bs.toast', () => {div.remove()})
-}
-
-// return changes made in dict{} object
-function dictChanged(dictOld, dictNew) {
-	const diff = {};
-	if (JSON.stringify(dictOld) === JSON.stringify(dictNew)) return diff
-	for (const key in dictNew) {
-		if (!dictOld.hasOwnProperty(key)) diff[key] = dictNew[key]
-		else if (typeof dictNew[key] === 'object' && dictNew[key] !== null && !Array.isArray(dictNew[key])) {
-			const innerDiff = dictChanged(dictOld[key], dictNew[key]);
-			if (Object.keys(innerDiff).length > 0) diff[key] = innerDiff;
-		} else if (dictOld[key] !== dictNew[key]) diff[key] = dictNew[key];
-	}
-return diff;
-};//END: dictChanged()
-

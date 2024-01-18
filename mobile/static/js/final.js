@@ -23,7 +23,7 @@ window.addEventListener('scroll', e=> {
   if(THIS_PAGE=="profile") return;
   
   const nav = document.querySelector("footer.nav");
-  const thresh = 50;//px 
+  const thresh = innerHeight * 0.1;//px 
   
   // show and hide the footer navigation menu on scroll
   if(SCROLL.y > thresh){

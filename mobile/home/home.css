@@ -30,6 +30,7 @@ page#home header .icon{
   padding:1vw;
   display:flex;
   border:none;
+  background: none;
 }
 page#home header .premium{display:flex;  justify-content:center;}
 page#home header img{vertical-align:unset;}

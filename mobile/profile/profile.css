@@ -449,6 +449,7 @@ page#profile .bottom p:first-child,
 #feedback button#send{
   background:none;
   width:90%;
+  border:none;
 }
 #feedback .btns label{
   position:absolute;

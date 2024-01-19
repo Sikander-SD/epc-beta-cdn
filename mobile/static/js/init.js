@@ -107,7 +107,7 @@ window.addEventListener('scroll', e=>{
   else if (scrollY < SCROLL.y) SCROLL.top = false
 
   // console.log(SCROLL)
-	toast(JSON.stringify(SCROLL))
+	// toast(JSON.stringify(SCROLL))
 // toast([SCROLL.x,SCROLL.y,SCROLL.left,SCROLL.top,(window.scrollY || window.pageYOffset ) + window.innerHeight, document.body.clientHeight].join(" "))
   SCROLL.x = scrollX; SCROLL.y = scrollY;  
 });

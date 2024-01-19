@@ -102,9 +102,9 @@ window.addEventListener('scroll', e=>{
   const scrollY  = Number(window.pageYOffset.toFixed());
   
   if (scrollX > SCROLL.x) SCROLL.left = true
-  else SCROLL.left = false
+	else if (scrollX < SCROLL.x) SCROLL.left = false
   if (scrollY > SCROLL.y) SCROLL.top = true
-  else SCROLL.top = false
+  else if (scrollY < SCROLL.y) SCROLL.top = false
 
   // console.log(SCROLL)
 	toast(JSON.stringify(SCROLL))

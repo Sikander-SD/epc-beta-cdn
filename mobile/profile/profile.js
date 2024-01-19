@@ -651,7 +651,7 @@ const feedback_form_reset = (sec=0)=>{
 // reset feedback form on model close
 modal_feedback.querySelector("button.btn-close").addEventListener("click",feedback_form_reset)
 
-// save form data to localStorage and keep it there untill the data is successfully sent to the server.
+// send feedback form data to the server
 feedback_form.addEventListener("submit",async e=>{
   const subject = modal_feedback.querySelector("input#subject").value.trim();
   const text = modal_feedback.querySelector("textarea").value.trim();
@@ -665,7 +665,8 @@ feedback_form.addEventListener("submit",async e=>{
   }
 
   const data = {subject: subject,
-                text: text
+                text: text,
+                fullDeviceInfo: collectLogs().fullDeviceInfo
                };  
   if (feedback_img_file.files[0]){
     data.file = {blob:await setImage(null,feedback_img_file),
@@ -692,7 +693,9 @@ feedback_form.addEventListener("submit",async e=>{
   })
     // save to localStorage
   .catch(err=>{
-    console.error(err,"handle this with localStorage")
+    fform = JSON.parse(localStorage.feedbackForm || '[]')
+    fform.push(data)
+    localStorage.feedbackForm = JSON.stringify(fform)
   })
   
   // reset feedback form in 3secs

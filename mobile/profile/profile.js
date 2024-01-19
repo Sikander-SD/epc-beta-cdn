@@ -864,7 +864,8 @@ document.querySelectorAll("#help button[target-id]").forEach(btn=>{
       // load the chats for specified title
       loadChats(btn.id.toLowerCase());
 
-      // send user's device info to the server
+      // send user's device info to the server      
+      const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
       const data = {fullDeviceInfo: collectLogs().fullDeviceInfo}
       fetch("../server/", {
         method: "POST",

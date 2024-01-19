@@ -210,7 +210,7 @@ const collectLogs = ()=>{
 		colorDepth: window.screen.colorDepth,
 		pixelDepth: window.screen.pixelDepth,
 		
-		// Location
+		// URL info
 		locationHref: window.location.href,
 		locationHostname: window.location.hostname,
 		locationPathname: window.location.pathname,
@@ -220,7 +220,7 @@ const collectLogs = ()=>{
 		timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
 	};		
 	
-	return fullDeviceInfo;
+	return {"fullDeviceInfo":fullDeviceInfo}
 };//END: collectLogs()
 
 // .active the target-id and deactivate its colegues with prefix

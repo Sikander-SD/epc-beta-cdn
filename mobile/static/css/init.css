@@ -407,6 +407,10 @@ section.grid.active{
 .product .menu img{ width:25%;}
 .product section{background: white;}
 
+/* products-ads */
+
+[id*="products-ads"] .product-list{min-height: 200px;}
+
 /* lcs */
 
 @keyframes show-lcs  {  0% {transform: translateX(  0vw);} 100% {transform: translateX(-17vw);} }

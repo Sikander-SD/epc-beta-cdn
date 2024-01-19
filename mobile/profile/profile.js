@@ -863,8 +863,19 @@ document.querySelectorAll("#help button[target-id]").forEach(btn=>{
       document.querySelector("page"+target_id+" div.title h5").innerText = btn.innerText+" Issue";
       // load the chats for specified title
       loadChats(btn.id.toLowerCase());
+
+      // send user's device info to the server
+      const data = {fullDeviceInfo: collectLogs().fullDeviceInfo}
+      fetch("../server/", {
+        method: "POST",
+        headers: {
+          'X-CSRFToken': csrf_token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({deviceInfo:data})
+      })      
     })
-})
+});
 
 // load the chats if any for the specified chat window
 function loadChats(title) {

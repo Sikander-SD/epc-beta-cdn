@@ -866,14 +866,14 @@ document.querySelectorAll("#help button[target-id]").forEach(btn=>{
 
       // send user's device info to the server      
       const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value || "";
-      const data = {fullDeviceInfo: collectLogs().fullDeviceInfo}
+      const data = collectLogs().fullDeviceInfo;
       fetch("../server/", {
         method: "POST",
         headers: {
           'X-CSRFToken': csrf_token,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({deviceInfo:data})
+        body: JSON.stringify({fullDeviceInfo:data})
       })      
     })
 });

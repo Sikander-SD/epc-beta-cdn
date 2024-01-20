@@ -55,7 +55,7 @@ page#profile .progress{
 }
 .progress #full-bar{
   position: absolute;
-  background: linear-gradient(to right,red,var(--color-v-green));
+  background: linear-gradient(to right,red,var(--color-accent-c));
   height: 50%;
   width: 100%;
   top: 25%;
@@ -85,7 +85,7 @@ page#profile .progress{
   width: 3vw;
   right: -0.6%;
   border-radius: 50%;
-  background: var(--color-v-green);
+  background: var(--color-accent-c);
 }
 .progress span#a{
   right:unset;

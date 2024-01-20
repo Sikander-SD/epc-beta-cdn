@@ -357,7 +357,7 @@ g#Crown:not(.active){display:none};
 /* grid view */
 {}
 section.grid .menu {top:1%;}
-section.grid .menu img{width:70%;}
+section.grid .menu img{width:50%;}
 section.grid .product-img a{/* display:flex; */}
 section.grid .product-colors{left:2%;right:unset; }
 section.grid .product-colors div{width:2.5vw;height:8vw;}
@@ -400,7 +400,7 @@ section.grid.active{
 }
 .product .menu{
   position:absolute;
-  top:1%; right:1%;
+  top:3%; right:1%;
   width:10%;
   text-align:center;
   display:flex;

@@ -400,11 +400,12 @@ section.grid.active{
 }
 .product .menu{
   position:absolute;
-  top:0; right:1%;
-  width:8%;
+  top:1%; right:1%;
+  width:10%;
   text-align:center;
+  display:flex;
 }
-.product .menu img{ width:25%;}
+.product .menu img{ width:20%; margin:auto}
 .product section{background: white;}
 
 /* products-ads */

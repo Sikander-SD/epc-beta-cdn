@@ -49,7 +49,6 @@ page#profile .progress{
 .progress #line{
   width:90%;
   height: 3vw;
-  background:#ccc;
   position:relative;
   margin: 2% auto;
   display:flex;
@@ -63,7 +62,7 @@ page#profile .progress{
 
 .progress #full-bar{
   position: absolute;
-  background: #ff7d7d;
+  background: #ccc;
   height: 50%;
   width: 100%;
   top: 25%;

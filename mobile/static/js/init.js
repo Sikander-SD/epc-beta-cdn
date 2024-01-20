@@ -299,16 +299,16 @@ function loadLikes(like=[]) {
 // *************************  gesture sliding for lcs
 
 // initial gesture value holder
-let lcs_swipeX;
+let lcs_swipeX; const swipe_thresh = innerWidth*0.1;
 function addLcsGesture(el) {
 el.querySelectorAll('section:not(.item)').forEach(el=>{ 
   el.addEventListener('touchstart', e=>{  lcs_swipeX = e.touches[0].clientX;});
   el.addEventListener('touchmove', e=>{  
     if (!lcs_swipeX) return;
     var currentX = e.touches[0].clientX;
-    var deltaX = currentX - lcs_swipeX;  
-    if (deltaX > 0) el.querySelector(".menu").click()
-    else if (deltaX < 0) el.querySelector(".menu").click()
+    var deltaX = currentX - lcs_swipeX;
+    if (deltaX > swipe_thresh) el.querySelector(".menu").click()
+    else if (deltaX < -swipe_thresh) el.querySelector(".menu").click()
   
     // Reset lcs_swipeX for the next touchmove event
     lcs_swipeX = null;

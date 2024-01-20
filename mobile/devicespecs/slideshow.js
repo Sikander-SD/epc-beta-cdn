@@ -207,7 +207,8 @@ function slideImage1() {
   // promo text on bottom-right side of the slide
   const promo = document.createElement("div");
   promo.setAttribute("class","promo");
-  promo.innerText = device_NAME.replaceAll("_"," ")+" Promoted By @elite.phones.club"
+  // promo.innerText = device_NAME.replaceAll("_"," ")+" Promoted By @elite.phones.club"
+  promo.innerText = window.location.host;
   slide.appendChild(promo)
   
   return slide
@@ -275,7 +276,8 @@ function slideImage2() {
   // promo text on bottom-right side of the slide
   const promo = document.createElement("div");
   promo.setAttribute("class","promo");
-  promo.innerText = device_NAME.replaceAll("_"," ")+" Promoted By @elite.phones.club"
+  // promo.innerText = device_NAME.replaceAll("_"," ")+" Promoted By @elite.phones.club"
+  promo.innerText = window.location.host;
   slide.appendChild(promo)
   return slide
 };//END: slideImage2()

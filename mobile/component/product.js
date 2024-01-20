@@ -2,7 +2,7 @@ function productHTML(view,data,lr,minimum=false) {
     const veiws = {"list":"","item":"","grid":""}
     veiws[view] = "active";
     const link = `<a href="../devicespecs/?file=${data.name}.json">`;
-    const buy = `onclick="window.open('${data.buy}','_blank');"`;
+    const buy = `onclick="window.open('${data.link || data.url}','_blank');"`;
     const lcs_item = (view=="item")? "lcs-item" : "";
     // const img_src = "https://drive.google.com/uc?export=view&id="+data.img;
     const img_src = `${ROOT+DEVICE_IMGS}/${data.name.replaceAll(" ","_")}/main.png`;

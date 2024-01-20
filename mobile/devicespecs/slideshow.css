@@ -92,9 +92,9 @@
 }.label-block .label:not(.wifi .label){text-transform:uppercase;}
 
 .label-block .info{
-/*   border: solid green 1px; */
-  font-size:7px;
-  line-height:9px;
+/*     border: solid green 1px; */
+  font-size: 2vw;
+  line-height: 2.5vw;
   font-weight:500;
   text-transform:capitalize;
   margin:auto;

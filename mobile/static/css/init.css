@@ -449,7 +449,7 @@ page:not(.active){
 .btn-buy .buy{
   width:90%;
   font-size:4.5vw;
-  background:var(--color-l-red);
+  background:#c1ff86;
 }
 .product{
   border:solid 1px #0004;

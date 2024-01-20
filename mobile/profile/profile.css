@@ -53,16 +53,9 @@ page#profile .progress{
   margin: 2% auto;
   display:flex;
 }
-.progress #bar{
-  height: 50%;
-  margin: auto 0;
-  background:var(--color-accent-c);
-  z-index: 1;
-}
-
 .progress #full-bar{
   position: absolute;
-  background: #ccc;
+  background: linear-gradient(to right,red,var(--color-v-green));
   height: 50%;
   width: 100%;
   top: 25%;
@@ -92,12 +85,13 @@ page#profile .progress{
   width: 3vw;
   right: -0.6%;
   border-radius: 50%;
-  background: black;
+  background: var(--color-v-green);
 }
 .progress span#a{
   right:unset;
   left:-0.6%;
   background: var(--color-accent-c);
+  background: red;
 }
 .progress .comment{font-size:3vw;}
 

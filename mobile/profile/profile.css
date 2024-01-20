@@ -86,7 +86,7 @@ page#profile .progress{
   width: 3vw;
   right: -0.6%;
   border-radius: 50%;
-  background: orange;
+  background: var(--color-v-yellow);
 }
 .progress span#a{
   right:unset;

@@ -3,6 +3,7 @@
 
 :root{--info-color:black;}
 /* default */
+#device-imgs{margin-top:1%}
 #device-imgs .carousel-item{/*slides*/
   background-size:contain;
   background-position:center;
@@ -69,10 +70,7 @@
   min-width:20%;
 }
 .label-block .head,
-.special-features > div{
-  display:flex;
-  margin-bottom:1%;
-}
+.special-features > div{display:flex;}
 .label-block .icon{
 /*   border: solid red 1px; */
   width:3vw;
@@ -94,7 +92,16 @@
   margin-left:5%;
 }.label-block .label:not(.wifi .label){text-transform:uppercase;}
 
-.label-block .info{/*     border: solid green 1px; */font-size: 2vw;line-height: 2.5vw;font-weight:500;text-transform:capitalize;margin:auto;overflow:scroll;color:var(--info-color);}
+.label-block .info{
+/*     border: solid green 1px; */
+  font-size: 2vw;
+  line-height: 2.5vw;
+  font-weight:500;
+  text-transform:capitalize;
+  margin:auto;
+  overflow:scroll;
+  color:var(--info-color);
+}
 .camera-back{
 /*     border: solid green; */
     min-width:35vw;

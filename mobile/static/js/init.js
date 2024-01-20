@@ -296,7 +296,26 @@ function loadLikes(like=[]) {
   })
 }
 
-// server request by filter and sort;
+// *************************  gesture sliding for lcs
+
+// initial gesture value holder
+let lcs_swipeX;
+function addLcsGesture(el) {
+el.querySelectorAll('section:not(.item)').forEach(el=>{ 
+  el.addEventListener('touchstart', e=>{  lcs_swipeX = e.touches[0].clientX;});
+  el.addEventListener('touchmove', e=>{  
+    if (!lcs_swipeX) return;
+    var currentX = e.touches[0].clientX;
+    var deltaX = currentX - lcs_swipeX;  
+    if (deltaX > 0) el.querySelector(".menu").click()
+    else if (deltaX < 0) el.querySelector(".menu").click()
+  
+    // Reset lcs_swipeX for the next touchmove event
+    lcs_swipeX = null;
+  });
+})
+};
+// request server to get products and set products
 function populateProductList(caller,data) { return new Promise((resolve,reject)=>{
 	console.log(data)
 	const page = data.page;
@@ -323,6 +342,9 @@ function populateProductList(caller,data) { return new Promise((resolve,reject)=
 			
 			// put div into the webpage's .product-list
 			p_list.appendChild(div);
+
+			// add gesture for lcs
+			addLcsGesture(div)
 		})
 		
 		// load like: the saved | liked products

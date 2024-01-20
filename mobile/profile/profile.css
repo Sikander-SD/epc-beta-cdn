@@ -48,44 +48,57 @@ page#profile .progress{
 }
 .progress #line{
   width:90%;
-  height:1vw;
+  height: 3vw;
   background:#ccc;
   position:relative;
   margin: 2% auto;
   display:flex;
 }
 .progress #bar{
-  height:1vw;
+  height: 50%;
+  margin: auto 0;
   background:var(--color-accent-c);
+  z-index: 1;
 }
 
-.progress #pointer{position:relative;}
+.progress #full-bar{
+  position: absolute;
+  background: #ff7d7d;
+  height: 50%;
+  width: 100%;
+  top: 25%;
+}
+.progress #pointer{
+  position:relative;
+  transform: translateX(-10%);
+}
 .progress #pointer .value{
   color:var(--color-accent-c);
   position:absolute;
-  transform:translateY(-120%);
+  transform:translateY(-100%);
   font-size:3vw;
   font-weight:700;
 }
 .progress #pointer .box{
-  width:3vw;
-  height:3vw;
+  width: 3vw;
+  height: 3vw;
   background:var(--color-accent-c);
-  transform:translateY(-36%) rotate(45deg);
+  transform:rotate(45deg);
 }
 
-.progress #bar:after,
-.progress #bar:before{
-  content:"\25cf";
+.progress span#a,
+.progress span#b{
   position:absolute;
-  right:-0.6%;
-  transform:translateY(-52%);
-  font-size:6vw;
+  height: 3vw;
+  width: 3vw;
+  right: -0.6%;
+  border-radius: 50%;
+  background: black;
 }
-.progress #bar:before{
+.progress span#a{
   right:unset;
   left:-0.6%;
-  color:var(--color-accent-c);
+  background: var(--color-accent-c);
 }
 .progress .comment{font-size:3vw;}
 

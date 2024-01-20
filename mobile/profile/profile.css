@@ -45,6 +45,7 @@ page#profile .progress{
   margin:4% 0;
   height:auto;
   overflow:visible;
+  background: none;
 }
 .progress #line{
   width:90%;

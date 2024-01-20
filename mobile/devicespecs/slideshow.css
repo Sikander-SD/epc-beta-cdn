@@ -70,7 +70,10 @@
   min-width:20%;
 }
 .label-block .head,
-.special-features > div{display:flex;}
+.special-features > div{
+  display:flex;
+  margin-bottom:3%;
+}
 .label-block .icon{
 /*   border: solid red 1px; */
   width:3vw;

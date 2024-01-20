@@ -25,10 +25,10 @@ section#table thead{
 }
 section#table tbody td.c0{
  border-right:solid 1px;
- padding:1%; 
+ padding:1%;
  background:#dad9d9;
  font-weight: 600;
- font-size:max(1.2vw,10px);
+ font-size: 2vw;
 }
 section#table td:not(tfoot td){
  border-bottom:solid 1px #ccc;
@@ -40,7 +40,7 @@ section#table th.c0{
  text-align:center;
  background:white;
  min-width: 30vw;
- font-size:max(1.4vw,10px);
+ font-size: 2vw;
  padding:1%;
 }
 section#table th.c0 p{
@@ -51,7 +51,7 @@ section#table th:not(.c0){
  /* border:solid blue 1px; */
  font-weight: 700;
  min-width: 57vw;
- font-size:max(2vw,12px);
+ font-size: 3.5vw;
  letter-spacing:1px;
 }
 section#table th.c1,
@@ -70,7 +70,7 @@ section#table tbody td:not(tbody.c0, td#price, td[id$="-Price"]){
   text-align:left;
   letter-spacing:0.5px;
   font-weight:600;
-  font-size: max(1.4vw,10px);
+  font-size: 2vw;
   padding:1%;
   overflow: hidden;
 }

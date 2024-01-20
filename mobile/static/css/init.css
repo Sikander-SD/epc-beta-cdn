@@ -422,7 +422,7 @@ section.grid.active{
 .product .lcs{
   display:grid;
   position:absolute;
-  right:0;
+  right:2%;
   top:6%;
 }
 .product .lcs-item{
@@ -434,9 +434,10 @@ section.grid.active{
   border:none;
   background:none;
   margin:4% 0;
+   border:solid 1px
 }
 .product .lcs-item button{margin:20% 0;}
-.product .lcs img, .product .lcs svg{width:50%; margin:auto}
+.product .lcs img, .product .lcs svg{width:70%; margin:auto}
 .product .lcs-item img, .product .lcs-item svg{width:60%;}
 
 .product-price{font-weight:500;font-size:4vw;}

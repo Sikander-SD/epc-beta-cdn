@@ -407,3 +407,24 @@ function searchOff() {
     document.querySelector("#search-query p").innerHTML = "";  
   }  
 };//END: searchOff()
+
+
+// *************************  gesture sliding for lcs
+
+// initial gesture value holder
+let lcs_swipeX;
+// set touch sliding for all slides
+document.querySelectorAll('.product section:not(.item)').forEach(el=>{ 
+  el.addEventListener('touchstart', e=>{  lcs_swipeX = e.touches[0].clientX;});
+  el.addEventListener('touchmove', e=>{  
+    if (!lcs_swipeX) return;
+    var currentX = e.touches[0].clientX;
+    var deltaX = currentX - lcs_swipeX;  
+    if (deltaX > 0) el.querySelector(".menu").click()
+    else if (deltaX < 0) el.querySelector(".menu").click()
+  
+    // Reset lcs_swipeX for the next touchmove event
+    lcs_swipeX = null;
+  });
+});
+

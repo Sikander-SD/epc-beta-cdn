@@ -114,19 +114,8 @@
 /*     border: solid green; */
     margin-left:72%;
 }
-.wifi{  
-/*     border: solid green 1px; */  
-top:0;  
-margin-left:28%;  
-text-align:center;  
-width:15%;  
-}
-.bluetooth{
-/*     border: solid green 1px; */
-    top:0;
-    margin-left:47%;
-  text-align:center;
-}
+.wifi{/* border: solid green 1px; */top:0;margin-left: 32%;/* text-align:center; */width:15%;}
+.bluetooth{/*     border: solid green 1px; */top:0;margin-left:47%;text-align:center;}
 .nfc{
 /*     border: solid green 1px; */
     top:16%;

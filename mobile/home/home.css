@@ -214,7 +214,7 @@ page#home #filterModal input{padding:0 5%;}
 page#home #sortModal .modal-body{display:block;}
 page#home #sortModal .modal-body .top{
   border-bottom:solid 1px;
-  height:60%;  
+  height: 60%;
   padding:5%;
 }
 
@@ -245,5 +245,5 @@ page#home #sortModal .modal-body .bottom div.active p{
 page#home #sortModal .modal-footer{
   padding:unset;
   justify-content:center;
-  height:30%;  
+  height: 15%;
 }

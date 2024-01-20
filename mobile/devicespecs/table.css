@@ -28,7 +28,7 @@ section#table tbody td.c0{
  padding:1%;
  background:#dad9d9;
  font-weight: 600;
- font-size: 2vw;
+ font-size: 3vw;
 }
 section#table td:not(tfoot td){
  border-bottom:solid 1px #ccc;
@@ -40,7 +40,7 @@ section#table th.c0{
  text-align:center;
  background:white;
  min-width: 30vw;
- font-size: 2vw;
+ font-size: 3vw;
  padding:1%;
 }
 section#table th.c0 p{
@@ -70,7 +70,7 @@ section#table tbody td:not(tbody.c0, td#price, td[id$="-Price"]){
   text-align:left;
   letter-spacing:0.5px;
   font-weight:600;
-  font-size: 2vw;
+  font-size: 3vw;
   padding:1%;
   overflow: hidden;
 }

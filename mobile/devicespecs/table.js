@@ -86,17 +86,20 @@ function renderTable() {
 const FORM_ = document.querySelector("form#title");
 const input_ = FORM_.children["mobile-devices"];
 
-// focusout the input element on submit
 FORM_.addEventListener("submit",e=>{
-  name = input_.value.trim();
+  let name = input_.value.trim();
+  const this_name = urlParams.get("file").split(".")[0];
   
   // reset the name in input
   if (!name){
-    name = urlParams.get("file").replaceAll(" ","_").split(".")[0];
     // set table title
-    input_.value = name.replaceAll("_"," ");
+    input_.value = this_name;
     return
   }
+  // do nothing if no changes
+  if (name.toLowerCase() === this_name.toLowerCase()) return
+
+  // get searched device from server
   window.open(`../devicespecs/?file=${name}.json`,"_self");
 });
 // submit form when clicked outside of the input element

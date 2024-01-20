@@ -363,10 +363,12 @@ section.grid .product-colors{left:2%;right:unset; }
 section.grid .product-colors div{width:2.5vw;height:8vw;}
 section.grid .product-desc{font-size:4vw;}
 section.grid .btn-buy{padding:0 10%;}
+section.grid .r5{bottom:0;}
 section.grid.active{
   position: relative;
 /*   display:grid;
   grid-template-rows:3fr 1fr; */
+  padding-bottom: 3%;
 }
 /* products */
 .product{overflow:hidden}
@@ -433,8 +435,7 @@ section.grid.active{
   border-radius:unset;
   border:none;
   background:none;
-  margin:4% 0;
-   border:solid 1px
+  margin:7% 0;
 }
 .product .lcs-item button{margin:20% 0;}
 .product .lcs img, .product .lcs svg{width:70%; margin:auto}

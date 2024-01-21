@@ -388,6 +388,8 @@ page#profile .bottom p:first-child,
 #feedback input#subject{
   text-align:center;
   margin:5% 0;
+  padding:1%;
+  font-size:4.5vw;
 }
 #feedback .text{
   position:relative;
@@ -400,6 +402,7 @@ page#profile .bottom p:first-child,
   height:30vh;
   border:none;
   outline:none;  
+  border-radius:2%;
 }
 #feedback .text span{
   opacity:0.6;

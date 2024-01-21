@@ -38,11 +38,12 @@ document.querySelector(".slide4 select").addEventListener("change",e=>{
 document.querySelector(".slide4 button#prev").addEventListener("click",e=>OTPFormReset());
 FORMOTP.addEventListener("submit",e=>OTPFormSubmit())
 function OTPFormSubmit(resend=false) {
+  // when submit button is pressed
   if (!resend){
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
 
-    toast("OTP sent to Whatsapp!")
+    if (FORMOTP.otp.value === "") toast("OTP sent to Whatsapp!")
     document.querySelector(".slide4 .resend span").hidden = false;
   
     // make otp input visible
@@ -102,6 +103,7 @@ btn_resend.addEventListener("click",e=>{
   FORMOTP.otp.value = ""; 
   // sumbit form and authenticte
   OTPFormSubmit(true);
+  toast("OTP sent to Whatsapp!")
 })
 
 // *********************************** 

@@ -36,13 +36,12 @@ document.querySelector(".slide4 select").addEventListener("change",e=>{
   document.querySelector(".slide4 .label").innerText = e.target.value;
 })
 document.querySelector(".slide4 button#prev").addEventListener("click",e=>OTPFormReset());
-FORMOTP.addEventListener("submit",e=>OTPFormSubmit())
-function OTPFormSubmit(resend=false) {
-  // when submit button is pressed
-  if (!resend){
+FORMOTP.addEventListener("submit",e=>OTPFormSubmit(e))
+function OTPFormSubmit(e) {  
+  // when submit button is pressed initially
+  if (e.submitter.id === "confirm"){  
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
-  
     // make otp input visible
     let n = document.querySelector(".slide4 .phone-number");  
     let btn = document.querySelector(".slide4 .btn-confirm");
@@ -51,13 +50,20 @@ function OTPFormSubmit(resend=false) {
       n.classList.add("slide-up");
       btn.classList.add("slide-down");
       otp.style.visibility="visible";  otp.classList.add("opacity");    
-      // start counter for otp 
-      clearCounter = setInterval(count,1000)
-      btn_resend.disabled = true;
       toast("OTP sent to Whatsapp!")
-      document.querySelector(".slide4 .resend span").hidden = false;
     }
   }
+  // when resend button is pressed
+  else{
+    FORMOTP.otp.value = ""; 
+    toast("OTP sent to Whatsapp!")
+  }
+  
+  // start counter for otp 
+  document.querySelector(".slide4 .resend span").hidden = false;
+  btn_resend.disabled = true;
+  clearCounter = setInterval(count,1000);
+  
   // send phone number and ask for otp
   OTPAuth();
 }
@@ -65,7 +71,7 @@ function OTPFormReset() {
   FORMOTP.reset();
   setTimeout(()=>{
     // to prevent error in form validation because otp is hidden
-  document.querySelector(".slide4 input#otp").setAttribute("form","null");
+    document.querySelector(".slide4 input#otp").setAttribute("form","null");
     
     // make otp input invisible
     let n = document.querySelector(".slide4 .phone-number");  
@@ -97,14 +103,6 @@ function count() {
     document.querySelector(".slide4 .resend span span").innerText = COUNTER;
    }
 }
-btn_resend.addEventListener("click",e=>{  
-  btn_resend.disabled = true;
-  clearCounter = setInterval(count,1000);
-  FORMOTP.otp.value = ""; 
-  // sumbit form and authenticte
-  OTPFormSubmit(true);
-  toast("OTP sent to Whatsapp!")
-})
 
 // *********************************** 
 class GPS {

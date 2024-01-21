@@ -399,11 +399,6 @@ page#profile .bottom p:first-child,
   padding:0 3%;
   margin:1% 0;
 }
-#settings .form-check-input:focus {
-    border-color: #86b7fe;
-    outline: 0;
-    box-shadow: 0 0 0 0.1rem rgba(13,110,253,.25)
-}
 #settings #account button{
   padding:2% 6%;
   font-size:4vw;

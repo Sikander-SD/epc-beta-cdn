@@ -208,39 +208,6 @@ page#profile .bottom p:first-child,
 
 #edit-profile {padding:0;}
 
-/* #edit-profile header{position:relative;}
-#edit-profile .title{
-  display:flex;
-  justify-content:space-between;
-  padding:2%;
-}
-#edit-profile .title p{
-  font-weight:500;
-  width:50%;
-  margin:auto;
-}
-
-#edit-profile  footer{padding:5%;}
-
-#edit-profile img#img{
-  position:absolute;
-  top:1%; right:1%;
-  width:7%;  
-  z-index:-1;
-}
-#edit-profile img#camera{
-  position:absolute;
-  bottom:1%;
-  right:1%;
-  width:30%;
-}
-
-#edit-profile .userdata input{
-  border-left:none;
-  border-right:none;
-  border-top:none;  
-} */
-
 /* slide #username*/
 #edit-profile #username .mid{
 /*   border:solid 1px; */
@@ -634,6 +601,7 @@ page#profile .bottom p:first-child,
   width:100%;
 }
 /* page#notifications */
+#notifications header{margin:1% 0;}
 
 #notifications .list{
   padding-top:10%;

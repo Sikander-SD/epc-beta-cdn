@@ -50,6 +50,7 @@ function OTPFormSubmit() {
       otp.style.visibility="visible";  otp.classList.add("opacity");    
       toast("OTP sent to Whatsapp!")
       // start counter for otp 
+      clearOTPCounter();
       OTPCounter = setInterval(count,1000);
     }
   
@@ -77,7 +78,8 @@ function OTPFormReset() {
 }
 // clear counter for otp 
 function clearOTPCounter() {
-  clearInterval(OTPCounter); counter=COUNTER;
+  if (!OTPCounter) return 
+  clearInterval(OTPCounter); counter=COUNTER; OTPCounter=null;
   btn_resend.disabled=false;
   document.querySelector(".slide4 .resend span").hidden = true;
   document.querySelector(".slide4 .resend span span").innerText = COUNTER;
@@ -93,12 +95,13 @@ function count() {
    document.querySelector(".slide4 .resend span").hidden = false;
    document.querySelector(".slide4 .resend span span").innerText = counter;
    // clear counter for otp 
-   if (counter <= 0) clearOTPCounter()
+   if (counter <= 0) clearOTPCounter();
 }
 btn_resend.addEventListener("click",e=>{  
   FORMOTP.otp.value = ""; 
   toast("OTP sent to Whatsapp!")  
   // start counter for otp 
+  clearOTPCounter();
   OTPCounter = setInterval(count,1000);  
   // send phone number and ask for otp
   OTPAuth();

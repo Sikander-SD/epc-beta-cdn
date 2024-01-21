@@ -44,7 +44,7 @@ section#table th.c0{
  padding:1%;
 }
 section#table th.c0 p{
- font-size:10px;
+ font-size:3vw;
  font-weight:700;
 }
 section#table th:not(.c0){

@@ -38,7 +38,6 @@ document.querySelector(".slide4 select").addEventListener("change",e=>{
 document.querySelector(".slide4 button#prev").addEventListener("click",e=>OTPFormReset());
 FORMOTP.addEventListener("submit",e=>OTPFormSubmit())
 function OTPFormSubmit(resend=false) {
-  console.log(counter)
   if (!resend){
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
@@ -59,10 +58,8 @@ function OTPFormSubmit(resend=false) {
   OTPAuth();
 }
 function OTPFormReset() {
-  toast("reset")
   FORMOTP.reset();
   setTimeout(()=>{
-  toast("reset")
     // to prevent error in form validation because otp is hidden
   document.querySelector(".slide4 input#otp").setAttribute("form","null");
     
@@ -77,6 +74,7 @@ function OTPFormReset() {
       // clear counter for otp 
       clearInterval(clearCounter); counter=COUNTER;
       document.querySelector(".slide4 .resend span").hidden = true;
+      document.querySelector(".slide4 .resend span span").innerText = COUNTER;
     }
   },1800)
 }
@@ -92,6 +90,7 @@ function count() {
      clearInterval(clearCounter); counter=COUNTER;
      btn_resend.disabled=false;
      document.querySelector(".slide4 .resend span").hidden = true;
+    document.querySelector(".slide4 .resend span span").innerText = COUNTER;
    }
 }
 btn_resend.addEventListener("click",e=>{  

@@ -149,7 +149,7 @@ button#back-page{
   background:none;
   padding:0;
   position:absolute;
-  top:0.1rem;
+  /* top:0.1rem; */
   left:0;
   z-index:1;
 }

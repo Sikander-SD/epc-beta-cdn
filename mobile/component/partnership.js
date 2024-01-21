@@ -6,8 +6,9 @@ function partnershipHTML(page) {return `
         <div class="title-font">Partnership Program</div>
     </header>
     <section class="featues">
-        <div class="title">
-            <h2>Features</h2>
+        <div class="head" style="text-align:center;   margin-bottom:5%;">
+            <div class="icon" style="width:15%;   margin:auto;"> <img src="${ROOT}/static/images/handshake.svg" alt="partner"> </div>
+            <p>Features</p>
         </div>
         <ul class="list">
             <li>Sell Products Online</li>

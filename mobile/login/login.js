@@ -34,7 +34,6 @@ function grantPermission(name = "geolocation") {
 FORMOTP.addEventListener("submit",e=>{
   if (document.querySelector(".slide4.active")){
     slide4FormSubmit();
-    OTPAuth();
   }  
 })
 FORMOTP.addEventListener("reset",()=>{
@@ -45,7 +44,11 @@ document.querySelector(".slide4 select").addEventListener("change",e=>{
   document.querySelector(".slide4 .label").innerText = e.target.value;
 })
 document.querySelector(".slide4 button#prev").addEventListener("click",()=>FORMOTP.reset());
-function slide4FormSubmit() {
+function slide4FormSubmit(resend=false) {
+  // OTP authentication
+    OTPAuth();
+  // skip when resend is clicked
+  if (resend) return
   // to prevent error in form validation because otp is hidden
   document.querySelector(".slide4 input#otp").setAttribute("form","otp");
 
@@ -78,8 +81,9 @@ function slide4FormReset() {
       otp.style.visibility="hidden";  otp.classList.remove("opacity");    
       // clear counter for otp 
       clearInterval(clearCounter);
+      document.querySelector(".slide4 .resend span").hidden = true;
     }
-  },2000)
+  },1800)
 }
 // when resend button is pressed 
 const btn_resend = document.querySelector(".slide4 #resend");
@@ -96,12 +100,11 @@ function count() {
    }
 }
 btn_resend.addEventListener("click",e=>{  
- document.querySelector(".slide4 .resend span").hidden = false;
   btn_resend.disabled = true;
   clearCounter = setInterval(count,1000);
   FORMOTP.otp.value = ""; 
-  // send request to server to resend new OTP
-  OTPAuth();
+  // sumbit form and authenticte
+  slide4FormSubmit(true);
 })
 
 // *********************************** 
@@ -215,6 +218,7 @@ function OTPAuth() {
   const data = { region:region,  phone:number,  otp: OTP  };
   // console.log("OTPAuth()<- ",data);
   toast("OTP sent to Whatsapp!")
+  document.querySelector(".slide4 .resend span").hidden = false;    
 
   // reset phone and otp input.style
   FORMOTP.number.parentNode.classList.remove("failed");

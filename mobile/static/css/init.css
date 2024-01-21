@@ -476,6 +476,15 @@ page:not(.active){
   font-weight:500;
 }
 
+.modal#logout .modal-dialog{
+  width:90%;  
+  margin:auto;
+}
+.modal#logout .modal-header{
+  display: flex;
+  justify-content: center;
+}
+
 /* toast */
 .toast:not(.slide-in-from-right){
   position: fixed;

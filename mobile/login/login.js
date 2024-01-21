@@ -49,9 +49,9 @@ function OTPFormSubmit() {
       btn.classList.add("slide-down");
       otp.style.visibility="visible";  otp.classList.add("opacity");    
       toast("OTP sent to Whatsapp!")
+      // start counter for otp 
+      OTPCounter = setInterval(count,1000);
     }
-  // start counter for otp 
-  OTPCounter = setInterval(count,1000);
   
   // send phone number and ask for otp
   OTPAuth();
@@ -232,7 +232,7 @@ function OTPAuth() {
   })
   .then(async response => {//<- {userProfileData:{profile},userSettings,...} from server
     if(!response.ok){
-      const err = new Error(response.statusText)
+      const err = new Error()
       err.status = response.status;
       err.message = await response.text();
       throw err

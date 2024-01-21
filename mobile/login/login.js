@@ -83,19 +83,20 @@ function slide4FormReset() {
 }
 // when resend button is pressed 
 const btn_resend = document.querySelector(".slide4 #resend");
-const COUNTER = 10;//seconds
+const COUNTER = 30;//seconds
 let counter = COUNTER;
 let clearCounter;
 function count() {
    counter--;    
-   document.querySelector(".slide4 .resend span").innerText = counter;
+   document.querySelector(".slide4 .resend span span").innerText = counter;
    if (counter <= 0) {
      counter=COUNTER; clearInterval(clearCounter);
      btn_resend.disabled=false;
+     document.querySelector(".slide4 .resend span").hidden = true;
    }
 }
 btn_resend.addEventListener("click",e=>{  
-  toast("OTP sent to Whatsapp!")
+ document.querySelector(".slide4 .resend span").hidden = false;
   btn_resend.disabled = true;
   clearCounter = setInterval(count,1000);
   FORMOTP.otp.value = ""; 
@@ -213,6 +214,7 @@ function OTPAuth() {
   const OTP = FORMOTP.otp.value || "";
   const data = { region:region,  phone:number,  otp: OTP  };
   // console.log("OTPAuth()<- ",data);
+  toast("OTP sent to Whatsapp!")
 
   // reset phone and otp input.style
   FORMOTP.number.parentNode.classList.remove("failed");

@@ -42,9 +42,6 @@ function OTPFormSubmit(resend=false) {
   if (!resend){
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
-
-    if (FORMOTP.otp.value === "") toast("OTP sent to Whatsapp!")
-    document.querySelector(".slide4 .resend span").hidden = false;
   
     // make otp input visible
     let n = document.querySelector(".slide4 .phone-number");  
@@ -56,6 +53,9 @@ function OTPFormSubmit(resend=false) {
       otp.style.visibility="visible";  otp.classList.add("opacity");    
       // start counter for otp 
       clearCounter = setInterval(count,1000)
+      btn_resend.disabled = true;
+      toast("OTP sent to Whatsapp!")
+      document.querySelector(".slide4 .resend span").hidden = false;
     }
   }
   // send phone number and ask for otp

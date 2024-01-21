@@ -380,7 +380,7 @@ page#profile .bottom p:first-child,
 
 /* #settings */
 
-#settings header{position:unset;}
+#settings header{position:unset;margin:1% 0;}
 #settings .title{
   text-align:center;
 }
@@ -397,6 +397,7 @@ page#profile .bottom p:first-child,
   display:flex;
   justify-content:space-between;
   padding:0 3%;
+  margin:1% 0;
 }
 #settings .form-check-input:focus {
     border-color: #86b7fe;

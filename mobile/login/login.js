@@ -35,8 +35,8 @@ function grantPermission(name = "geolocation") {
 document.querySelector(".slide4 select").addEventListener("change",e=>{  
   document.querySelector(".slide4 .label").innerText = e.target.value;
 })
-document.querySelector(".slide4 button#prev").addEventListener("click",OTPFormReset);
-FORMOTP.addEventListener("submit",OTPFormSubmit)
+document.querySelector(".slide4 button#prev").addEventListener("click",e=>OTPFormReset());
+FORMOTP.addEventListener("submit",e=>OTPFormSubmit())
 function OTPFormSubmit(resend=false) {
   console.log(counter)
   if (!resend){

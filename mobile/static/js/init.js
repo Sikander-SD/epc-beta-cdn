@@ -261,6 +261,7 @@ const toast = (body="Hello! i'm a toast message.",ms=5000)=> {
 // const data = {title: "Google",text: "you can search anything on this site",url: "https://www.google.com"}
 // const data = {files:[]}// https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#shareable_file_types
 const share2Media = data=> {
+	// copy url
 	if (data.url){
 		const tempInput = document.createElement('input');
         tempInput.value = data.url;
@@ -270,12 +271,12 @@ const share2Media = data=> {
         document.body.removeChild(tempInput);
         toast("Link Copied!");
 	}
-		
+
+	// share to media
 	if (!navigator.canShare) console.error("navigator.canShare() not supported.")
 	else if (navigator.canShare(data) && navigator.share) {
 		navigator.share(data)
-			.then(()=>{console.log("MDN shared successfully");})
-			.catch(err=>{console.error("Error: ",err);})
+			.then(()=>{console.log("Shared Successfully!");})
 	} else console.error("This data is not sharable or some data property not supported! data:",data);
 	
 };//END: share2Media()

@@ -5,7 +5,7 @@ function premiumHTML(page,args) {
                     <button id="back-page" target-id=${"#"+page} onclick="activateTarget(this,'page'); document.querySelector('page#premium').innerHTML='';">
                         <img src="${ROOT}/static/images/rightChevorn.svg" alt="back">
                     </button>
-                    <div class="title-font"> <h5>Premium</h5> </div>                    
+                    <div class="title-font">Premium</div>                    
     </header>
     <section class="features">
                     <div class="head" style="text-align:center;   margin-bottom:5%;">

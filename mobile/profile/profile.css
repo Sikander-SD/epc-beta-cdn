@@ -439,6 +439,7 @@ page#profile .bottom p:first-child,
 #feedback .modal-footer{
   display:grid;
   padding-bottom:10%;
+  border:none;
 }
 #feedback .modal-footer .icon{
   width:30%;

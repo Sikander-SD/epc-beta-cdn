@@ -45,26 +45,24 @@ document.querySelector(".slide4 select").addEventListener("change",e=>{
 })
 document.querySelector(".slide4 button#prev").addEventListener("click",()=>FORMOTP.reset());
 function slide4FormSubmit(resend=false) {
-  // OTP authentication
-    OTPAuth();
-  // skip when resend is clicked
-  if (resend) return
-  // to prevent error in form validation because otp is hidden
-  document.querySelector(".slide4 input#otp").setAttribute("form","otp");
-
-  // make otp input visible
-  let n = document.querySelector(".slide4 .phone-number");  
-  let btn = document.querySelector(".slide4 .btn-confirm");
-  let otp = document.querySelector(".slide4 .block-otp");
-  if (otp.style.visibility != "visible"){
-    n.classList.add("slide-up");
-    btn.classList.add("slide-down");
-    otp.style.visibility="visible";  otp.classList.add("opacity");    
-    // start counter for otp 
-    clearCounter = setInterval(count,1000)
+  if (!resend){
+    // to prevent error in form validation because otp is hidden
+    document.querySelector(".slide4 input#otp").setAttribute("form","otp");
+  
+    // make otp input visible
+    let n = document.querySelector(".slide4 .phone-number");  
+    let btn = document.querySelector(".slide4 .btn-confirm");
+    let otp = document.querySelector(".slide4 .block-otp");
+    if (otp.style.visibility != "visible"){
+      n.classList.add("slide-up");
+      btn.classList.add("slide-down");
+      otp.style.visibility="visible";  otp.classList.add("opacity");    
+      // start counter for otp 
+      clearCounter = setInterval(count,1000)
+    }
   }
-
   // send phone number and ask for otp
+  OTPAuth();
 }
 function slide4FormReset() {
   setTimeout(()=>{

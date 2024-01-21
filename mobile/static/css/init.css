@@ -115,16 +115,6 @@ input{
   padding-left:3%;
 }
 
-.switch{width:20%;}
-.form-switch{
-  display:flex;
-  padding:0;
-}
-.form-switch .form-check-input{
-  width:70%;
-  margin:auto;  
-}
-
 footer alert-dot{
   width:10px;
   height:10px;

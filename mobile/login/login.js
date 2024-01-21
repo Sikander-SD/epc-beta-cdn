@@ -229,8 +229,13 @@ function OTPAuth() {
     },
     body: JSON.stringify(data)
   })
-  .then(response => {//<- {userProfileData:{profile},userSettings,...} from server
-    if(!response.ok) throw Error(response.status+" "+response.statusText);
+  .then(async response => {//<- {userProfileData:{profile},userSettings,...} from server
+    if(!response.ok){
+      const err = new Error(response.statusText)
+      err.status = response.status;
+      err.message = await response.text();
+      throw err
+    } 
     response.json().then(d=>{
       // proceed if server sent the user's data
       if (d.userProfileData){

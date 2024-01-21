@@ -41,6 +41,9 @@ function OTPFormSubmit(resend=false) {
   if (!resend){
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
+
+    toast("OTP sent to Whatsapp!")
+    document.querySelector(".slide4 .resend span").hidden = false;
   
     // make otp input visible
     let n = document.querySelector(".slide4 .phone-number");  
@@ -211,8 +214,6 @@ function OTPAuth() {
   const OTP = FORMOTP.otp.value || "";
   const data = { region:region,  phone:number,  otp: OTP  };
   // console.log("OTPAuth()<- ",data);
-  toast("OTP sent to Whatsapp!")
-  document.querySelector(".slide4 .resend span").hidden = false;    
 
   // reset phone and otp input.style
   FORMOTP.number.parentNode.classList.remove("failed");

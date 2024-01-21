@@ -31,20 +31,14 @@ function grantPermission(name = "geolocation") {
 };
 
 // *********************************** slide4 login form
-FORMOTP.addEventListener("submit",e=>{
-  if (document.querySelector(".slide4.active")){
-    slide4FormSubmit();
-  }  
-})
-FORMOTP.addEventListener("reset",()=>{
-  if (document.querySelector(".slide4.active")) slide4FormReset()
-})
 // select region | country
 document.querySelector(".slide4 select").addEventListener("change",e=>{  
   document.querySelector(".slide4 .label").innerText = e.target.value;
 })
-document.querySelector(".slide4 button#prev").addEventListener("click",()=>FORMOTP.reset());
-function slide4FormSubmit(resend=false) {
+document.querySelector(".slide4 button#prev").addEventListener("click",OTPFormReset);
+FORMOTP.addEventListener("submit",OTPFormSubmit)
+function OTPFormSubmit(resend=false) {
+  console.log(counter)
   if (!resend){
     // to prevent error in form validation because otp is hidden
     document.querySelector(".slide4 input#otp").setAttribute("form","otp");
@@ -64,8 +58,11 @@ function slide4FormSubmit(resend=false) {
   // send phone number and ask for otp
   OTPAuth();
 }
-function slide4FormReset() {
+function OTPFormReset() {
+  toast("reset")
+  FORMOTP.reset();
   setTimeout(()=>{
+  toast("reset")
     // to prevent error in form validation because otp is hidden
   document.querySelector(".slide4 input#otp").setAttribute("form","null");
     
@@ -78,7 +75,7 @@ function slide4FormReset() {
       btn.classList.remove("slide-down");
       otp.style.visibility="hidden";  otp.classList.remove("opacity");    
       // clear counter for otp 
-      clearInterval(clearCounter);
+      clearInterval(clearCounter); counter=COUNTER;
       document.querySelector(".slide4 .resend span").hidden = true;
     }
   },1800)
@@ -92,7 +89,7 @@ function count() {
    counter--;    
    document.querySelector(".slide4 .resend span span").innerText = counter;
    if (counter <= 0) {
-     counter=COUNTER; clearInterval(clearCounter);
+     clearInterval(clearCounter); counter=COUNTER;
      btn_resend.disabled=false;
      document.querySelector(".slide4 .resend span").hidden = true;
    }
@@ -102,7 +99,7 @@ btn_resend.addEventListener("click",e=>{
   clearCounter = setInterval(count,1000);
   FORMOTP.otp.value = ""; 
   // sumbit form and authenticte
-  slide4FormSubmit(true);
+  OTPFormSubmit(true);
 })
 
 // *********************************** 

@@ -51,7 +51,7 @@ function OTPFormSubmit() {
       toast("OTP sent to Whatsapp!")
     }
   // start counter for otp 
-  clearCounter = setInterval(count,1000);
+  OTPCounter = setInterval(count,1000);
   
   // send phone number and ask for otp
   OTPAuth();
@@ -71,34 +71,35 @@ function OTPFormReset() {
       btn.classList.remove("slide-down");
       otp.style.visibility="hidden";  otp.classList.remove("opacity");    
       // clear counter for otp 
-      clearInterval(clearCounter); counter=COUNTER;
-      document.querySelector(".slide4 .resend span").hidden = true;
-      document.querySelector(".slide4 .resend span span").innerText = COUNTER;
+      clearOTPCounter()
     }
   },1800)
+}
+// clear counter for otp 
+function clearOTPCounter() {
+  clearInterval(OTPCounter); counter=COUNTER;
+  btn_resend.disabled=false;
+  document.querySelector(".slide4 .resend span").hidden = true;
+  document.querySelector(".slide4 .resend span span").innerText = COUNTER;
 }
 // when resend button is pressed 
 const btn_resend = document.querySelector(".slide4 #resend");
 const COUNTER = 30;//seconds
 let counter = COUNTER;
-let clearCounter;
+let OTPCounter;
 function count() {
    counter--; 
    btn_resend.disabled = true;
    document.querySelector(".slide4 .resend span").hidden = false;
    document.querySelector(".slide4 .resend span span").innerText = counter;
-   if (counter <= 0) {
-     clearInterval(clearCounter); counter=COUNTER;
-     btn_resend.disabled=false;
-     document.querySelector(".slide4 .resend span").hidden = true;
-    document.querySelector(".slide4 .resend span span").innerText = COUNTER;
-   }
+   // clear counter for otp 
+   if (counter <= 0) clearOTPCounter()
 }
 btn_resend.addEventListener("click",e=>{  
   FORMOTP.otp.value = ""; 
   toast("OTP sent to Whatsapp!")  
   // start counter for otp 
-  clearCounter = setInterval(count,1000);  
+  OTPCounter = setInterval(count,1000);  
   // send phone number and ask for otp
   OTPAuth();
 })

@@ -3,9 +3,7 @@ function partnershipHTML(page) {return `
         <button id="back-page" target-id=${"#"+page} onclick="activateTarget(this,'page'); document.querySelector('page#partner').innerHTML='';">
             <img src="${ROOT}/static/images/rightChevorn.svg" alt="back">
         </button>
-        <div class="title">
-            <h5>Partnership Program</h5>
-        </div>
+        <div class="title-font">Partnership Program</div>
     </header>
     <section class="featues">
         <div class="title">

@@ -476,6 +476,8 @@ page:not(.active){
   font-weight:500;
 }
 
+.modal#feedback .modal-content{height:100%;}
+
 .modal#logout .modal-dialog{
   width:90%;  
   margin:auto;
@@ -483,6 +485,7 @@ page:not(.active){
 .modal#logout .modal-header{
   display: flex;
   justify-content: center;
+  font-size:5vw;
 }
 
 /* toast */

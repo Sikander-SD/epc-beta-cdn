@@ -20,7 +20,6 @@ page#profile .profile:first-child{
   grid-template-columns: 1fr 2fr;
   /*   gap: 5%; */
   position: relative;
-  background: #ccc;
   border-radius: 5vw;
   margin: 2%;
 }

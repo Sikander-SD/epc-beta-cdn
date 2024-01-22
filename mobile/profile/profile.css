@@ -456,6 +456,8 @@ page#profile .bottom p:first-child,
 
 /* page#chats */
 
+#chats button#back-page img {width: 40%;}
+
 #chats{
   padding:0;
   position:absolute;

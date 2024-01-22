@@ -29,8 +29,8 @@ page#profile shade{
   height:100%;
   z-index: -1;
   background: linear-gradient(to right, pink,lightblue);
-  box-shadow: 0px 0px 10px black;
-  filter: blur(24px);
+  box-shadow: 0px 0px 6px black;
+  filter: blur(4px);
 }
 page#profile .profile .img{
   padding:10%;

@@ -534,7 +534,7 @@ page#profile .bottom p:first-child,
   display:inline-block;  
 }
 #chats .timestamp{
-  font-size:3vw;
+  font-size:2.5vw;
   opacity:0.6;
   width:50%;
 }

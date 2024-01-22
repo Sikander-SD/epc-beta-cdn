@@ -30,7 +30,7 @@ page#profile shade{
   z-index: -1;
   background: linear-gradient(to right, pink,lightblue);
   box-shadow: 0px 0px 6px black;
-  filter: blur(4px);
+  filter: blur(4px) brightness(1.1);
 }
 page#profile .profile .img{
   padding:10%;

@@ -475,9 +475,9 @@ page#profile .bottom p:first-child,
   display:grid;
   grid-template-columns: 1fr 7fr;
 }
-#chats form > div{display:flex;;}
-#chats .icon.upload{width:auto;}
-#chats img#upload{width:70%; margin:auto;}
+#chats form > div{display:flex;}
+#chats .icon.upload{width:auto;position: relative;display: flex;justify-content: center;align-items: center;}
+#chats img#upload{position: absolute;max-width: min-content;max-height: -webkit-fill-available;}
 #chats .inp{
   width:99%;
   border-radius:5vw;

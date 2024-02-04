@@ -517,7 +517,7 @@ function modalLoad(id,type) {
     if(!response.ok) return;
     response.text().then(d=>{
       // console.log(d)
-      if (d) document.querySelector(".modal#"+id+" .modal-body").innerHTML = d;
+      if (d) document.querySelector(".modal#"+id.toLowerCase().replaceAll(" ","-")+" .modal-body").innerHTML = d;
     })
   })
 };

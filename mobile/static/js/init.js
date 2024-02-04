@@ -516,8 +516,8 @@ function modalLoad(id,type) {
   .then(response=>{
     if(!response.ok) return;
     response.text().then(d=>{
-      console.log(id)
-      if (d) document.querySelector(".modal#"+id.toLowerCase().replaceAll(" ","-")+" .modal-body").innerHTML = d;
+      // console.log(d)
+      if (d) document.querySelector(".modal#"+id.replaceAll(" ","-")+" .modal-body").innerHTML = d;
     })
   })
 };

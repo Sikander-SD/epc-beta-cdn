@@ -150,6 +150,8 @@ page#profile .bottom p:first-child,
   justify-content:space-evenly;
 }
 
+#twitter{display:none}
+
 /* #view-profile */
 
 #view-profile .top{

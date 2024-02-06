@@ -563,3 +563,9 @@ page:not(.active){
   0% {transform: translateX(-50%);}
   100% {transform: translateX(0%);}
 }
+
+/* SEO */
+h1.seo,h2.seo,h3.seo,h4.seo,h5.seo,h6.seo{
+  position:absolute;
+  top:-100%;
+}

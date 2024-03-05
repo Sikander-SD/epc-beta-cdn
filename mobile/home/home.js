@@ -368,7 +368,7 @@ fetch("../server/?file=adImages/namelist.json")//[{link,src},...]
     // set
     if (i==0){
 	    div.className = "carousel-item active";
-		b.className = "active";		
+		b.className = "active";
 	    b.setAttribute("aria-current","true");
 	}else div.className = "carousel-item";
 	  
@@ -376,7 +376,7 @@ fetch("../server/?file=adImages/namelist.json")//[{link,src},...]
     b.setAttribute("aria-label","Slide "+(i+1));
     
     div.onclick = ()=>{window.open(ad.link)};
-    div.style.backgroundImage = "url("AD_IMGS+ ((ORIENTATION=="portrait")? "/slides/phone/":"/slides/pc/") +ad.src +")";
+    div.style.backgroundImage = "url(" + AD_IMGS + ((ORIENTATION=="portrait")? "/slides/phone/":"/slides/pc/") +ad.src +")";
     
     // append    
     inner.appendChild(div);

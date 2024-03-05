@@ -1,8 +1,8 @@
 const CACHE_NAME = "{{app_name}}";
 const RESOURCES = [
   // '/',
-  // '{{root_CDN}}/static/data/manifest/manifest.json',
-  // '{{root_CDN}}/static/data/manifest/serviceWorker.js',
+  // '{{MANIFEST_JSON}}',
+  // '{{SERVICE_WORKER_JS}}',
   // ...Array.from({ length: 100 }, (_, i) => `/images/image${i + 1}.jpg`)
 ];
 const noti = {"push":true,"sound":true};//control the notifications

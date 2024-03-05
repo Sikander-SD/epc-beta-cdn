@@ -81,7 +81,7 @@ window.addEventListener('scroll', e=> {
   }
 
   //load more products  
-  if (isScrolledToBottom() && waiting_flag) {
+  if (isScrolledToBottom() && waiting_flag && document.querySelector("page#home.active")) {
     if (!page_end){
       let caller="",data="";
       const v = document.querySelector("#search-query p").innerText;    

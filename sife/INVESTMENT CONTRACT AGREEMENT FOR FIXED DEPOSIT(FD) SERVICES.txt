@@ -1,0 +1,85 @@
+INVESTMENT CONTRACT AGREEMENT FOR FIXED DEPOSIT(FD) SERVICES
+
+This Investment Contract Agreement (hereinafter referred to as the "Agreement")
+is entered into on this {effective_date} (hereinafter referred to as the "Effective Date"),
+By and between:
+
+Party A:
+{company_name},
+A company organized and existing under the laws of Indian Jurisdiction,
+Having its principal place of business at {company_address} (hereinafter referred to as the "Company"),
+
+And
+
+Party B:
+{investor_name},
+An individual residing at {investor_address} (hereinafter referred to as the "Investor").
+
+1. AGREEMENT PURPOSE:
+The Company offers an investment opportunity to the Investor through this Agreement,
+wherein the Investor shall invest in a Fixed Deposit (hereinafter referred to as the "FD") with the Company,
+as described in Section 2 (TERMS AND CONDITIONS) of this Agreement.
+
+2. TERMS AND CONDITIONS:
+
+2.1 Investment Term:
+The total term of this Agreement is a period of 3 months, which is equivalent to 90 calander days from the Effective Date of this Agreement.
+
+2.2 Investment Amount:
+a. The total "Agreement Amount" is ₹1000 (Indian Rupees One Thousand Only), which also includes the Principal "Investment Amount" for the Fixed Deposit.
+b. The Investment Amount is the only Amount the Investor is required to diposit to the Company for the successful execution of this Agreement.
+
+2.3 Interest Payment:
+a. The total "Interest Amount" generated on the FD will be calculated at an Interest Rate of 7% per Annum.
+b. The Company is liable to pay the Investor this Interest Amount after the end of Investment Term.
+c. The Interest Amount will be compounded annually as per section 2.8 (Compound Interest) of this Agreement.
+
+2.4 Principal Repayment:
+a. Upon the Successful Completion of the 3 month period of this Agreement, the Company is liable to return the Principal Amount of ₹1000 (Indian Rupees One Thousand Only) to the Investor.
+
+2.5 Utilization Of Funds:
+a. The Company shall utilize the Investment Amount for investment purposes in various investment activities and entities, including but not limited to Stock-Market, Land-Properties, Rental-Properties and other Financial Instruments.
+b. The Company will exercise due diligence and prudence in managing the Investment Amount.
+
+2.6 Withdrawal And Termination:
+a. The Withdrawal of the Investment Amount before the end of the 3 month period constitutes the "Termination" of this Agreement.
+b. This Agreement shall Terminate upon the breach of any term or condition of this Agreement by either the Company or the Investor.
+c. The Termination of this Agreement is subject to mutual agreement between the Investor and the Company.
+d. At the Termination before the end of 3 month period, the Company will promptly return the Investment Amount, excluding the Interest Amount, to the Investor.
+e. At the Termination after the end of 3 month period, the Company will promptly return the Investment Amount, including the Interest Amount, to the Investor.
+
+2.7 Automatic Renewal:
+a. After the end of this Agreement, the Investor agrees to the "Automatic Renewal" of the Agreement along with the FD under the same terms and conditions.
+b. The Automatic Renewal of this Agreement takes effect only after the end of this Agreement, which is the 91th day (1 day after).
+c. The "Renewed Agreement" is effective on the date of 91th day of this Agreement.
+d. The Investor is not required to pay any additional amount for the Automatic Renewal of this Agreement.
+e. The Investment Amount for Renewed Agreement will be the same as the Investment Amount of this Agreement.
+
+2.8 Compound Interest:
+a. The "Compound Interest" applies after the completion of 12 consecutive Agreements of the Investor with the Company within the period of 1 Annum.
+b. The Interest Amount for Compounding is the sum of Interest Amount generated during the period of 1 Annum.
+
+2.9 Investor Representations:
+a. The Investor acknowledges and understands that all investments carry inherent risks due to market fluctuations, and the Company is not liable to pay for any losses incurred under section 2.5 (Utilization Of Funds) of this Agreement.
+b. The Investor agrees to deposit the Agreement Amount to the Company for this Agreement on the Effective Date of this Agreement.
+c. The Investor is encouraged to review the investment prospectus and seek independent financial advice before entering into this Agreement.
+d. The Investor hereby represents and warrants that they have read and understood all the terms and conditions of this Agreement.
+
+2.10 Receipt Acknowledgment And Agreement Execution:
+a. Upon receipt of the Agreement Amount from the Investor, the Company shall generate a digital auto-generated PDF file, serving as both the Agreement and Receipt.
+b. Both Parties acknowledge and agree that the PDF file, once generated, will be considered as officially signed and accepted by the Investor and the Company.
+c. Both Parties agree that the digital or electronic records of such payment transactions serve as evidence of the Investor's acceptance and the Company's acknowledgment of this Agreement.
+
+2.11 Confidentiality:
+a. The Investor agrees to treat all financial information and details exchanged in this Agreement as Confidential.
+b. Disclosing the Confidentiality of this Agreement may result in the loss of the Agreement and Investment Amount due to fraudulent activities by third parties.
+
+2.12 Governing Law:
+a. This Agreement shall be governed by and construed in accordance with the laws of Indian Jurisdiction.
+b. Any disputes arising out of or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts in Sunam, Punjab, India.
+
+2.13 Miscellaneous:
+a. This Agreement constitutes the entire understanding between the Investor and the Company, superseding all prior discussions, agreements and understandings, whether oral or written.
+b. Any amendments or modifications made to this Agreement must be agreed upon by the Investor and the Company.
+
+IN WITNESS WHEREOF, the parties hereto have executed this "INVESTMENT CONTRACT AGREEMENT FOR FIXED DEPOSIT(FD) SERVICES" as of the Effective Date of this Agreement.

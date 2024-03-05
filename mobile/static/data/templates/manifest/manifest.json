@@ -1,0 +1,21 @@
+{
+  "name": "{{app_name}}",
+  "short_name": "{{app_short_name}}",
+  "description": "{{app_description}}",
+  "start_url": "../",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [  
+    {
+      "src": "{{root_CDN}}/static/images/logo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    },
+    {
+      "src": "{{root_CDN}}/static/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }    
+  ]
+}

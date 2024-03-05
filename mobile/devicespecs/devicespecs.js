@@ -1,5 +1,4 @@
 // parameters
-const path_IMAGES = ROOT+DEVICE_IMGS+"/";
 const urlParams = new URLSearchParams(window.location.search);
 let device_NAME = urlParams.get("file").replaceAll(" ","_").split(".")[0]
 let device_DATA=null,    slidelist=[];

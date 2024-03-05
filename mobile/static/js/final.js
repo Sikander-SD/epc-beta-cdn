@@ -2,7 +2,7 @@
 This modul includes only those definitions and statements which are dependent to other moduls | statements | definitions.
 */
 /*   SECURITY 
-  downlaod the premium | partnership featrues if user is a member and delete the features if user is no longer the memeber.
+  download the premium | partnership featrues if user is a member and delete the features if user is no longer the memeber.
 */
 class Page{
   constructor(page){this.page = page;  }  

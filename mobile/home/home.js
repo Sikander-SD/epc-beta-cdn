@@ -376,7 +376,7 @@ fetch("../server/?file=adImages/namelist.json")//[{link,src},...]
     b.setAttribute("aria-label","Slide "+(i+1));
     
     div.onclick = ()=>{window.open(ad.link)};
-    div.style.backgroundImage = "url("+ROOT+AD_IMGS+ ((ORIENTATION=="portrait")? "/slides/phone/":"/slides/pc/") +ad.src +")";
+    div.style.backgroundImage = "url("+ROOT_CDN+AD_IMGS+ ((ORIENTATION=="portrait")? "/slides/phone/":"/slides/pc/") +ad.src +")";
     
     // append    
     inner.appendChild(div);

@@ -98,8 +98,7 @@ function slideImage1() {
   h.setAttribute("class","device-name")
   h.innerText = device_NAME.replaceAll("_"," ")
   
-  // img.setAttribute("src","https://drive.google.com/uc?export=view&id="+device_DATA.Timg)
-  img.setAttribute("src",path_IMAGES+device_NAME+"/main.png")
+  img.setAttribute("src",DEVICE_IMGS+"/"+device_NAME+"/main.png")
   img.classList.add("device-image");
   img.setAttribute("alt",device_NAME)
   // img.onload = ()=>setBgColor(img); //ERROR: cross-origin
@@ -162,7 +161,7 @@ function slideImage1() {
         var fingerprint_icon = icon_.cloneNode()
         var fingerprint_info = document.createElement("span");  
         
-        fingerprint_icon.style.backgroundImage = `url(${ROOT}/static/images/icons/black/fingerprint.png)`
+        fingerprint_icon.style.backgroundImage = `url(${ROOT_CDN}/static/images/icons/black/fingerprint.png)`
         fingerprint_info.setAttribute("class","info")
         fingerprint_info.innerHTML = "fingerprint sensor";        
         
@@ -177,7 +176,7 @@ function slideImage1() {
         var water_proof_icon = icon_.cloneNode()
         var water_proof_info = document.createElement("span")
         
-        water_proof_icon.style.backgroundImage = `url(${ROOT}/static/images/icons/black/water-proof.png)`;
+        water_proof_icon.style.backgroundImage = `url(${ROOT_CDN}/static/images/icons/black/water-proof.png)`;
         water_proof_info.setAttribute("class","info")      
         water_proof_info.innerHTML = (x.includes("splash")?"splash proof": (x.includes("resistant")?"water resistant": "water proof"));  
         
@@ -190,8 +189,8 @@ function slideImage1() {
     else{
       info.classList.add("info");
       info.innerHTML = setInfo(l)
-      if (l=="os") icon_.style.backgroundImage = `url(${ROOT}/static/images/icons/black/`+device_DATA.os.toLowerCase().match(/android|ios/g)+".png)"
-      else icon_.style.backgroundImage = `url(${ROOT}/static/images/icons/black/`+l.replace(/-back|-front/g,"")+".png)"
+      if (l=="os") icon_.style.backgroundImage = `url(${ROOT_CDN}/static/images/icons/black/`+device_DATA.os.toLowerCase().match(/android|ios/g)+".png)"
+      else icon_.style.backgroundImage = `url(${ROOT_CDN}/static/images/icons/black/`+l.replace(/-back|-front/g,"")+".png)"
       
       // append sub-elements to block
       head.appendChild(icon_)
@@ -237,8 +236,6 @@ function slideImage2() {
     tag.innerText = name;
     
     const img = new Image();
-    // img.setAttribute("src","https://drive.google.com/uc?export=view&id="+path)
-    // img.src = DEVICE_IMGS+"/"+device_NAME.replaceAll("_"," ")+"/"+path
     img.src = DEVICE_IMGS+"/"+device_NAME+"/"+path
     img.setAttribute("class","img-side img-"+name)
     img.alt = "img_"+name

@@ -1,8 +1,8 @@
 const CACHE_NAME = "Elite Phones Club";
 const RESOURCES = [
   // '/',
-  // '{{root}}/static/data/manifest.json',
-  // '{{root}}/static/data/serviceWorker.js',
+  // 'https://sikander-sd.github.io/epc-beta/mobile/static/data/manifest/manifest.json',
+  // 'https://sikander-sd.github.io/epc-beta/mobile/static/data/manifest/serviceWorker.js',
   // ...Array.from({ length: 100 }, (_, i) => `/images/image${i + 1}.jpg`)
 ];
 const noti = {"push":true,"sound":true};//control the notifications
@@ -44,7 +44,7 @@ self.addEventListener('activate', event => {
     // send notification
     self.registration.showNotification(title='App Updated!', {
       body: 'The application has been updated with improvements.',
-      icon: '{{root}}/static/images/user1.svg'
+      icon: 'https://sikander-sd.github.io/epc-beta/mobile/static/images/user1.svg'
     })
   );
 });//END: activate

@@ -3,13 +3,13 @@ function premiumHTML(page,args) {
 
     <header style="position:unset;">
                     <button id="back-page" target-id=${"#"+page} onclick="activateTarget(this,'page'); document.querySelector('page#premium').innerHTML='';">
-                        <img src="${ROOT}/static/images/rightChevorn.svg" alt="back">
+                        <img src="${ROOT_CDN}/static/images/rightChevorn.svg" alt="back">
                     </button>
                     <div class="title-font">Premium</div>                    
     </header>
     <section class="features">
                     <div class="head" style="text-align:center;   margin-bottom:5%;">
-                                    <div class="icon" style="width:15%;   transform:rotate(31deg);   margin:auto;"> <img src="${ROOT}/static/images/crown.svg" alt="crown"> </div>
+                                    <div class="icon" style="width:15%;   transform:rotate(31deg);   margin:auto;"> <img src="${ROOT_CDN}/static/images/crown.svg" alt="crown"> </div>
                                     <p>Features</p>
                     </div>
                     <ul class="list">

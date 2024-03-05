@@ -508,9 +508,7 @@ function populateCarousel(id) {
 function modalLoad(id,type) {
   if (!type) throw ValueError("Please provide the filetype or content type one of html | txt | json")
 	
-  // if ("about terms policy".includes(id)) url = ROOT+"/files/"
-  // else url = "../server/?file="
-  url = "../server/?file="
+  url = ROOT_CDN+"/static/data/legal/"
 	
   fetch(url+id+"."+type)
   .then(response=>{
@@ -537,7 +535,7 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	div.setAttribute("aria-live","assertive");
 	div.setAttribute("aria-atomic","true");
 	div.innerHTML =   `<div class="toast-header">
-		<img src=${ROOT+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
+		<img src=${ROOT_CDN+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
 		<small class="text-body-secondary">${tstamp}</small>
 		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

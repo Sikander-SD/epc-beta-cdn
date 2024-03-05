@@ -72,7 +72,6 @@ function loadProduct(product_file,i) {
           </div>`
           // set values
             // device image
-            // device.querySelector(".u-image-1").style.backgroundImage = `url(https://drive.google.com/uc?export=view&id=${deviceSpecs.img})`;
             device.querySelector(".u-image-1").style.backgroundImage = `url(${path_DEVICES+"Images/"+deviceSpecs.name.replaceAll(" ","_")}/main.png)`;
             // open device on onclick event
             let x = ["u-image-1","u-text-1","u-text-2"];

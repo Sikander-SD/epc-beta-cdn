@@ -1,13 +1,13 @@
 function partnershipHTML(page) {return `
     <header>
         <button id="back-page" target-id=${"#"+page} onclick="activateTarget(this,'page'); document.querySelector('page#partner').innerHTML='';">
-            <img src="${ROOT}/static/images/rightChevorn.svg" alt="back">
+            <img src="${ROOT_CDN}/static/images/rightChevorn.svg" alt="back">
         </button>
         <div class="title-font">Partnership Program</div>
     </header>
     <section class="featues">
         <div class="head" style="text-align:center;   margin-bottom:5%;">
-            <div class="icon" style="width:15%;   margin:auto;"> <img src="${ROOT}/static/images/handshake.svg" alt="partner"> </div>
+            <div class="icon" style="width:15%;   margin:auto;"> <img src="${ROOT_CDN}/static/images/handshake.svg" alt="partner"> </div>
             <p>Features</p>
         </div>
         <ul class="list">

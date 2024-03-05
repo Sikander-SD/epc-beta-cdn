@@ -209,8 +209,8 @@ function setupEditProfile() {
   document.querySelector("#username input#userid").value = profile.userid ||"";
   document.querySelector("#username input#email").value = profile.email ||"";
   document.querySelector("#username input#phone").value = profile.phone ||"";
-  document.querySelector("#upload #bg").src = profile.background ||ROOT+"/static/images/bg.svg";
-  document.querySelector("#upload #userimg").src = profile.userimg ||ROOT+"/static/images/user2.svg";
+  document.querySelector("#upload #bg").src = profile.background ||ROOT_CDN+"/static/images/bg.svg";
+  document.querySelector("#upload #userimg").src = profile.userimg ||ROOT_CDN+"/static/images/user2.svg";
   document.querySelector("#address input#country").value = profile.country ||"";
   document.querySelector("#address input#state").value = profile.state ||"";
   document.querySelector("#address input#city").value = profile.city ||"";
@@ -717,7 +717,7 @@ chats_form.upload.addEventListener('click', e=>{
   // remove the selected image
   if (chats_form.img.value){
     chats_form.img.value = "";
-    chats_form.upload.src = ROOT+"/static/images/img.svg";
+    chats_form.upload.src = ROOT_CDN+"/static/images/img.svg";
   }else chats_form.img.click();
 });
 chats_form.img.addEventListener('change',e=>{ 
@@ -774,7 +774,7 @@ chats_form.addEventListener("submit",async e=>{
   
   // reset chats form
   chats_form.reset();
-  chats_form.upload.src = ROOT+"/static/images/img.svg";
+  chats_form.upload.src = ROOT_CDN+"/static/images/img.svg";
   
 });
 

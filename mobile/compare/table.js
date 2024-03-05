@@ -1,18 +1,3 @@
-const path_IMAGES = ROOT+DEVICE_IMGS+"/";
-
-// append device names into the <options> dropdown menu
-// fetch("../server/?file=devices/namelist.txt")
-// 	.then(response=>{
-// 		response.json().then(namelist => {
-// 			namelist = namelist.split("\n");
-// 			namelist.forEach(name => {
-// 				const option = document.createElement("option");
-// 				option.value = name.trim();
-// 				document.querySelector("datalist#names").appendChild(option);
-// 			});
-// 		});
-// 	});
-
 // set table heads
 function renderTable() {
   const tbody = document.querySelector("section#table tbody");
@@ -83,7 +68,7 @@ function fetchDeviceSpecs(col) {
         const device_DATA = JSON.parse(this.responseText);
         // Update the table cells with the device specifications
         // document.getElementById(col + "-Image".replaceAll(/[() ]/gm,"")).style.backgroundImage = `url(https://drive.google.com/uc?export=view&id=${device_DATA.img})`;
-        document.getElementById(col + "-Image".replaceAll(/[() ]/gm,"")).style.backgroundImage = `url(${path_IMAGES+device_DATA.name.replaceAll(" ","_")}/main.png)`;
+        document.getElementById(col + "-Image".replaceAll(/[() ]/gm,"")).style.backgroundImage = `url(${DEVICE_IMGS}/${device_DATA.name.replaceAll(" ","_")}/main.png)`;
         document.getElementById(col + "-Brand".replaceAll(/[() ]/gm,"")).innerHTML = device_DATA.brand;
         document.getElementById(col + "-Model".replaceAll(/[() ]/gm,"")).innerHTML = device_DATA.model;
         document.getElementById(col + "-Colors".replaceAll(/[() ]/gm,"")).innerHTML = device_DATA.color;

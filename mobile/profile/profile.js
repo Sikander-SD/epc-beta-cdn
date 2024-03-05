@@ -690,6 +690,8 @@ feedback_form.addEventListener("submit",async e=>{
     if (!e.ok) throw Error(e.status)
     //show toast
     toast("Feedback Sent!")
+    // reset feedback form in 3secs
+    feedback_form_reset()
   })
     // save to localStorage or sessionStorage
   .catch(err=>{
@@ -697,10 +699,10 @@ feedback_form.addEventListener("submit",async e=>{
     // fform = JSON.parse(sessionStorage.feedbackForm || '[]')
     // fform.push(data)
     // sessionStorage.feedbackForm = JSON.stringify(fform)
+    
+    // reset feedback form in 3secs
+    feedback_form_reset()
   })
-  
-  // reset feedback form in 3secs
-  feedback_form_reset(sec=3000)
   //show toast
   toast("Sending...");
   

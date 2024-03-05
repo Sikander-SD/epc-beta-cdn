@@ -4,7 +4,7 @@ function productHTML(view,data,lr,minimum=false) {
     const link = `<a href="../devicespecs/?file=${data.name}.json">`;
     const buy = `onclick="window.open('${data.link || data.url}','_blank');"`;
     const lcs_item = (view=="item")? "lcs-item" : "";
-    const img_src = `${ROOT_CDN+DEVICE_IMGS}/${data.name.replaceAll(" ","_")}/main.png`;
+    const img_src = `${DEVICE_IMGS}/${data.name.replaceAll(" ","_")}/main.png`;
     data.color = data.color.split(",");
 
     const desc1 = `

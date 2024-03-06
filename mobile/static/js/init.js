@@ -12,6 +12,8 @@ const toggle_3 = [];
 const screenPHONE = 800;//px
 // name of the current webpage
 const THIS_PAGE = window.location.pathname.split("/")[1] || null;
+// sync data with server for every SYNC_CYCLE duration
+const SYNC_DURATION = 10*60*1000// 10mins
 // set prime member status
 const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
 // dispaly screen orientation

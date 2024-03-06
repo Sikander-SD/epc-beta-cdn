@@ -215,7 +215,7 @@ function SYNC(){
     }
   })  
 }//END: SYNC()
-setInterval(SYNC,10*60*1000)
+setInterval(SYNC,SYNC_DURATION)
 
 // *************************  gesture sliding for all .carousel elements
 

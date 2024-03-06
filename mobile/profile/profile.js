@@ -904,6 +904,8 @@ function loadChats(title) {
   .then(response=>{//{chats: [ {type,file,text,id,title}, ...] }
     if(!response.ok) throw Error(response.status);
     response.json().then(response=>{
+      // clear the clutter
+      chat_window.innerHTML = "";
       response.chats.forEach(c=>{
         var chat = newChat(c.type,c)
         chat_window.appendChild(chat);

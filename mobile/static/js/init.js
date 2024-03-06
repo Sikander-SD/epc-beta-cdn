@@ -566,7 +566,7 @@ const saveImg = img=>{
     // Create a link element
 	var link = document.createElement('a');
 	link.href = img.src;
-	link.download = 'image.jpg';
+	link.download = img.src.substring(img.src.lastIndexOf('/') + 1);
 
 	// Append the link to the body
 	document.body.appendChild(link);

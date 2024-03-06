@@ -562,19 +562,37 @@ return diff;
 };//END: dictChanged()
 
 // downlaod image
-const saveImg = img=>{
+function saveImg(img) {
+    // Create a canvas element
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    
+    // Set the canvas dimensions to the image dimensions
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    
+    // Draw the image on the canvas
+    ctx.drawImage(img, 0, 0);
+    
+    // Get the image type from the src attribute
+    var imgType = img.src.substring(img.src.lastIndexOf('.') + 1);
+    
     // Create a link element
-	var link = document.createElement('a');
-	link.href = img.src;
-	link.download = img.src.substring(img.src.lastIndexOf('/') + 1);
-
-	// Append the link to the body
-	document.body.appendChild(link);
-
-	// Trigger the download
-	link.click();
-
-	// Remove the link from the body
-	document.body.removeChild(link);
-  }
-
+    var link = document.createElement('a');
+    
+    // Set the link's href attribute to the canvas data URL with appropriate image type
+    link.href = canvas.toDataURL('image/' + imgType);
+    
+    // Set the download attribute to the image file name
+    var imgFileName = img.src.substring(img.src.lastIndexOf('/') + 1);
+    link.download = imgFileName;
+    
+    // Append the link to the body
+    document.body.appendChild(link);
+    
+    // Trigger the download
+    link.click();
+    
+    // Remove the link from the body
+    document.body.removeChild(link);
+}

@@ -170,9 +170,11 @@ page_edit_profile.querySelector(".nav-btns .btn-next").addEventListener("click",
               "Content-Type": "application/json"
             },
   		  body: JSON.stringify({profile:data})
+      }).then(res=>{
+        if (!res.ok) throw Error(res.status)
       }).catch(err=>console.error(err,"But you don't worry, It'll be done later."));
       
-      // save to localStorage    
+      // save to localStorage
       Object.keys(data).forEach(k=>profile[k] = data[k]);
       userProfileData.profile = profile;
       localStorage.userProfileData = JSON.stringify(userProfileData);

@@ -563,37 +563,45 @@ return diff;
 
 // downlaod image
 const saveImg = img=>{
-    // Create a canvas element
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext('2d');
-    
-    // Set the canvas dimensions to the image dimensions
-    canvas.width = img.width;
-    canvas.height = img.height;
-    
-    // Draw the image on the canvas
-    ctx.drawImage(img, 0, 0);
-    
-    // Get the image type from the src attribute
-    var imgType = img.src.substring(img.src.lastIndexOf('.') + 1);
-    
-    // Create a link element
-    var link = document.createElement('a');
-    
-    // Set the link's href attribute to the canvas data URL with appropriate image type
-    link.href = canvas.toDataURL('image/' + imgType);
-    
-    // Set the download attribute to the image file name
-    var imgFileName = img.src.substring(img.src.lastIndexOf('/') + 1);
-    link.download = imgFileName;
-    
-    // Append the link to the body
-    document.body.appendChild(link);
-    
-    // Trigger the download
-    link.click();
-    
-    // Remove the link from the body
-    document.body.removeChild(link);
-  }
-
+	// Create a new Image object
+	var fullResImg = new Image();
+	
+	// Set the source of the Image object to the img src
+	fullResImg.src = img.src+"/org";
+	
+	// Once the Image object has loaded, draw it on the canvas
+	fullResImg.onload = function() {
+		// Create a canvas element
+		var canvas = document.createElement('canvas');
+		var ctx = canvas.getContext('2d');
+	
+		// Set the canvas dimensions to the full resolution image dimensions
+		canvas.width = fullResImg.naturalWidth;
+		canvas.height = fullResImg.naturalHeight;
+	
+		// Draw the full resolution image on the canvas
+		ctx.drawImage(fullResImg, 0, 0);
+	
+		// Get the image type from the src attribute
+		var imgType = img.src.substring(img.src.lastIndexOf('.') + 1);
+	
+		// Create a link element
+		var link = document.createElement('a');
+	
+		// Set the link's href attribute to the canvas data URL with appropriate image type
+		link.href = canvas.toDataURL('image/' + imgType);
+	
+		// Set the download attribute to the image file name
+		var imgFileName = img.src.substring(img.src.lastIndexOf('/') + 1);
+		link.download = imgFileName;
+	
+		// Append the link to the body
+		document.body.appendChild(link);
+	
+		// Trigger the download
+		link.click();
+	
+		// Remove the link from the body
+		document.body.removeChild(link);
+	};
+};//END: saveImg()

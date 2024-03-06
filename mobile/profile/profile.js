@@ -714,7 +714,7 @@ const page_chats = document.querySelector("page#chats");
 const chat_window = page_chats.querySelector(".chat-window .chats");
 const chats_form = page_chats.querySelector("form");
 
-// select image and show the selected image
+// Select | unSelect image
 chats_form.upload.addEventListener('click', e=>{
   // remove the selected image
   if (chats_form.img.value){
@@ -722,6 +722,7 @@ chats_form.upload.addEventListener('click', e=>{
     chats_form.upload.src = ROOT_CDN+"/static/images/img.svg";
   }else chats_form.img.click();
 });
+// show the selected image
 chats_form.img.addEventListener('change',e=>{ 
   // validate size
   if (chats_form.img.files[0].size > max_image){
@@ -742,7 +743,8 @@ chats_form.img.addEventListener('change',e=>{
 // save form data to localStorage and keep it there untill the data is successfully sent to the server.
 chats_form.addEventListener("submit",async e=>{
   const text = page_chats.querySelector("input#reply").value.trim();
-  const img = chats_form.upload.src.includes("/img.svg")? "" : chats_form.upload.src;
+  // const img = chats_form.upload.src.includes("/img.svg")? "" : chats_form.upload.src;
+  const img = chats_form.img.files[0]? await setImage(null,chats_form.img) : ""
 
   if (!text && !img) return;
   
@@ -755,6 +757,7 @@ chats_form.addEventListener("submit",async e=>{
   //chats: {file,text,id,title}
   const data = {type:"client", text: text, file:img, id:T.getTime(), title:title};
   if (img) data.ext = chats_form.img.files[0].type.split("/")[1]
+  
   
   console.log(data)
   

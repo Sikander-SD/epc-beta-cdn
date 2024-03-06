@@ -793,7 +793,7 @@ const newChat = (type,data)=>{
   
   const media = `
         <div class="media">
-          <div id="img-1"><img src=${data.file}></div>
+          <div id="img-1"><img src=${data.file} onclick="saveImg(this);"></div>
         </div>
   `;
 

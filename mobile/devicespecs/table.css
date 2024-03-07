@@ -56,15 +56,18 @@ section#table th:not(.c0){
 }
 section#table th.c1,
 section#table .btn-1{
- background:var(--color-l-red);
+  background:#5ff964;
+
 }
 section#table th.c2,
 section#table .btn-2{
- background:skyblue;
+  background:#ffd219ed;
+
 }
 section#table th.c3,
 section#table .btn-3{
- background:lightgreen;
+  background:#3cfff5;
+
 }
 section#table tbody td:not(tbody.c0, td#price, td[id$="-Price"]){
   text-align:left;

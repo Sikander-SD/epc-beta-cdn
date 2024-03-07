@@ -668,8 +668,9 @@ feedback_form.addEventListener("submit",async e=>{
 
   const data = {subject: subject,
                 text: text,
-                fullDeviceInfo: collectLogs().fullDeviceInfo
-               };  
+                fullDeviceInfo: collectLogs().fullDeviceInfo,
+                id:new Date().getTime()
+               };
   if (feedback_img_file.files[0]){
     data.file = {blob:await setImage(null,feedback_img_file),
                    ext:feedback_img_file.files[0].type.split("/")[1]

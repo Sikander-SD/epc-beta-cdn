@@ -2,7 +2,7 @@ section#table tr:nth-child(even){  background:#1a1a1a;}
 section#table tr:nth-child(odd){ background:#292d33;}
 section#table th.c1,
 section#table .btn-1{
- background:#fd767c;
+ background:#5ff964;
 }
 section#table th.c2,
 section#table .btn-2{

@@ -180,7 +180,8 @@ NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div
 document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every 10 minutes
-function SYNC(){
+function SYNC(){ return new Promise((resolve,reject)=>{
+  
   // get localStorage data to sync with server
   const data = {};
   Object.keys(localStorage).forEach(k=>{
@@ -212,9 +213,11 @@ function SYNC(){
     if (e.ok){
       localStorage.dataChanged = JSON.stringify(data);
       console.log("Profile Synced Successfully!")      
+      resolve("")
     }
+    reject("")
   })  
-}//END: SYNC()
+})}//END: SYNC()
 setInterval(SYNC,SYNC_DURATION)
 
 // *************************  gesture sliding for all .carousel elements

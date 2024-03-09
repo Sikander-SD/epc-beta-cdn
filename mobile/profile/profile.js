@@ -580,7 +580,8 @@ SSE_Event.addEventListener("message",e=>{
 
 // **************************  .mid .logout
 
-const LOGOUT = ()=>{
+const LOGOUT = async ()=>{
+  await SYNC();
   fetch('../logout/')
   .then(response=>{
     if (!response.ok) throw Error(response.status)      

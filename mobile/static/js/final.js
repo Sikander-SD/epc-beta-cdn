@@ -208,10 +208,10 @@ function SYNC(){
     body:JSON.stringify({sync:changes})
   })
   .then(e=>{
-    // if (!e.ok) throw Error(e.status)
     // update localStorage
     if (e.ok){
       localStorage.dataChanged = JSON.stringify(data);
+      console.log("Profile Synced Successfully!")      
     }
   })  
 }//END: SYNC()

@@ -180,11 +180,11 @@ NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div
 document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every 10 minutes
-function SYNC(){
+function SYNC(pass=false){
   const Tnow = new Date().getTime();
-  
+  const flag = (Tnow - localStorage._sync_timestamp) >= SYNC_DURATION;
   // if the gap is more than SYNC_DURATION
-  if ( (Tnow - localStorage._sync_timestamp) >= SYNC_DURATION ){
+  if ( pass || flag ){
     return new Promise((resolve,reject)=>{
       
       // get localStorage data to sync with server

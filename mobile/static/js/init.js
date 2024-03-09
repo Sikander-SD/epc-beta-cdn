@@ -508,7 +508,7 @@ function populateCarousel(id) {
 
 // load modal's body content
 function modalLoad(id,type) {
-  if (!type) throw ValueError("Please provide the filetype or content type one of html | txt | json")
+  if (!type) throw ValueError("Please provide the file type or content type one of html | txt | json")
 	
   url = ROOT_CDN+"/static/data/legal/"
 	

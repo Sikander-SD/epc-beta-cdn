@@ -180,45 +180,56 @@ NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div
 document.body.appendChild(NotiContainer)
 
 // sync localStorage to the server every 10 minutes
-function SYNC(){ return new Promise((resolve,reject)=>{
+function SYNC(){
+  const Tnow = new Date().getTime();
   
-  // get localStorage data to sync with server
-  const data = {};
-  Object.keys(localStorage).forEach(k=>{
-    if ("introDone dataChanged".includes(k)) return
-    data[k] = JSON.parse(localStorage[k])
-  })
-
-  // remove specific data
-  delete data.userProfileData.session
-
-  // get changes only
-  const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  
-  if (Object.keys(changes).length==0) return
-  
-  // get the csrf_token
-  const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value;
-  
-  // send to server
-  fetch("../server/", {
-    method: "POST",
-    headers: {
-      'X-CSRFToken': csrf_token,
-      "Content-Type": "application/json"
-    },
-    body:JSON.stringify({sync:changes})
-  })
-  .then(e=>{
-    // update localStorage
-    if (e.ok){
-      localStorage.dataChanged = JSON.stringify(data);
-      console.log("Profile Synced Successfully!")      
-      resolve("")
-    }
-    reject("")
-  })  
-})}//END: SYNC()
-setInterval(SYNC,SYNC_DURATION)
+  // if the gap is more than SYNC_DURATION
+  if ( (Tnow - localStorage._sync_timestamp) >= SYNC_DURATION ){
+    return new Promise((resolve,reject)=>{
+      
+      // get localStorage data to sync with server
+      const data = {};
+      Object.keys(localStorage).forEach(k=>{
+        if ("introDone dataChanged".includes(k)) return
+        data[k] = JSON.parse(localStorage[k])
+      })
+    
+      // remove specific data
+      delete data.userProfileData.session
+    
+      // get changes only
+      const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  
+      if (Object.keys(changes).length==0) return
+      
+      // get the csrf_token
+      const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value;
+      
+      // send to server
+      fetch("../server/", {
+        method: "POST",
+        headers: {
+          'X-CSRFToken': csrf_token,
+          "Content-Type": "application/json"
+        },
+        body:JSON.stringify({sync:changes})
+      })
+      .then(e=>{
+        // update localStorage
+        if (e.ok){
+          localStorage.dataChanged = JSON.stringify(data);
+          console.log("Profile Synced Successfully!");    
+          resolve("");
+        }
+        reject("");        
+      })
+      
+      // update _sync_timestamp
+      localStorage._sync_timestamp = Tnow;      
+      
+    });//end Promise
+  };//end if
+}//END: SYNC()
+setInterval(SYNC,5*1000)
 
 // *************************  gesture sliding for all .carousel elements
 

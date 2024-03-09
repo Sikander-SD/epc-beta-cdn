@@ -27,6 +27,9 @@ const SSE_Event = new EventSource('../sse/');
 document.documentElement.style.setProperty('--innerHeight', innerHeight + 'px');
 document.documentElement.style.setProperty('--innerWidth', innerWidth + 'px');
 
+// set timestamp in localStorage to SYNC() data every SYNC_DURATION period
+if (!localStorage._sync_timestamp) localStorage._sync_timestamp = new Date().getTime();
+
 // loading bar function
 function showLoadingBar(hide) {
 	if (hide){document.querySelectorAll(".loading-bar").forEach(x=>x.remove());return}

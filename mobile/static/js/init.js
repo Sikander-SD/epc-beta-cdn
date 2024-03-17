@@ -55,11 +55,6 @@ window.fetch = function (...args) {
 	}
 	
   if (valid) showLoadingBar();
-	
-  // all requests made to cloud storage redirect to ../server/?tempcloud=
-  if (args[0].startsWith("https://storage.cloud.google.com/") && args[0].includes("/media/"){
-	  args[0] = "../server/?tempcloud="+args[0].match(/media\/(.*)/gs)[0]
-  }	
 
   // Return the original fetch promise
   return originalFetch.apply(this, Array.from(args))

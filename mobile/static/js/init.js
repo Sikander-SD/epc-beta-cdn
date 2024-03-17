@@ -42,10 +42,11 @@ function showLoadingBar(hide) {
 }
 window.addEventListener('beforeunload',e=>showLoadingBar())
 
-// showLoadingBar whenever a fetch() is called or request is made to the server.
-// but only apply this specific requests.
+// modify requets
 var originalFetch = window.fetch;
 window.fetch = function (...args) {
+	// showLoadingBar whenever a fetch() is called or request is made to the server.
+	// but only apply this to specific requests.
 	// console.log(args)
 	let valid = true
 	if (args.length == 2){
@@ -54,6 +55,11 @@ window.fetch = function (...args) {
 	}
 	
   if (valid) showLoadingBar();
+	
+  // all requests made to cloud storage redirect to ../server/?tempcloud=
+  if (args[0].startsWith("https://storage.cloud.google.com/") && args[0].includes("/media/"){
+	  args[0] = "../server/?tempcloud="+args[0].match(/media\/(.*)/gs)[0]
+  }	
 
   // Return the original fetch promise
   return originalFetch.apply(this, Array.from(args))

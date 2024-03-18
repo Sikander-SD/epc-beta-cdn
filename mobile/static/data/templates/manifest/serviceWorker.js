@@ -3,6 +3,8 @@ const RESOURCES = [
   // '/',
   // '{{MANIFEST_JSON}}',
   // '{{SERVICE_WORKER_JS}}',
+  // cache all media from this url
+  // 'https://storage.googleapis.com/{{default_bucket}}/media',
   // ...Array.from({ length: 100 }, (_, i) => `/images/image${i + 1}.jpg`)
 ];
 const noti = {"push":true,"sound":true};//control the notifications

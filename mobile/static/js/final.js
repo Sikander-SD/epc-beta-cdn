@@ -190,7 +190,7 @@ function SYNC(pass=false){
       // get localStorage data to sync with server
       const data = {};
       Object.keys(localStorage).forEach(k=>{
-        if ("introDone dataChanged".includes(k)) return
+        if ("introDone dataChanged".includes(k) || k.startsWith("_")) return
         data[k] = JSON.parse(localStorage[k])
       })
     

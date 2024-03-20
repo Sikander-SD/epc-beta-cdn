@@ -48,7 +48,7 @@ function OTPFormSubmit() {
       n.classList.add("slide-up");
       btn.classList.add("slide-down");
       otp.style.visibility="visible";  otp.classList.add("opacity");    
-      toast("OTP sent to Whatsapp!")
+      toast("OTP sent to Whatsapp!",10*1000)
       // start counter for otp 
       clearOTPCounter();
       OTPCounter = setInterval(count,1000);
@@ -99,7 +99,7 @@ function count() {
 }
 btn_resend.addEventListener("click",e=>{  
   FORMOTP.otp.value = ""; 
-  toast("OTP sent to Whatsapp!")  
+  toast("OTP sent to Whatsapp!",10*1000)
   // start counter for otp 
   clearOTPCounter();
   OTPCounter = setInterval(count,1000);  

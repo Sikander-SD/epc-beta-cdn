@@ -249,11 +249,13 @@ const  buttonYes = k=>{
 }
 
 // toast message
-const toast = (body="Hello! i'm a toast message.",ms=5000)=> {
+const toast = (body="Hello! i'm a toast message.",ms=5000,style="")=> {
+	ms = 5000 || ms;
 	const p = document.createElement("p");
 	p.innerHTML = body;
-	var attrs = {"class":"toast show text-bg-primary",
-				 "style":`animation: transparency 3s ${ms/1000-3}s cubic-bezier(0.5, 0.35, 0.15, 1) both;`
+	style = `color:#fff;background-color:RGBA(var(--bs-primary-rgb),var(--bs-bg-opacity,1));`+style
+	var attrs = {"class":"toast show",
+				 "style":`animation: transparency 3s ${ms/1000-3}s cubic-bezier(0.5, 0.35, 0.15, 1) both;`+style
 				};
 	Object.keys(attrs).forEach(k=>p.setAttribute(k,attrs[k]));
 	

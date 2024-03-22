@@ -9,7 +9,7 @@ page{padding:0}
 
 .bg-hill{
   height:100vh;
-  background: url("https://sikander-sd.github.io/epc-beta-cdn/mobile/static/images/hill.svg") bottom left no-repeat; 
+  background: url("https://sikander-sd.github.io/epc-cdn/mobile/static/images/hill.svg") bottom left no-repeat; 
   background-size: 400%;
 }
 /* slide1 */
@@ -40,7 +40,7 @@ page{padding:0}
 }
 .slide2 .list p:before{
   content:'';
-  background:url('https://sikander-sd.github.io/epc-beta-cdn/mobile/static/images/tick.svg') no-repeat center;
+  background:url('https://sikander-sd.github.io/epc-cdn/mobile/static/images/tick.svg') no-repeat center;
   background-size: 100% 100%;
   padding:3%;
   margin-right:5%;
@@ -116,7 +116,7 @@ page{padding:0}
   font-size:10vw;
   font-weight:600;
   font-family:ABeeZee;
-  background:url('https://sikander-sd.github.io/epc-beta-cdn/mobile/static/images/cloud.svg') no-repeat left ;
+  background:url('https://sikander-sd.github.io/epc-cdn/mobile/static/images/cloud.svg') no-repeat left ;
   background-size:45%;  
 }
 .slide5 .mid{margin-top:20%;}

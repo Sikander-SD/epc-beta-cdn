@@ -22,9 +22,6 @@ const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 let product_page = 1, waiting_flag = true, page_end = false;
 // SSE : server-side-evetns
 const SSE_Event = new EventSource('../sse/');
-// enable - disable Debugging or console.log
-console.log = function() {};
-
 
 // set browser screen resolutions in css variables
 document.documentElement.style.setProperty('--innerHeight', innerHeight + 'px');

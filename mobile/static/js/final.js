@@ -199,7 +199,7 @@ function SYNC(pass=false){
     
       // get changes only
       const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  
-      if (Object.keys(changes).length==0) return
+      if (Object.keys(changes).length==0) resolve("");
       
       // get the csrf_token
       const csrf_token = document.querySelector("input[name='csrfmiddlewaretoken']").value;

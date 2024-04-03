@@ -250,7 +250,7 @@ const  buttonYes = k=>{
 
 // toast message
 const toast = (body="Hello! i'm a toast message.",ms=5000,style="")=> {
-	ms = 5000 || ms;
+	ms = ms || 5000;
 	const p = document.createElement("p");
 	p.innerHTML = body;
 	style = `color:#fff;background-color:RGBA(var(--bs-primary-rgb),var(--bs-bg-opacity,1));`+style

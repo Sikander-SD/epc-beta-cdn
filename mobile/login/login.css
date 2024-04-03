@@ -14,8 +14,13 @@ page{padding:0}
 }
 /* slide1 */
 
+.slide1 .bg{
+  position: absolute;
+  bottom: 0;
+}
+
 .slide1 .btn, .slide2 .btn{
-  width:100vw;
+  width: 100vw;
   position:absolute;
   bottom:5%;
   left:0;

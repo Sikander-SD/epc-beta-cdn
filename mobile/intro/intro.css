@@ -39,18 +39,19 @@
     font-weight:600;
     position:absolute;
     top:20%;
-    left:50%;
+    left: 50%;
 }
 .page-3 div{
     transform: rotate(30deg);
-    bottom:20%;
-    right:-40%;
+    width: 165%;
+    bottom: 15%;
+    right: -53%;
 }
 .page-3 div:last-child{background:none;border:none;}
-.page-3 img{ 
+.page-3 img{
     width:70%;
     position:absolute;
-    right:10%;
+    right: -3%;
     bottom:5%;
 } 
 .page-3 p{

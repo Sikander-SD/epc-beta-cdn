@@ -195,7 +195,8 @@ function SYNC(pass=false){
       })
     
       // remove specific data
-      delete data.userProfileData.session
+      try{ delete data.userProfileData.session }
+      catch{resolve("")}
     
       // get changes only
       const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  

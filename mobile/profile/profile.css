@@ -579,8 +579,8 @@ page#profile .bottom p:first-child,
 /* page#about */
 
 #ABOUT .modal-body .content{
-/*   padding:2%; */
-  background:#0002;
+  /* padding:2%; */
+/*   background:#0002; */
 }
 #ABOUT .modal-body .contact{
 /*   padding:2%; */
@@ -627,7 +627,6 @@ page#profile .bottom p:first-child,
 #notifications .list > p{
   margin: auto;
   margin-top: 50%;
-  opacity: 0.7;
 }
 #notifications .title{
   font-size:4vw;

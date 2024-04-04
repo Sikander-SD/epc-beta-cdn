@@ -14,8 +14,8 @@ function partnershipHTML(page) {return `
             <li>Sell Products Online</li>
             <li>Increase Sales</li>
             <li>Increase Customers</li>
+            <li>Increase Inventory Cycle</li>
             <li>Digital Marketing Support</li>
-            <li>Reduce Dead Inventory</li>
             <li>Coming More!</li>
         </ul>
     </section>

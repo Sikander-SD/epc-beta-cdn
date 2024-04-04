@@ -184,7 +184,7 @@ function SYNC(pass=false){
   const Tnow = new Date().getTime();
   const flag = (Tnow - localStorage._sync_timestamp) >= SYNC_DURATION;
   // if the gap is more than SYNC_DURATION
-  if ( pass || flag ){
+  if ( pass || flag && !("intro login".includes(THIS_PAGE)) ){
     return new Promise((resolve,reject)=>{
       
       // get localStorage data to sync with server
@@ -195,8 +195,7 @@ function SYNC(pass=false){
       })
     
       // remove specific data
-      try{ delete data.userProfileData.session }
-      catch{resolve("")}
+      delete data.userProfileData.session
     
       // get changes only
       const changes = localStorage.dataChanged? dictChanged(JSON.parse(localStorage.dataChanged),data) : data  

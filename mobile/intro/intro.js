@@ -3,22 +3,24 @@
 const bar = document.querySelector('.pBar');
 bar.style.width = "51%";
 let counter = 0; 
-const gap = 12; // in %
+const gap = 15; // in %
 const animationSpeed = 0.3; // Adjust this value to control the animation speed
 
 // *********************************** navigation button
-// hide navigation Btns while slide-1 is active
-function navBtnsTransitions(t){
-  let btns = document.querySelector(".nav-btns");
-  let trans = ["in-from-right","out-to-right","in-from-left","out-to-left"]
-  trans.forEach(n=>btns.classList.remove("slide-"+n))
-  btns.classList.add(t)  
-}
+// show-hide navigation button when sliding
 function hideNavBtns(flag,slide) {
+  // toggle navigation button transitions
+  const navBtnsTransitions = t=>{
+    let btns = document.querySelector(".nav-btns");
+    let trans = ["in-from-right","out-to-right","in-from-left","out-to-left"]
+    trans.forEach(n=>btns.classList.remove("slide-"+n))
+    btns.classList.add(t)  
+  }
+  
   if      (slide.includes("slide1") && flag==true ) navBtnsTransitions("slide-in-from-right")
   else if (slide.includes("slide2") && flag==false) navBtnsTransitions("slide-out-to-right")
   else if (slide.includes("slide4") && flag==true ) navBtnsTransitions("slide-out-to-left")
-  else if (slide.includes("slide5") && flag==false) navBtnsTransitions("slide-in-from-left")
+  // else if (slide.includes("slide5") && flag==false) navBtnsTransitions("slide-in-from-left")
 };
 // *********************************** slide swipe event
 var myCarousel = document.getElementById('carousel-intro')
@@ -59,12 +61,19 @@ views.forEach(v=>{
 })
 
 
-// *********************************** slide5 premium
-var cls = ["yes","skip"];
-cls.forEach(c=>{
-  document.querySelector("button."+c).addEventListener("click",()=>{
-    // flag this webpage to be done
-    localStorage.introDone = true    
-    if (c=="yes") localStorage.prime = 1;
-  })
+// *********************************** slide4 compare
+// on button next click : goto ../login/
+document.querySelector(".nav-btns .btn-next").addEventListener("click",e=>{
+  if (document.querySelector(".slide4.active")) window.open('../login/','_self')
 })
+
+
+// *********************************** slide5 premium
+// var cls = ["yes","skip"];
+// cls.forEach(c=>{
+//   document.querySelector("button."+c).addEventListener("click",()=>{
+//     // flag this webpage to be done
+//     localStorage.introDone = true    
+//     if (c=="yes") localStorage.prime = 1;
+//   })
+// })

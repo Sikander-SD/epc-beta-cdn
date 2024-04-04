@@ -14,10 +14,10 @@ function premiumHTML(page,args) {
                     </div>
                     <ul class="list">
                         <li>Get Alerts On Price Drops</li>
-                        <li>Get Alerts On Latest Release</li>
-                        <li>Availability of Latest Release</li>
+                        <li>Get Alerts On Released Devices</li>
+                        <li>Availability of Released Devices</li>
                         <li>Pre-Applied Discounts</li>
-                        <li>Amazon Prime 30% OFF</li>
+                        <li>Amazon Prime ~30% OFF</li>
                         <li>Best Service Centers near to You</li>
                         <li>Coming More!</li>
                     </ul>

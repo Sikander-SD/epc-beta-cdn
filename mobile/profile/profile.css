@@ -130,14 +130,14 @@ page#profile .mid p{
 
 /* bottom */
 page#profile .bottom,
-#about .modal-body  section.social-media{
+#ABOUT .modal-body  section.social-media{
   text-align:center;
   padding-top:10%;
 }
 page#profile .bottom p:first-child,
-#about .modal-body  section.social-media p:first-child{font-size:3vw;}
+#ABOUT .modal-body  section.social-media p:first-child{font-size:3vw;}
 .bottom p+p,
-#about .modal-body  section.social-media p+p{
+#ABOUT .modal-body  section.social-media p+p{
   padding:2%;
   margin:2% auto;
   border-top:solid 1px #aaa;
@@ -578,23 +578,23 @@ page#profile .bottom p:first-child,
 #chats .block.sending{background:orange;}
 /* page#about */
 
-#about .modal-body .content{
-  padding:2%;
+#ABOUT .modal-body .content{
+/*   padding:2%; */
   background:#0002;
 }
-#about .modal-body .contact{
-  padding:2%;
+#ABOUT .modal-body .contact{
+/*   padding:2%; */
   background:#0002;
   margin-top:2%;
 }
-#about .modal-body .contact p{
+#ABOUT .modal-body .contact p{
   font-weight:300
 }
-#about .modal-body .contact p span{
+#ABOUT .modal-body .contact p span{
   font-size:small;
   font-weight:600
 }
-#about .modal-body .social-media{
+#ABOUT .modal-body .social-media{
   padding-bottom:2% !important;
 }
 
@@ -620,10 +620,21 @@ page#profile .bottom p:first-child,
 #notifications header{margin:1% 0;}
 
 #notifications .list{
+  display: flex;
   padding-top:10%;
+}
+
+#notifications .list > p{
+  margin: auto;
+  margin-top: 50%;
 }
 #notifications .title{
   font-size:4vw;
+}
+
+#notifications #accordion-noti{
+  position: absolute;
+  background: white;
 }
 #notifications .accordion-body{
   font-size:3.5vw;

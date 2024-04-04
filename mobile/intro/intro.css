@@ -50,7 +50,7 @@
 .page-3 div:last-child{background:none;border:none;}
 .page-3 img{
     width: 60%;
-    height: 40%;
+    height: 38%;
     position:absolute;
     right: 0%;
     bottom:5%;
@@ -59,10 +59,10 @@
     font-size:4.2vw;
     font-weight:500;
     position:absolute;
-    right:20%;
+    right: 16%;
     bottom:1%;
 }
-.page-3 div:last-child p{right:30%;bottom:-3%;}
+.page-3 div:last-child p{right: 26%;bottom:-3%;}
 .page-4 div{
     transform: rotate(30deg);
     bottom:-90%;

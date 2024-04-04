@@ -11,11 +11,6 @@
       "src": "{{root_CDN}}/static/images/logo.png",
       "sizes": "500x500",
       "type": "image/png"
-    },
-    {
-      "src": "{{root_CDN}}/static/images/logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }    
+    }  
   ]
 }

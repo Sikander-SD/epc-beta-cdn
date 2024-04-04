@@ -584,7 +584,7 @@ page#profile .bottom p:first-child,
 }
 #ABOUT .modal-body .contact{
 /*   padding:2%; */
-  background:#0002;
+/*   background:#0002; */
   margin-top:2%;
 }
 #ABOUT .modal-body .contact p{
@@ -627,6 +627,7 @@ page#profile .bottom p:first-child,
 #notifications .list > p{
   margin: auto;
   margin-top: 50%;
+  opacity: 0.6;
 }
 #notifications .title{
   font-size:4vw;

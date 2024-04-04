@@ -627,6 +627,7 @@ page#profile .bottom p:first-child,
 #notifications .list > p{
   margin: auto;
   margin-top: 50%;
+  opacity: 0.7;
 }
 #notifications .title{
   font-size:4vw;

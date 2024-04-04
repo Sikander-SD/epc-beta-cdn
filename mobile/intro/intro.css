@@ -42,16 +42,16 @@
     left: 50%;
 }
 .page-3 div{
-    transform: rotate(30deg);
+    transform: rotate(25deg);
     width: 165%;
-    bottom: 15%;
-    right: -53%;
+    bottom: 16%;
+    right: -40%;
 }
 .page-3 div:last-child{background:none;border:none;}
 .page-3 img{
-    width:70%;
+    width: 60%;
     position:absolute;
-    right: -3%;
+    right: 0%;
     bottom:5%;
 } 
 .page-3 p{

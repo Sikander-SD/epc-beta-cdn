@@ -152,10 +152,11 @@ page#profile .bottom p:first-child,
 
 #twitter{display:none}
 
-section.copyrite{
+section.copyright{
   margin-top:5%;
   opacity: 0.6;
 }
+section.copyright p{font-size:3vw;}
 
 /* #view-profile */
 

@@ -152,6 +152,11 @@ page#profile .bottom p:first-child,
 
 #twitter{display:none}
 
+section.copyrite{
+  margin-top:5%;
+  opacity: 0.6;
+}
+
 /* #view-profile */
 
 #view-profile .top{

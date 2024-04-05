@@ -588,6 +588,10 @@ section.copyright p{font-size:3vw;}
   /* padding:2%; */
 /*   background:#0002; */
 }
+#ABOUT .modal-body .content p:nth-child(3) {
+  font-size:4vw;
+  font-weight:300
+}
 #ABOUT .modal-body .contact{
 /*   padding:2%; */
 /*   background:#0002; */

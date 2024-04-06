@@ -103,7 +103,7 @@ carousel_edit_profile.addEventListener('slide.bs.carousel', e=>{//before transit
 const bar = document.querySelector('.pBar');
 const INIT_bar = bar.style.width = "17%";
 let counter = 0; 
-const gap = 17-2; // point width + margin between points in %   -2
+const gap = 17-1; // point width + margin between points in %   -2
 const animationSpeed = 0.3; // Adjust this value to control the animation speed
 
 // <- back button

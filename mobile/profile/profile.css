@@ -599,7 +599,7 @@ section.copyright p{font-size:3vw;}
 /* page#about */
 
 #ABOUT .modal-body .content p{
-  opacity:0.9;
+  opacity: 0.8;
 }
 #ABOUT .modal-body .contact{
   margin-top:2%;

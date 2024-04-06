@@ -188,9 +188,17 @@ section.copyright p{font-size:3vw;}
   top:0;  right:1%;
   width:6%;
 }
-#view-profile .top .edit img,
-#view-profile #back-page img{
-  background:white;
+#view-profile .top .edit div,
+#view-profile #back-page div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  opacity: 0.3;
+  background: white;
+  z-index: -1;
 }
 #view-profile .mid,
 #edit-profile .userdata{

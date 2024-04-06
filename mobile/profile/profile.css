@@ -595,19 +595,13 @@ section.copyright p{font-size:3vw;}
 }
 #chats .block.failed{background:red;}
 #chats .block.sending{background:orange;}
+
 /* page#about */
 
-#ABOUT .modal-body .content{
-  /* padding:2%; */
-/*   background:#0002; */
-}
-#ABOUT .modal-body .content p:nth-child(3) {
-  font-size:4vw;
-  font-weight:300
+#ABOUT .modal-body .content p{
+  opacity:0.9;
 }
 #ABOUT .modal-body .contact{
-/*   padding:2%; */
-/*   background:#0002; */
   margin-top:2%;
 }
 #ABOUT .modal-body .contact p{

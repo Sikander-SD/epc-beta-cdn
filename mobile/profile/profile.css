@@ -224,6 +224,11 @@ section.copyright p{font-size:3vw;}
 
 #edit-profile {padding:0;}
 
+.progress-bar .points *{
+  margin-left:10%;
+  width: 7%;
+}
+
 /* slide #username*/
 #edit-profile #username .mid{
 /*   border:solid 1px; */

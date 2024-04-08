@@ -17,7 +17,7 @@ window.addEventListener('load', e=>{
   setupSettings();
   
   // load modal's body content
-  modalLoad("PRIVACY NOTICE","html"); modalLoad("TERMS AND CONDITIONS","html"); modalLoad("ABOUT","html");
+  // modalLoad("PRIVACY NOTICE","html"); modalLoad("TERMS AND CONDITIONS","html"); modalLoad("ABOUT","html");
 
 })
 

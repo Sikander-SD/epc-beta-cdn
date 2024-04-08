@@ -476,6 +476,11 @@ page:not(.active){
   font-weight:500;
 }
 
+.modal.legal .modal-body{
+  width:100vw;
+  height: 100vh;
+}
+
 .modal#feedback .modal-content{height:100%;}
 
 .modal#logout .modal-dialog{

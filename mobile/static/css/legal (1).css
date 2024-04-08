@@ -1,0 +1,49 @@
+section{
+  padding: 0 1%;
+}
+.title{
+  text-align: center;
+  font-weight: 600;
+  margin: 5%;
+}
+li .title{
+}
+#timestamp{
+opacity: 0.7;
+font-size: 1.3vw;
+margin: 3% 0;
+}
+ul.list .head{
+font-family: math;
+}
+ul.list li{
+opacity: 0.8;
+}
+div.head p{
+  padding-left: 2%;
+}
+.ps{
+font-size: 1.4vw;
+opacity: 0.7;
+}
+.Q{
+font-family: monospace;
+font-weight: 600;
+margin-top: 5%;
+}
+.A{
+padding-left: 2%;
+opacity: 0.8;
+}
+.t2 .h2{
+  font-weight: 600;
+  opacity:0.8;
+}
+a{
+  color: unset;
+  text-decoration: none;
+  font-size: 1.5vw;
+}
+code{
+  font-weight: 600;
+}

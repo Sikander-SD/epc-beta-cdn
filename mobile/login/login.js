@@ -300,5 +300,5 @@ if (!AUTH_CODE){
   // set country names and country codes
   populateRegions();
   // load modal's body content
-  window.addEventListener("load",e=>{ modalLoad("PRIVACY NOTICE","html"); modalLoad("TERMS AND CONDITIONS","html"); })
+  // window.addEventListener("load",e=>{ modalLoad("PRIVACY NOTICE","html"); modalLoad("TERMS AND CONDITIONS","html"); })
 }

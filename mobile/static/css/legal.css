@@ -66,12 +66,14 @@ code{
 
 /* Follow Us and Social Links */
 
-section.follow-us{
+section.social-media{
+  padding-bottom:2% !important;
   text-align:center;
   padding-top:10%;
 }
-section.follow-us p:first-child{font-size:3vw;}
-section.follow-us p+p{
+
+section.social-media p:first-child{font-size:3vw;}
+section.social-media p+p{
   padding:2%;
   margin:2% auto;
   border-top:solid 1px #aaa;
@@ -85,23 +87,6 @@ section.follow-us p+p{
 }
 
 #twitter{display:none}
-
-.social-media{
-  padding-bottom:2% !important;
-}
-
-section.social-media{
-  text-align:center;
-  padding-top:10%;
-}
-section.social-media p:first-child{font-size:3vw;}
-section.social-media p+p{
-  padding:2%;
-  margin:2% auto;
-  border-top:solid 1px #aaa;
-  width:70%;
-  font-weight:500;
-}
 
 section.copyright{
   margin-top:5%;

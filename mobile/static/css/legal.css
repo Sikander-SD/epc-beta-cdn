@@ -47,3 +47,36 @@ a{
 code{
   font-weight: 600;
 }
+
+/* ABOUT.html */
+
+#ABOUT .content p{
+  opacity: 0.8;
+}
+#ABOUT .contact{
+  margin-top:2%;
+}
+#ABOUT .contact p{
+  font-weight:300
+}
+#ABOUT .contact p span{
+  font-size:small;
+  font-weight:600
+}
+#ABOUT .social-media{
+  padding-bottom:2% !important;
+}
+
+#ABOUT section.social-media{
+  text-align:center;
+  padding-top:10%;
+}
+#ABOUT section.social-media p:first-child{font-size:3vw;}
+#ABOUT section.social-media p+p{
+  padding:2%;
+  margin:2% auto;
+  border-top:solid 1px #aaa;
+  width:70%;
+  font-weight:500;
+}
+

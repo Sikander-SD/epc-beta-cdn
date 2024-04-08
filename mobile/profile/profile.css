@@ -129,15 +129,12 @@ page#profile .mid p{
 }
 
 /* bottom */
-page#profile .bottom,
-#ABOUT .modal-body  section.social-media{
+page#profile .bottom{
   text-align:center;
   padding-top:10%;
 }
-page#profile .bottom p:first-child,
-#ABOUT .modal-body  section.social-media p:first-child{font-size:3vw;}
-.bottom p+p,
-#ABOUT .modal-body  section.social-media p+p{
+page#profile .bottom p:first-child{font-size:3vw;}
+.bottom p+p{
   padding:2%;
   margin:2% auto;
   border-top:solid 1px #aaa;
@@ -595,25 +592,6 @@ section.copyright p{font-size:3vw;}
 }
 #chats .block.failed{background:red;}
 #chats .block.sending{background:orange;}
-
-/* page#about */
-
-#ABOUT .modal-body .content p{
-  opacity: 0.8;
-}
-#ABOUT .modal-body .contact{
-  margin-top:2%;
-}
-#ABOUT .modal-body .contact p{
-  font-weight:300
-}
-#ABOUT .modal-body .contact p span{
-  font-size:small;
-  font-weight:600
-}
-#ABOUT .modal-body .social-media{
-  padding-bottom:2% !important;
-}
 
 /* page#partner */
 

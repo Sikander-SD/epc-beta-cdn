@@ -1,29 +1,53 @@
 section{
   padding: 0 1%;
+  font-size:10px;  
+}
+p{
+  font-size: 10px;
 }
 .title{
   text-align: center;
+  font-size: 15px;
   font-weight: 600;
   margin: 5%;
+}
+.heading{
+  font-size:13px;
+}
+ol#toc-expand{
+  padding-inline-start:10px;
+}
+ol#toc-expand ol{
+  padding-inline-start:20px;
+}
+ol#toc-expand .heading{
+  font-size:11px;
+  background: lightgray;
+  padding: 2% 0;
+}
+ul{
+  padding-inline-start:20px;  
 }
 li .title{
 }
 #timestamp{
-opacity: 0.7;
-font-size: 1.3vw;
-margin: 3% 0;
+  opacity: 0.7;
+  font-size: 5px;
+  margin: 3% 0;
 }
 ul.list .head{
 font-family: math;
+font-size:10px;
 }
 ul.list li{
 opacity: 0.8;
+font-size:10px;
 }
 div.head p{
   padding-left: 2%;
 }
 .ps{
-font-size: 1.4vw;
+font-size: 6px;
 opacity: 0.7;
 }
 .Q{
@@ -38,14 +62,16 @@ opacity: 0.8;
 .t2 .h2{
   font-weight: 600;
   opacity:0.8;
+  background: bisque;
 }
 a{
   color: unset;
   text-decoration: none;
-  font-size: 1.5vw;
+  font-size: 10px;
 }
 code{
   font-weight: 600;
+  background:aliceblue;
 }
 
 /* ABOUT.html */
@@ -53,14 +79,17 @@ code{
 #ABOUT .content p{
   opacity: 0.8;
 }
-#ABOUT .contact{
+
+/* contact and address */
+
+.contact{
   margin-top:2%;
 }
-#ABOUT .contact p{
+.contact p{
   font-weight:300
 }
-#ABOUT .contact p span{
-  font-size:small;
+.contact p span{
+  font-size:10px;
   font-weight:600
 }
 
@@ -72,20 +101,23 @@ section.social-media{
   padding-top:10%;
 }
 
-section.social-media p:first-child{font-size:3vw;}
+section.social-media p:first-child{font-size:7px;}
 section.social-media p+p{
+  font-size:10px;
   padding:2%;
   margin:2% auto;
   border-top:solid 1px #aaa;
   width:70%;
-  font-weight:500;
+  font-weight:600;
 }
 .social-icons,
 .social-icons *{
   display:flex;
   justify-content:space-evenly;
 }
-
+.social-icons *{
+  width:15px
+}
 #twitter{display:none}
 
 section.copyright{
@@ -93,4 +125,7 @@ section.copyright{
   opacity: 0.6;
 }
 
-section.copyright p{font-size:3vw;}
+section.copyright p{
+  font-size:7px;
+  text-align:center;
+}

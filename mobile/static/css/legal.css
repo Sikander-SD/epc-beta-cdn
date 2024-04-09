@@ -64,8 +64,8 @@ opacity: 0.8;
   opacity:0.8;
   background: bisque;
 }
+#toc-list a{color: unset;}
 a{
-  color: unset;
   text-decoration: none;
   font-size: 10px;
 }
@@ -86,7 +86,7 @@ code{
   margin-top:2%;
 }
 .contact p{
-  font-weight:300
+  font-weight:300;
 }
 .contact p span{
   font-size:10px;
@@ -107,13 +107,16 @@ section.social-media p+p{
   padding:2%;
   margin:2% auto;
   border-top:solid 1px #aaa;
-  width:70%;
+  width:50%;
   font-weight:600;
 }
 .social-icons,
 .social-icons *{
   display:flex;
   justify-content:space-evenly;
+}
+.social-icons {
+  padding:0 18%;
 }
 .social-icons *{
   width:15px

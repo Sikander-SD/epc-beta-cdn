@@ -162,7 +162,9 @@ if (isPrime){
   document.querySelector("g#Crown").classList.add("active");
 }
 
+// *************************  alrt-dot
 // set the alert-dot
+
 if (localStorage.alert_dot){
   var alert_dot = JSON.parse(localStorage.alert_dot);// = {nav:[home,profile]}
   document.querySelectorAll("footer.nav .icon").forEach(tab=>{
@@ -171,7 +173,9 @@ if (localStorage.alert_dot){
   
 }
 
+// *************************  notification container
 // add notification container into the page body
+
 const NotiContainer = document.createElement("div")
 NotiContainer.setAttribute("aria-live","polite")
 NotiContainer.setAttribute("aria-atomic","true")
@@ -179,7 +183,9 @@ NotiContainer.className="position-relative"
 NotiContainer.innerHTML = '<div class="toast-container bottom-0 end-0 p-3"></div>'
 document.body.appendChild(NotiContainer)
 
+// *************************  SYNC
 // sync localStorage to the server every 10 minutes
+
 function SYNC(pass=false){
   const Tnow = new Date().getTime();
   const flag = (Tnow - localStorage._sync_timestamp) >= SYNC_DURATION;
@@ -248,5 +254,19 @@ document.querySelectorAll('.carousel[swipe]').forEach(el=>{
     // Reset swipeX for the next touchmove event
     swipeX = null;
   });
+});
+
+// ************************* Media Load
+// load media only after the page elements are loaded
+
+document.addEventListener('DOMContentLoaded', function() {
+    const els = document.querySelectorAll('img[data-src]');
+    els.forEach(el => {
+        if (el.nodeName == "IMG"){
+          img = el;
+          img.setAttribute('src', img.getAttribute('data-src'));
+          img.removeAttribute('data-src');
+        }
+    });
 });
 

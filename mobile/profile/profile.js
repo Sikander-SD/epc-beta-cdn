@@ -588,6 +588,7 @@ const LOGOUT = async ()=>{
     // clear userdata and session
     localStorage.clear();
     sessionStorage.clear();
+    WS_Obj.close(1000,"User Logged Out Successfully!"); //websocket
     window.open("../login/","_self");
     
   }).catch(e=>{toast("Logout Failed!")})

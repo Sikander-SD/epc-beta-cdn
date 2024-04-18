@@ -20,8 +20,6 @@ const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
 const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 // load more products
 let product_page = 1, waiting_flag = true, page_end = false;
-// SSE : server-side-evetns
-const SSE_Event = new EventSource('../sse/');
 
 // enable - disable features in production
 if (!window.location.host.startsWith("beta")){
@@ -74,10 +72,33 @@ window.fetch = function (...args) {
     });
 };
 
+// ************************ WebSocket SSE
+
+// WebSocket Connection
+function wsConnect(){
+	// const WS_URL = `${window.location.protocol=='https:'? "wss":"ws"}://${window.location.host}:8888/?token=sometokenhere`
+	const WS_URL = `ws://localhost:8888/?token=sometokenhere`;
+	WS_Obj = new WebSocket(WS_URL);
+	WS_Obj.addEventListener("open",e=>WS_Obj.send("this is a data") );
+	// WS_Obj.addEventListener("close", wsConnect); //re-connect
+	// WS_Obj.addEventListener("error",e=>console.error(e));
+	WS_Obj.addEventListener("message",WS_SSE);
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+	if ("intro login".includes(THIS_PAGE)) return;
+	// WebSocket
+	wsConnect();
+	// SSE : server-side-evetns
+	SSE_Event = new EventSource('../sse/');
+	SSE_Event.addEventListener("message",WS_SSE);
+})
+
 // notify on any notifications recieved from server
-SSE_Event.addEventListener("message",e=>{
-	const data = JSON.parse(event.data.replaceAll("'",'"'));
-	// console.log(data)
+function WS_SSE(e){
+	console.log(e.data)
+	const data = JSON.parse(e.data.replaceAll("'",'"'));
+	console.log(data)
 	// {noti: [ {title,body,id}, ...]  }
 	if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
 		// save to localStorage
@@ -105,7 +126,8 @@ SSE_Event.addEventListener("message",e=>{
 		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
-});
+	
+};//END: WS_SSE()
 
 // scroll events
 const SCROLL = {"x":0,"y":0,"left":false,"top":false};

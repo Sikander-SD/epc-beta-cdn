@@ -237,13 +237,14 @@ function usernameValidate(e) {
   inp.value = inp.value.toCapitalCase();
   const val = inp.value.trim();
 
-  if (val == JSON.parse(localStorage.userProfileData).profile.username ){
-    inp.classList.remove("valid")
-    inp.classList.remove("invalid")
-  }else  if (!val){
+  if (!val){
     inp.value = ""
     inp.classList.remove("valid")
     inp.classList.add("invalid")
+    
+  }else if (val == JSON.parse(localStorage.userProfileData).profile.username ){
+    inp.classList.remove("valid")
+    inp.classList.remove("invalid")
   }else{
     inp.classList.remove("invalid")
     inp.classList.add("valid")
@@ -261,11 +262,11 @@ function uepValidate(e) {
   const patt = RegExp(inp.getAttribute("pattren")); // check valid input
   const not_patt = inp.getAttribute("not_pattren"); // check invalid characters  
   
-  var ab = inp.id.includes("user")? "a":"b"
-  const p = document.querySelector("#username p1."+ab)
-  const val = inp.value.trim().toLowerCase();
-  // Lower Case
+  var abc = inp.id.includes("user")? "a": inp.id.includes("email")? "b": "c"
+  const p = document.querySelector("#username p1."+abc)
+  const val = inp.value.trim().toLowerCase().slice(0,Number(inp.getAttribute("maxlength")));
   inp.value = val
+
 
   function classX(x){
     if (x=="valid"){
@@ -536,8 +537,13 @@ const _newNotification = (title,body,tlog,tid)=>{
     // remove from .html
     noti.remove();
     // remove notification from localStorage
-    localStorage.noti = JSON.stringify(JSON.parse(localStorage.noti||'[]').filter(x=>x.id!=tid))
+    noti_list = JSON.parse(localStorage.noti||'[]').filter(x=>x.id!=tid)
+    localStorage.noti = JSON.stringify(noti_list)
+    // show empty if no notifications
+    document.querySelector("div.no-noti").hidden = (noti_list.length!=0)
   })
+  // show empty if no notifications
+  document.querySelector("div.no-noti").hidden = true;
   
   // show
   acc.insertBefore(noti, acc.firstChild);
@@ -553,8 +559,8 @@ page_noti.querySelector("button#back-page").addEventListener("click",e=>{
 
 // Server-Sent Events (SSE) or websocket 
 // notify on any notifications recieved from server
-SSE_Event.addEventListener("message",e=>{
-  const data = JSON.parse(event.data.replaceAll("'",'"'));
+WS_SSE.push(e=>{
+  const data = JSON.parse(e.data);
   // console.log(data)
   // {noti: [ {title,body,id}, ...]  }
   if (data.hasOwnProperty("noti")){
@@ -568,7 +574,11 @@ SSE_Event.addEventListener("message",e=>{
       //   if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
       // }
       // when default notifications are not working
-      if (!page_noti.classList.contains("active")) newNotification(n.title,n.body,null,n.id)
+      if (page_noti.classList.contains("active")) {
+        const T = new Date(n.id)
+        const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
+        _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
+      }else newNotification(n.title,n.body,null,n.id)
     })
   }
 });
@@ -921,24 +931,29 @@ function loadChats(title) {
 
 // Server-Sent Events (SSE) or websocket 
 // handle server's chat-replies
-SSE_Event.addEventListener("message",e=>{
-  const data = JSON.parse(event.data.replaceAll("'",'"'));
+WS_SSE.push(e=>{
+  const data = JSON.parse(e.data);
   // console.log("SSE data",data)
   // {reply: [ {type,file,text,id,title}, ...]  }
     if (data.hasOwnProperty("reply")){      
       if (!page_chats.classList.contains("active")){
-        reply = {title:"Customer-Support Replied to your message!", id:data.reply[0].id, body:"click to open message!"}
+        reply = {title:"Customer-Support", id:data.reply[0].id, body:data.reply[0].text}
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-	// // show popup notification  
-	// if ("Notification" in window){
-	// 	if (Notification.permission !== "granted") Notification.requestPermission()
-	// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-	// }
+  // // show popup notification  
+  // if ("Notification" in window){
+  // 	if (Notification.permission !== "granted") Notification.requestPermission()
+  // 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+  // }
         // when default notifications are not working
-        newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
+        if (page_noti.classList.contains("active")) {
+          const T = new Date(reply.id)
+          const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
+          _newNotification(reply.title.toCapitalCase(),reply.body, tstamp, reply.id)
+        }else newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
+        
         return
-      }//show in chats
+      }//else show in chats
       data.reply.forEach(reply=>{
         console.log(reply)
         const chat = newChat(reply.type,reply);

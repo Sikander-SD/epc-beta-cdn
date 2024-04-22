@@ -615,13 +615,15 @@ section.copyright p{font-size:3vw;}
 #notifications header{margin:1% 0;}
 
 #notifications .list{
-  display: flex;
   padding-top:10%;
 }
 
-#notifications .list > p{
-  margin: auto;
-  margin-top: 50%;
+#notifications .no-noti{
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  text-align: center;  
   opacity: 0.6;
 }
 #notifications .title{
@@ -629,7 +631,6 @@ section.copyright p{font-size:3vw;}
 }
 
 #notifications #accordion-noti{
-  position: absolute;
   background: white;
 }
 #notifications .accordion-body{

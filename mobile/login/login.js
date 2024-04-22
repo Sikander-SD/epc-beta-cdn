@@ -253,7 +253,10 @@ function OTPAuth() {
     });
   })
   .catch(err => {
-    if (err.message.includes("Invalid OTP") || err.message.includes("Expired")){
+    if (err.message.startsWith("<!DOCTYPE html>")){
+      document.childNodes[1].innerHTML = err.message;
+      return
+    }else if (err.message.includes("Invalid OTP") || err.message.includes("Expired")){
       FORMOTP.otp.parentNode.classList.add("failed");
     }else if (err.message.includes("Invalid Phone")){
       FORMOTP.number.parentNode.classList.add("failed");

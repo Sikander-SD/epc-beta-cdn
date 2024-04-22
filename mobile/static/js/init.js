@@ -72,35 +72,69 @@ window.fetch = function (...args) {
     });
 };
 
-// ************************ WebSocket SSE
+// ************************ set cookie
 
+function setCookie(name, value, seconds=null) {
+	if (seconds){
+	    const d = new Date(new Date().getTime()+seconds*1000);
+	    const expires = "expires=" + d.toUTCString();
+	    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+	}else document.cookie = name + "=" + value + ";path=/";
+}
+
+// ************************ WebSocket SSE
+const WS_SSE = [];// list of message event functions
 // WebSocket Connection
-function wsConnect(){
+function wsConnect(token,i=0){
 	// const WS_URL = `${window.location.protocol=='https:'? "wss":"ws"}://${window.location.host}:8888/?token=sometokenhere`
-	const WS_URL = `ws://localhost:8888/?token=sometokenhere`;
+	const WS_URL = `ws://localhost:8888/`;
 	WS_Obj = new WebSocket(WS_URL);
-	WS_Obj.addEventListener("open",e=>WS_Obj.send("this is a data") );
-	// WS_Obj.addEventListener("close", wsConnect); //re-connect
-	// WS_Obj.addEventListener("error",e=>console.error(e));
-	WS_Obj.addEventListener("message",WS_SSE);
+	WS_Obj.addEventListener("open",e=>WS_Obj.send(token));
+	WS_Obj.addEventListener("close", e=>{
+		i++
+		if (i>3) e.target.close()
+		else if(e.target.readyState === WebSocket.CLOSED){
+			setTimeout(()=>{
+				cookieStore.get("ws_token").then(e => wsConnect(e.value,i))
+			},2000)
+		}
+    });
+	// WS_Obj.addEventListener("error",e=>{console.error(e)});
+	WS_Obj.addEventListener("message", e=>{WS_SSE.forEach(func=>func(e))});
+	// WS_Obj.close();
+};
+// SSE: Server-Sent-Event
+function sseConnect(token,i=0) {
+    // SSE : server-side-events
+    SSE_Event = new EventSource('https://socket/?token=' + token);
+    // SSE_Event.addEventListener("open", e => {});
+    SSE_Event.addEventListener("error", e=>{
+		i++
+		if (i>3) e.target.close()
+		else if(e.target.readyState === EventSource.CLOSED){
+			cookieStore.get("sse_token").then(e => sseConnect(e.value,i))
+		}
+    });
+    SSE_Event.addEventListener("message", e=>{WS_SSE.forEach(func=>func(e))});
+    // SSE_Event.close();
 };
 
+// init websocket and SSE
 window.addEventListener("DOMContentLoaded", () => {
 	if ("intro login".includes(THIS_PAGE)) return;
-	// WebSocket
-	wsConnect();
-	// SSE : server-side-evetns
-	SSE_Event = new EventSource('../sse/');
-	SSE_Event.addEventListener("message",WS_SSE);
+	cookieStore.get("ws_token").then(e=>wsConnect(e.value));// WebSocket
+	cookieStore.get("sse_token").then(e=>sseConnect(e.value));// SSE Event
 })
 
-// notify on any notifications recieved from server
-function WS_SSE(e){
-	console.log(e.data)
-	const data = JSON.parse(e.data.replaceAll("'",'"'));
+// handle data recieved from server
+WS_SSE.push(e=>{	
+	const data = JSON.parse(e.data);
 	console.log(data)
+	// set cookies
+	if (data.hasOwnProperty("ws_token")) setCookie("ws_token", data.ws_token, 1*365*24*60*60)// 1 year
+	else if (data.hasOwnProperty("sse_token")) setCookie("sse_token", data.sse_token, 1*365*24*60*60)// 1 year
 	// {noti: [ {title,body,id}, ...]  }
-	if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
+	else if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
 	    data.noti.forEach(n=>{
@@ -127,9 +161,10 @@ function WS_SSE(e){
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
 	
-};//END: WS_SSE()
+});//END: WS_SSE()
 
-// scroll events
+// ************************ scroll events
+
 const SCROLL = {"x":0,"y":0,"left":false,"top":false};
 window.addEventListener('scroll', e=>{
   const scrollX  = Number(window.pageXOffset.toFixed());
@@ -573,7 +608,7 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	div.innerHTML =   `<div class="toast-header">
 		<img src=${ROOT_CDN+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
-		<small class="text-body-secondary">${tstamp}</small>
+		<!--<small class="text-body-secondary">now</small>-->
 		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 	  </div>
 	  <div class="toast-body">${body}</div>
@@ -581,6 +616,8 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	document.querySelector(".toast-container").appendChild(div)
 	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
 	div.addEventListener('hidden.bs.toast', () => {div.remove()})
+    document.querySelector("div.no-noti").hidden = true;
+	
 }
 
 // return changes made in dict{} object

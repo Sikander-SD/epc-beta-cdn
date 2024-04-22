@@ -86,8 +86,12 @@ function setCookie(name, value, seconds=null) {
 const WS_SSE = [];// list of message event functions
 // WebSocket Connection
 function wsConnect(token,i=0){
-	// const WS_URL = `${window.location.protocol=='https:'? "wss":"ws"}://${window.location.host}:8888/?token=sometokenhere`
-	const WS_URL = `ws://localhost:8888/`;
+	var host = window.location.host;
+	host = host=="beta"? "localhost" : host.startsWith("beta.")? host.replace("beta.","beta.socket.") : "socket."+host;
+	var port = host=="localhost"? ":8888" : "";
+	var protocol = host=='localhost'? "ws":"wss";
+	const WS_URL = `${protocol}://${host+port}/`;
+	
 	WS_Obj = new WebSocket(WS_URL);
 	WS_Obj.addEventListener("open",e=>WS_Obj.send(token));
 	WS_Obj.addEventListener("close", e=>{
@@ -106,7 +110,9 @@ function wsConnect(token,i=0){
 // SSE: Server-Sent-Event
 function sseConnect(token,i=0) {
     // SSE : server-side-events
-    SSE_Event = new EventSource('https://socket/?token=' + token);
+	var host = window.location.host;
+	host = host=="beta"? "socket" : host.startsWith("beta.")? host.replace("beta.","beta.socket.") : "socket."+host;
+    SSE_Event = new EventSource(`https://${host}/?token=` + token);
     // SSE_Event.addEventListener("open", e => {});
     SSE_Event.addEventListener("error", e=>{
 		i++
@@ -147,7 +153,7 @@ WS_SSE.push(e=>{
 			newNotification(n.title,n.body,null,n.id)
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
-		reply = {title:"Customer-Support Replied to your message!", id:data.reply[0].id, body:"click to open message!"}
+        reply = {title:"Customer-Support", id:data.reply[0].id, body:data.reply[0].text}
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
 	    
@@ -157,7 +163,7 @@ WS_SSE.push(e=>{
 		// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
 		// }
 		// when default notifications are not working
-		newNotification(reply.title,reply.body,"customerCare.svg",n.id)
+		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
 	

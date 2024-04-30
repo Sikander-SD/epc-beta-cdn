@@ -515,6 +515,7 @@ document.querySelectorAll("#notifications input").forEach(inp=>{
 const noti_btn = document.querySelector("page#profile div.notifications")
 noti_btn.addEventListener("click",e=>{
   JSON.parse(localStorage.noti||'[]').forEach(n=>{
+    n.id = Number(n.id);
     const T = new Date(n.id)
     const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
     _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
@@ -569,13 +570,14 @@ WS_SSE.push(e=>{
     
     // show notifications
     data.noti.forEach(n=>{
-      // if ("Notification" in window && !page_noti.classList.contains("active")){
-      //   if (Notification.permission !== "granted") Notification.requestPermission()
-      //   if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
-      // }
+      n.id = Number(n.id);
+      if ("Notification" in window && !page_noti.classList.contains("active")){
+        if (Notification.permission !== "granted") Notification.requestPermission()
+        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
+      }
       // when default notifications are not working
       if (page_noti.classList.contains("active")) {
-        const T = new Date(n.id)
+        const T = new Date(n.id);
         const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
         _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
       }else newNotification(n.title,n.body,null,n.id)
@@ -800,6 +802,7 @@ chats_form.addEventListener("submit",async e=>{
 
 // create new chat element
 const newChat = (type,data)=>{
+  data.text = data.text || "";
   const T = new Date(data.id);
   const div = document.createElement("div");
   div.className = type+" chat";
@@ -937,14 +940,15 @@ WS_SSE.push(e=>{
   // {reply: [ {type,file,text,id,title}, ...]  }
     if (data.hasOwnProperty("reply")){      
       if (!page_chats.classList.contains("active")){
-        reply = {title:"Customer-Support", id:data.reply[0].id, body:data.reply[0].text}
+		var body = data.reply[0].text || "-- Media File --";        
+        reply = {title:"Customer-Support", id:data.reply[0].id, body:body}
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-  // // show popup notification  
-  // if ("Notification" in window){
-  // 	if (Notification.permission !== "granted") Notification.requestPermission()
-  // 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-  // }
+        // show popup notification  
+        if ("Notification" in window){
+        	if (Notification.permission !== "granted") Notification.requestPermission()
+        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+        }
         // when default notifications are not working
         if (page_noti.classList.contains("active")) {
           const T = new Date(reply.id)

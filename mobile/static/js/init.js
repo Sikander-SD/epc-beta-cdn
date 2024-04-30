@@ -129,7 +129,7 @@ function sseConnect(token,i=0) {
 window.addEventListener("DOMContentLoaded", () => {
 	if ("intro login".includes(THIS_PAGE)) return;
 	cookieStore.get("ws_token").then(e=>wsConnect(e.value));// WebSocket
-	cookieStore.get("sse_token").then(e=>sseConnect(e.value));// SSE Event
+	// cookieStore.get("sse_token").then(e=>sseConnect(e.value));// SSE Event
 })
 
 // handle data recieved from server
@@ -144,24 +144,26 @@ WS_SSE.push(e=>{
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
 	    data.noti.forEach(n=>{
+		    n.id = Number(n.id);
 			// show popup notification
-			// if ("Notification" in window){
-			// 	if (Notification.permission !== "granted") Notification.requestPermission()
-			// 	if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-			// }
+			if ("Notification" in window){
+				if (Notification.permission !== "granted") Notification.requestPermission()
+				if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+			}
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
-        reply = {title:"Customer-Support", id:data.reply[0].id, body:data.reply[0].text}
+		var body = data.reply[0].text || "-- Media File --";
+        reply = {title:"Customer-Support", id:data.reply[0].id, body:body}
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
 	    
 		// show popup notification  
-		// if ("Notification" in window){
-		// 	if (Notification.permission !== "granted") Notification.requestPermission()
-		// 	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		// }
+		if ("Notification" in window){
+			if (Notification.permission !== "granted") Notification.requestPermission()
+			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+		}
 		// when default notifications are not working
 		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
 	// when logged in to another device or cookies has been cleared

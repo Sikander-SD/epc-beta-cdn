@@ -10,7 +10,7 @@ function searchTabHTML() {
       <button hidden type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="modal-body">
             <form onsubmit="return false;">
-                  <input id="search-device" list="names" type="search" name="query" placeholder="Latest iPhone" minlength="3" maxlength="50" autocomplete="off" required>
+                  <input id="search-device" list="names" type="search" name="query" placeholder="iPhone 15" minlength="3" maxlength="50" autocomplete="off" required>
                   <datalist id="names"></datalist>
                   <button type="submit" style="  margin: 5% auto;  display: flex;">Go</button>
             </form>

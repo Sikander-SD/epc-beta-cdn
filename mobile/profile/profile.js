@@ -710,12 +710,12 @@ feedback_form.addEventListener("submit",async e=>{
     // reset feedback form in 3secs
     feedback_form_reset()
   })
-    // save to localStorage or sessionStorage
+    // save to localStorage
   .catch(err=>{
   	console.log("handle this with localStrage")
-    // fform = JSON.parse(sessionStorage.feedbackForm || '[]')
+    // fform = JSON.parse(localStorage.feedbackForm || '[]')
     // fform.push(data)
-    // sessionStorage.feedbackForm = JSON.stringify(fform)
+    // localStorage.feedbackForm = JSON.stringify(fform)
     
     // reset feedback form in 3secs
     feedback_form_reset()

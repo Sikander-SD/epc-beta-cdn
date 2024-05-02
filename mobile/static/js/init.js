@@ -92,6 +92,7 @@ function wsConnect(token,i=0){
 	var protocol = host=='localhost'? "ws":"wss";
 	const WS_URL = `${protocol}://${host+port}/`;
 	
+	alert("WS_URL:"+WS_URL);
 	WS_Obj = new WebSocket(WS_URL);
 	WS_Obj.addEventListener("open",e=>WS_Obj.send(token));
 	WS_Obj.addEventListener("close", e=>{

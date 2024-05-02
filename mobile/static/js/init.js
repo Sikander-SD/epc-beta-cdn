@@ -624,9 +624,7 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	`
 	document.querySelector(".toast-container").appendChild(div)
 	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
-	div.addEventListener('hidden.bs.toast', () => {div.remove()})
-    document.querySelector("div.no-noti").hidden = true;
-	
+	div.addEventListener('hidden.bs.toast', () => {div.remove()})	
 }
 
 // return changes made in dict{} object

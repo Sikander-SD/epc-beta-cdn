@@ -155,7 +155,7 @@ WS_SSE.push(e=>{
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
 		var body = data.reply[0].text || "-- Media File --";
-        reply = {title:"Customer-Support", id:data.reply[0].id, body:body}
+        reply = {title:"Customer-Care", id:data.reply[0].id, body:body}
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
 	    

@@ -941,7 +941,7 @@ WS_SSE.push(e=>{
     if (data.hasOwnProperty("reply")){      
       if (!page_chats.classList.contains("active")){
 		var body = data.reply[0].text || "-- Media File --";        
-        reply = {title:"Customer-Support", id:data.reply[0].id, body:body}
+        reply = {title:"Customer-Care", id:data.reply[0].id, body:body}
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
         // show popup notification  

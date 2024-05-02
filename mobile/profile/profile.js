@@ -572,9 +572,12 @@ WS_SSE.push(e=>{
     data.noti.forEach(n=>{
       n.id = Number(n.id);
       if ("Notification" in window && !page_noti.classList.contains("active")){
-        if (Notification.permission !== "granted") Notification.requestPermission()
-        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
-      }
+          // apply user settings
+          if (JSON.parse(localStorage.userSettings).noti1 == true){	
+              if (Notification.permission !== "granted") Notification.requestPermission()
+              if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+          }
+        }
       // when default notifications are not working
       if (page_noti.classList.contains("active")) {
         const T = new Date(n.id);
@@ -946,8 +949,11 @@ WS_SSE.push(e=>{
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
         // show popup notification  
         if ("Notification" in window){
-        	if (Notification.permission !== "granted") Notification.requestPermission()
-        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+            // apply user settings
+        	if (JSON.parse(localStorage.userSettings).noti1 == true){	
+            	if (Notification.permission !== "granted") Notification.requestPermission()
+            	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+            }
         }
         // when default notifications are not working
         if (page_noti.classList.contains("active")) {

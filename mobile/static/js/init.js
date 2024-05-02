@@ -148,9 +148,13 @@ WS_SSE.push(e=>{
 		    n.id = Number(n.id);
 			// show popup notification
 			if ("Notification" in window){
-				if (Notification.permission !== "granted") Notification.requestPermission()
-				if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+			  // apply user settings
+			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
+				  if (Notification.permission !== "granted") Notification.requestPermission()
+				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+			  }
 			}
+			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
 	    })
@@ -162,8 +166,11 @@ WS_SSE.push(e=>{
 	    
 		// show popup notification  
 		if ("Notification" in window){
-			if (Notification.permission !== "granted") Notification.requestPermission()
-			if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+		  // apply user settings
+		  if (JSON.parse(localStorage.userSettings).noti1 == true){	
+			  if (Notification.permission !== "granted") Notification.requestPermission()
+			  if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+		  }
 		}
 		// when default notifications are not working
 		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
@@ -605,6 +612,10 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
+	// apply user settings
+	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
+	
+	// show notification
 	if (tstamp && String(tstamp).match("[0-9]{5}")){
 		const T = new Date(tstamp)
 	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()

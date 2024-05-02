@@ -104,7 +104,7 @@ function wsConnect(token,i=0){
 		}
     });
 	//WS_Obj.addEventListener("error",e=>{console.error(e)});
-	WS_Obj.addEventListener("error",e=>{alert(e.name+":"+e.message)});
+	WS_Obj.addEventListener("error",e=>{alert(e.target.readyState)});
 	WS_Obj.addEventListener("message", e=>{WS_SSE.forEach(func=>func(e))});
 	// WS_Obj.close();
 };

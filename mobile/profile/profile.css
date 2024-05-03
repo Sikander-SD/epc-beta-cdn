@@ -638,7 +638,7 @@ section.copyright p{font-size:3vw;}
   padding-bottom:0;
 }
 #notifications .accordion-button{
-  padding:2%;
+  padding: 2%;
   outline:none;
 }
 #notifications .accordion-button:focus {
@@ -649,7 +649,7 @@ section.copyright p{font-size:3vw;}
 }
 #notifications button.btn-close{
   position:unset;
-  padding:0;
+  padding: 2%;
   z-index:1;
   margin:auto;
 }

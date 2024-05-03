@@ -163,31 +163,27 @@ WS_SSE.push(e=>{
 			toast("4"+("<br>".repeat(4)),"","background:none;color:black")
 		    n.id = Number(n.id);
 			toast("5"+("<br>".repeat(5)),"","background:none;color:black")
-			// show popup notification
+			// in-app notifications
+			newNotification(n.title,n.body,null,n.id)
 			// toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
 			toast("6"+("<br>".repeat(6)),"","background:none;color:black")
-			if ("Notification" in window && PUSH_NOTI){
+			// push-notification
+			if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
 				toast("7"+("<br>".repeat(7)),"","background:none;color:black")
-			  // apply user settings
-			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
-					toast("8"+("<br>".repeat(8)),"","background:none;color:black")
-				  if (Notification.permission !== "granted") Notification.requestPermission()
-				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-					toast("9"+("<br>".repeat(9)),"","background:none;color:black")
-			  }
+			  if (Notification.permission !== "granted") Notification.requestPermission()
+			  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+				toast("8"+("<br>".repeat(8)),"","background:none;color:black")
 			}
-	toast("10"+("<br>".repeat(10)),"","background:none;color:black")
-			
-			// when default notifications are not working
-			newNotification(n.title,n.body,null,n.id)
+	toast("9"+("<br>".repeat(9)),"","background:none;color:black")
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
 		var body = data.reply[0].text || "-- Media File --";
         reply = {title:"Customer-Care", id:data.reply[0].id, body:body}
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-	    
-		// show popup notification  
+	    // in-app notifications
+		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
+		// push-notification  
 		if ("Notification" in window && PUSH_NOTI){
 		  // apply user settings
 		  if (JSON.parse(localStorage.userSettings).noti1 == true){	
@@ -195,8 +191,6 @@ WS_SSE.push(e=>{
 			  if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
 		  }
 		}
-		// when default notifications are not working
-		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
 	
@@ -206,7 +200,6 @@ WS_SSE.push(e=>{
 
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	toast(THIS_PAGE+"11"+("<br>".repeat(11)),"","background:none;color:black")
 	toast(JSON.parse(localStorage.userSettings).noti1)
 	if (!JSON.parse(localStorage.userSettings).noti1) return;
 	

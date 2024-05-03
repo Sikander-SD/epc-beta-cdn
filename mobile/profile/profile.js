@@ -571,16 +571,17 @@ WS_SSE.push(e=>{
     // show notifications
     data.noti.forEach(n=>{
       n.id = Number(n.id);
-      if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active") && JSON.parse(localStorage.userSettings).noti1){
-        if (Notification.permission !== "granted") Notification.requestPermission()
-        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
-      }
-      // when default notifications are not working
+      // in-app notifications
       if (page_noti.classList.contains("active")) {
         const T = new Date(n.id);
         const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
         _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
       }else newNotification(n.title,n.body,null,n.id)
+      // push-notification
+      if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active") && JSON.parse(localStorage.userSettings).noti1){
+        if (Notification.permission !== "granted") Notification.requestPermission()
+        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
+      }
     })
   }
 });
@@ -944,17 +945,17 @@ WS_SSE.push(e=>{
         reply = {title:"Customer-Care", id:data.reply[0].id, body:body}
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-        // show popup notification  
-        if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
-        	if (Notification.permission !== "granted") Notification.requestPermission()
-        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-        }
-        // when default notifications are not working
+        // in-app notifications
         if (page_noti.classList.contains("active")) {
           const T = new Date(reply.id)
           const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
           _newNotification(reply.title.toCapitalCase(),reply.body, tstamp, reply.id)
         }else newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
+        // push-notification  
+        if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
+        	if (Notification.permission !== "granted") Notification.requestPermission()
+        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+        }
         
         return
       }//else show in chats

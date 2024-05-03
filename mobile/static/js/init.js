@@ -185,12 +185,9 @@ WS_SSE.push(e=>{
 	    // in-app notifications
 		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
 		// push-notification  
-		if ("Notification" in window && PUSH_NOTI){
-		  // apply user settings
-		  if (JSON.parse(localStorage.userSettings).noti1 == true){	
+		if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
 			  if (Notification.permission !== "granted") Notification.requestPermission()
 			  if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		  }
 		}
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
@@ -201,8 +198,8 @@ WS_SSE.push(e=>{
 
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	// toast(JSON.parse(localStorage.userSettings).noti1)
-	if (!JSON.parse(localStorage.userSettings).noti1) return;
+	// toast(JSON.parse(localStorage.userSettings).noti5)
+	if (!JSON.parse(localStorage.userSettings).noti5) return;
 	
 	// show notification
 	if (tstamp && String(tstamp).match("[0-9]{5}")){

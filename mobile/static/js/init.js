@@ -157,13 +157,19 @@ WS_SSE.push(e=>{
 	    data.noti.forEach(n=>{
 		    n.id = Number(n.id);
 			// show popup notification
+			alert((JSON.parse(localStorage.userSettings).noti1+" out1")
 			if ("Notification" in window){
+			alert("in1")
 			  // apply user settings
 			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
+			alert("in2")
 				  if (Notification.permission !== "granted") Notification.requestPermission()
 				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+			alert("in3")
 			  }
+			alert("in4")
 			}
+			alert("out2")
 			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)

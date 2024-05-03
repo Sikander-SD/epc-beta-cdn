@@ -131,20 +131,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	if ("intro login".includes(THIS_PAGE)) return;
 	cookieStore.get("ws_token").then(e=>wsConnect(e.value));// WebSocket
 	// cookieStore.get("sse_token").then(e=>sseConnect(e.value));// SSE Event
-  setInterval(()=>{  WS_SSE.forEach(func => func(
-{data: JSON.stringify({
-        noti: [{
-          title: "Testing",
-          body: "Test good",
-          id: new Date().getTime()
-        }]
-        })}    
-  ))
-                },10000)
 })
 
-
-						
 // handle data recieved from server
 WS_SSE.push(e=>{	
 	const data = JSON.parse(e.data);

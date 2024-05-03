@@ -571,7 +571,7 @@ WS_SSE.push(e=>{
     // show notifications
     data.noti.forEach(n=>{
       n.id = Number(n.id);
-      if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active")){
+      if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active") && JSON.parse(localStorage.userSettings).noti1){
         if (Notification.permission !== "granted") Notification.requestPermission()
         if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
       }
@@ -945,7 +945,7 @@ WS_SSE.push(e=>{
         // save to localStorage
         localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
         // show popup notification  
-        if ("Notification" in window && PUSH_NOTI){
+        if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
         	if (Notification.permission !== "granted") Notification.requestPermission()
         	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
         }

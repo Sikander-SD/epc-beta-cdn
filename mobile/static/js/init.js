@@ -157,7 +157,7 @@ WS_SSE.push(e=>{
 	    data.noti.forEach(n=>{
 		    n.id = Number(n.id);
 			// show popup notification
-			alert((JSON.parse(localStorage.userSettings).noti1+" out1")
+			alert((JSON.parse(localStorage.userSettings).noti1+" out1"))
 			if ("Notification" in window){
 			alert("in1")
 			  // apply user settings

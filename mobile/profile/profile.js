@@ -580,7 +580,7 @@ WS_SSE.push(e=>{
       // push-notification
       if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active") && JSON.parse(localStorage.userSettings).noti1){
         if (Notification.permission !== "granted") Notification.requestPermission()
-        if (Notification.permission === "granted") new Notification(n.title,{body:n.body})          
+        if (Notification.permission === "granted") new Notification(n.title,{body:n.body}).onshow = e=>toast("Push-Noti")
       }
     })
   }
@@ -954,7 +954,7 @@ WS_SSE.push(e=>{
         // push-notification  
         if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
         	if (Notification.permission !== "granted") Notification.requestPermission()
-        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
+        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body}).onshow = e=>toast("Push-Noti")
         }
         
         return

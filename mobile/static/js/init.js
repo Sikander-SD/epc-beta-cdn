@@ -46,7 +46,6 @@ function showLoadingBar(hide) {
 	document.body.insertBefore(bar, document.body.firstChild)
 	setTimeout(e=>bar.remove(),2*60*1000)
 }
-showLoadingBar();//onload
 window.addEventListener('beforeunload',e=>showLoadingBar())
 window.addEventListener('DOMContentLoaded',e=>showLoadingBar(true))
 

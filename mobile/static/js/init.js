@@ -21,7 +21,7 @@ const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 // load more products
 let product_page = 1, waiting_flag = true, page_end = false;
 // enable - disable Push-Notifications
-const PUSH_NOTI = false;
+const PUSH_NOTI = true;
 
 // enable - disable features in production
 if (!window.location.host.startsWith("beta")){

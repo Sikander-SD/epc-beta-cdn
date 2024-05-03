@@ -145,31 +145,45 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // handle data recieved from server
 WS_SSE.push(e=>{	
+	toast("1")
 	const data = JSON.parse(e.data);
 	console.log(data)
 	// set cookies
+	toast("2")
 	if (data.hasOwnProperty("ws_token")) setCookie("ws_token", data.ws_token, 1*365*24*60*60)// 1 year
 	else if (data.hasOwnProperty("sse_token")) setCookie("sse_token", data.sse_token, 1*365*24*60*60)// 1 year
 	// {noti: [ {title,body,id}, ...]  }
 	else if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
+	toast("3")
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
+	toast("4")
 	    data.noti.forEach(n=>{
+	toast("5")
 		    n.id = Number(n.id);
+	toast("6")
 			// show popup notification
 			toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
+	toast("7")
 			if ("Notification" in window){
+	toast("08")
 			toast("in1")
 			  // apply user settings
+	toast("09")
 			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
+	toast("010")
 			toast("in2")
 				  if (Notification.permission !== "granted") Notification.requestPermission()
 				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
+	toast("011")
 			toast("in3")
 			  }
+	toast("012")
 			toast("in4")
 			}
+	toast("8")
 			toast("out2")
+	toast("9")
 			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
@@ -629,6 +643,7 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
+	toast("10")
 	toast(JSON.parse(localStorage.userSettings).noti1)
 	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
 	

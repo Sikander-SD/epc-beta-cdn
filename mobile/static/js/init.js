@@ -145,45 +145,36 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // handle data recieved from server
 WS_SSE.push(e=>{	
-	toast("1")
 	const data = JSON.parse(e.data);
 	console.log(data)
 	// set cookies
-	toast("2")
+	toast("1<br>","","background:none;color:black")
 	if (data.hasOwnProperty("ws_token")) setCookie("ws_token", data.ws_token, 1*365*24*60*60)// 1 year
 	else if (data.hasOwnProperty("sse_token")) setCookie("sse_token", data.sse_token, 1*365*24*60*60)// 1 year
 	// {noti: [ {title,body,id}, ...]  }
 	else if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
-	toast("3")
+	toast("2"+("<br>".repeat(1)),"","background:none;color:black")
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
-	toast("4")
+	toast("3"+("<br>".repeat(2)),"","background:none;color:black")
 	    data.noti.forEach(n=>{
-	toast("5")
+	toast("4"+("<br>".repeat(3)),"","background:none;color:black")
 		    n.id = Number(n.id);
-	toast("6")
+	toast("5"+("<br>".repeat(4)),"","background:none;color:black")
 			// show popup notification
-			toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
-	toast("7")
+			// toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
+	toast("6"+("<br>".repeat(5)),"","background:none;color:black")
 			if ("Notification" in window){
-	toast("08")
-			toast("in1")
+	toast("7"+("<br>".repeat(6)),"","background:none;color:black")
 			  // apply user settings
-	toast("09")
 			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
-	toast("010")
-			toast("in2")
+	toast("8"+("<br>".repeat(7)),"","background:none;color:black")
 				  if (Notification.permission !== "granted") Notification.requestPermission()
 				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-	toast("011")
-			toast("in3")
+	toast("9"+("<br>".repeat(8)),"","background:none;color:black")
 			  }
-	toast("012")
-			toast("in4")
 			}
-	toast("8")
-			toast("out2")
-	toast("9")
+	toast("10"+("<br>".repeat(9)),"","background:none;color:black")
 			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
@@ -643,8 +634,8 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	toast("10")
-	toast(JSON.parse(localStorage.userSettings).noti1)
+	toast("11"+("<br>".repeat(10)),"","background:none;color:black")
+	// toast(JSON.parse(localStorage.userSettings).noti1)
 	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
 	
 	// show notification

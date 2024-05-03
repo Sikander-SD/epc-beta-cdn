@@ -585,12 +585,16 @@ WS_SSE.push(e=>{
                 toast("3"+("<br>".repeat(3)),"","background:none;color:black")
         if (Notification.permission === "granted") {
                 toast("4"+("<br>".repeat(4)),"","background:none;color:black")
+          try {
+            
+          
               var nti = new Notification(n.title,{body:n.body})
                 toast("5"+("<br>".repeat(5)),"","background:none;color:black")
               nti.onerror = e=>toast("Push-Noti Error")
                 toast("6"+("<br>".repeat(6)),"","background:none;color:black")
               nti.onshow = e=>toast("Push-Noti shown")
                 toast("7"+("<br>".repeat(7)),"","background:none;color:black")
+            } catch (e) { toast(e) }
             }
       }
     })

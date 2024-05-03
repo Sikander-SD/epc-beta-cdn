@@ -202,6 +202,37 @@ WS_SSE.push(e=>{
 	
 });//END: WS_SSE()
 
+// ************************  newNotification()
+
+function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
+	// apply user settings
+	toast(THIS_PAGE+"11"+("<br>".repeat(10)),"","background:none;color:black")
+	toast(JSON.parse(localStorage.userSettings).noti1)
+	if (!JSON.parse(localStorage.userSettings).noti1) return;
+	
+	// show notification
+	if (tstamp && String(tstamp).match("[0-9]{5}")){
+		const T = new Date(tstamp)
+	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
+	}
+	const div = document.createElement("div")
+	div.className = "toast slide-in-from-right";
+	div.role="alert";
+	div.setAttribute("aria-live","assertive");
+	div.setAttribute("aria-atomic","true");
+	div.innerHTML =   `<div class="toast-header">
+		<img src=${ROOT_CDN+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
+		<strong class="me-auto">${title}</strong>
+		<!--<small class="text-body-secondary">now</small>-->
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	  </div>
+	  <div class="toast-body">${body}</div>
+	`
+	document.querySelector(".toast-container").appendChild(div)
+	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
+	div.addEventListener('hidden.bs.toast', () => {div.remove()})	
+}
+
 // ************************ scroll events
 
 const SCROLL = {"x":0,"y":0,"left":false,"top":false};
@@ -632,36 +663,6 @@ function modalLoad(id,type) {
 
 // Capital Case custome function
 String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.toUpperCase())}
-
-// notification function
-function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
-	// apply user settings
-	toast(THIS_PAGE+"11"+("<br>".repeat(10)),"","background:none;color:black")
-	// toast(JSON.parse(localStorage.userSettings).noti1)
-	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
-	
-	// show notification
-	if (tstamp && String(tstamp).match("[0-9]{5}")){
-		const T = new Date(tstamp)
-	    tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
-	}
-	const div = document.createElement("div")
-	div.className = "toast slide-in-from-right";
-	div.role="alert";
-	div.setAttribute("aria-live","assertive");
-	div.setAttribute("aria-atomic","true");
-	div.innerHTML =   `<div class="toast-header">
-		<img src=${ROOT_CDN+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
-		<strong class="me-auto">${title}</strong>
-		<!--<small class="text-body-secondary">now</small>-->
-		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-	  </div>
-	  <div class="toast-body">${body}</div>
-	`
-	document.querySelector(".toast-container").appendChild(div)
-	new bootstrap.Toast(div,{"delay":duration,"autohide":autohide}).show()
-	div.addEventListener('hidden.bs.toast', () => {div.remove()})	
-}
 
 // return changes made in dict{} object
 function dictChanged(dictOld, dictNew) {

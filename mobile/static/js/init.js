@@ -629,7 +629,7 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	alert(JSON.parse(localStorage.userSettings).noti1)
+	alert(JSON.parse(localStorage.userSettings).noti1+" in newNotification()")
 	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
 	
 	// show notification

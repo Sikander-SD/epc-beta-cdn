@@ -20,6 +20,8 @@ const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
 const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 // load more products
 let product_page = 1, waiting_flag = true, page_end = false;
+// enable - disable Push-Notifications
+const PUSH_NOTI = false;
 
 // enable - disable features in production
 if (!window.location.host.startsWith("beta")){
@@ -164,7 +166,7 @@ WS_SSE.push(e=>{
 			// show popup notification
 			// toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
 	toast("6"+("<br>".repeat(5)),"","background:none;color:black")
-			if ("Notification" in window){
+			if ("Notification" in window && PUSH_NOTI){
 	toast("7"+("<br>".repeat(6)),"","background:none;color:black")
 			  // apply user settings
 			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
@@ -174,7 +176,7 @@ WS_SSE.push(e=>{
 	toast("9"+("<br>".repeat(8)),"","background:none;color:black")
 			  }
 			}
-	toast("10"+("<br>".repeat(9)),"","background:none;color:black")
+	toast("7"+("<br>".repeat(6)),"","background:none;color:black")
 			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
@@ -186,7 +188,7 @@ WS_SSE.push(e=>{
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
 	    
 		// show popup notification  
-		if ("Notification" in window){
+		if ("Notification" in window && PUSH_NOTI){
 		  // apply user settings
 		  if (JSON.parse(localStorage.userSettings).noti1 == true){	
 			  if (Notification.permission !== "granted") Notification.requestPermission()
@@ -634,7 +636,7 @@ String.prototype.toCapitalCase = function(){return this.replace(/\b\w/g, c=>c.to
 // notification function
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	toast("11"+("<br>".repeat(10)),"","background:none;color:black")
+	toast(THIS_PAGE+"8"+("<br>".repeat(7)),"","background:none;color:black")
 	// toast(JSON.parse(localStorage.userSettings).noti1)
 	if (JSON.parse(localStorage.userSettings).noti1 != true) return;
 	

@@ -155,28 +155,28 @@ WS_SSE.push(e=>{
 	else if (data.hasOwnProperty("sse_token")) setCookie("sse_token", data.sse_token, 1*365*24*60*60)// 1 year
 	// {noti: [ {title,body,id}, ...]  }
 	else if (data.hasOwnProperty("noti") && THIS_PAGE!="profile"){
-	toast("2"+("<br>".repeat(1)),"","background:none;color:black")
+	toast("2"+("<br>".repeat(2)),"","background:none;color:black")
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),...data.noti])
-	toast("3"+("<br>".repeat(2)),"","background:none;color:black")
+	toast("3"+("<br>".repeat(3)),"","background:none;color:black")
 	    data.noti.forEach(n=>{
-			toast("4"+("<br>".repeat(3)),"","background:none;color:black")
+			toast("4"+("<br>".repeat(4)),"","background:none;color:black")
 		    n.id = Number(n.id);
-			toast("5"+("<br>".repeat(4)),"","background:none;color:black")
+			toast("5"+("<br>".repeat(5)),"","background:none;color:black")
 			// show popup notification
 			// toast((JSON.parse(localStorage.userSettings).noti1+" out1"))
-			toast("6"+("<br>".repeat(5)),"","background:none;color:black")
+			toast("6"+("<br>".repeat(6)),"","background:none;color:black")
 			if ("Notification" in window && PUSH_NOTI){
-				toast("7"+("<br>".repeat(6)),"","background:none;color:black")
+				toast("7"+("<br>".repeat(7)),"","background:none;color:black")
 			  // apply user settings
 			  if (JSON.parse(localStorage.userSettings).noti1 == true){	
-					toast("8"+("<br>".repeat(7)),"","background:none;color:black")
+					toast("8"+("<br>".repeat(8)),"","background:none;color:black")
 				  if (Notification.permission !== "granted") Notification.requestPermission()
 				  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-					toast("9"+("<br>".repeat(8)),"","background:none;color:black")
+					toast("9"+("<br>".repeat(9)),"","background:none;color:black")
 			  }
 			}
-	toast("10"+("<br>".repeat(9)),"","background:none;color:black")
+	toast("10"+("<br>".repeat(10)),"","background:none;color:black")
 			
 			// when default notifications are not working
 			newNotification(n.title,n.body,null,n.id)
@@ -206,7 +206,7 @@ WS_SSE.push(e=>{
 
 function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	// apply user settings
-	toast(THIS_PAGE+"11"+("<br>".repeat(10)),"","background:none;color:black")
+	toast(THIS_PAGE+"11"+("<br>".repeat(11)),"","background:none;color:black")
 	toast(JSON.parse(localStorage.userSettings).noti1)
 	if (!JSON.parse(localStorage.userSettings).noti1) return;
 	

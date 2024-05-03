@@ -46,7 +46,9 @@ function showLoadingBar(hide) {
 	document.body.insertBefore(bar, document.body.firstChild)
 	setTimeout(e=>bar.remove(),2*60*1000)
 }
+window.addEventListener('beforeload',e=>showLoadingBar())
 window.addEventListener('beforeunload',e=>showLoadingBar())
+window.addEventListener('DOMContentLoaded',e=>showLoadingBar(true))
 
 // modify requets
 var originalFetch = window.fetch;

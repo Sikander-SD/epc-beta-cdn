@@ -183,9 +183,11 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 	icon = ROOT_CDN+"/static/images/"+icon;
 	
 	// ----------------- push-notification
-	
+	toast("1"+("<br>".repeat(1)),"","background:none;color:black")	
   if ("Notification" in window && JSON.parse(localStorage.userSettings).noti1){
+	toast("2"+("<br>".repeat(2)),"","background:none;color:black")
 	    if (Notification.permission !== "granted") Notification.requestPermission();
+	toast("3"+("<br>".repeat(3)),"","background:none;color:black")
 		try{navigator.serviceWorker.controller.postMessage({ type:'push-noti',
 															title:title,
 															options:{
@@ -193,7 +195,9 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 																icon:icon
 															}
 														   })
+	toast("4"+("<br>".repeat(4)),"","background:none;color:black")
 		 }catch(err){
+	toast("5"+("<br>".repeat(5)),"","background:none;color:black")
 			try{navigator.serviceWorker.ready.then(r=> r.showNotification({ type:'push-noti',
 															title:title,
 															options:{
@@ -202,9 +206,11 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 															}
 														   })
 												   )
+	toast("6"+("<br>".repeat(6)),"","background:none;color:black")
 			   }catch(err){toast("maybe there's no serviceWorker:"+err)}
 		 }
   };//END: if
+	toast("7"+("<br>".repeat(7)),"","background:none;color:black")
 	
 	  // ----------------- in-app notification
 	  

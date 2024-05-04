@@ -182,6 +182,9 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 	if (!icon) icon="notificationBell.svg";
 	
 	// ----------------- push-notification
+	// if (Notification.permission !== "granted") Notification.requestPermission()
+  // if (Notification.permission === 'granted') 
+  // else console.error('Notification permission not granted.')
 	
   if ("Notification" in window && JSON.parse(localStorage.userSettings).noti1){
 		try{navigator.serviceWorker.controller.postMessage({ type:'push-noti',

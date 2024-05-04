@@ -180,6 +180,7 @@ WS_SSE.push(e=>{
 
 function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 	if (!icon) icon="notificationBell.svg";
+	icon = ROOT_CDN+"/static/images/"+icon;
 	
 	// ----------------- push-notification
 	
@@ -189,7 +190,7 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 															title:title,
 															options:{
 																body:body,
-																icon:ROOT_CDN+"/static/images/"+icon
+																icon:icon
 															}
 														   })
 		 }catch(err){
@@ -197,7 +198,7 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 															title:title,
 															options:{
 																body:body,
-																icon:ROOT_CDN+"/static/images/"+icon
+																icon:icon
 															}
 														   })
 												   )

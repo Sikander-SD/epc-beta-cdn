@@ -185,16 +185,26 @@ function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
 	
   if ("Notification" in window && JSON.parse(localStorage.userSettings).noti1){
 	    if (Notification.permission !== "granted") Notification.requestPermission();
-		try{navigator.serviceWorker.ready.then(r=> r.showNotification({ type:'push-noti',
+		try{navigator.serviceWorker.controller.postMessage({ type:'push-noti',
 															title:title,
 															options:{
 																body:body,
 																icon:ROOT_CDN+"/static/images/"+icon
 															}
 														   })
-											   )			
-		 }catch(err){toast("maybe there's no serviceWorker:"+err)}
-	}
+		 }catch(err){
+			try{navigator.serviceWorker.ready.then(r=> r.showNotification({ type:'push-noti',
+															title:title,
+															options:{
+																body:body,
+																icon:ROOT_CDN+"/static/images/"+icon
+															}
+														   })
+												   )
+			   }catch(err){toast("maybe there's no serviceWorker:"+err)}
+		 }
+  };//END: if
+	
 	  // ----------------- in-app notification
 	  
 	// apply user settings

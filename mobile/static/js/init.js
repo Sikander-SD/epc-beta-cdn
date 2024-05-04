@@ -20,8 +20,6 @@ const isPrime = JSON.parse(localStorage.userProfileData || '{}').isPrime;
 const ORIENTATION = (innerWidth < innerHeight)? "portrait" : "landscape";
 // load more products
 let product_page = 1, waiting_flag = true, page_end = false;
-// enable - disable Push-Notifications
-const PUSH_NOTI = true;
 
 // enable - disable features in production
 if (!window.location.host.startsWith("beta")){
@@ -164,30 +162,15 @@ WS_SSE.push(e=>{
 			// toast("4"+("<br>".repeat(4)),"","background:none;color:black")
 		    n.id = Number(n.id);
 			// toast("5"+("<br>".repeat(5)),"","background:none;color:black")
-			// in-app notifications
 			newNotification(n.title,n.body,null,n.id)
 			// toast("6"+("<br>".repeat(6)),"","background:none;color:black")
-			// push-notification
-			if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
-				// toast("7"+("<br>".repeat(7)),"","background:none;color:black")
-			  if (Notification.permission !== "granted") Notification.requestPermission()
-			  if (Notification.permission === "granted") new Notification(n.title,{body:n.body})
-				// toast("8"+("<br>".repeat(8)),"","background:none;color:black")
-			}
-	// toast("9"+("<br>".repeat(9)),"","background:none;color:black")
 	    })
 	}else if (data.hasOwnProperty("reply") && THIS_PAGE!="profile"){
 		var body = data.reply[0].text || "-- Media File --";
         reply = {title:"Customer-Care", id:data.reply[0].id, body:body}
 		// save to localStorage
 	    localStorage.noti = JSON.stringify([...JSON.parse(localStorage.noti||'[]'),reply])
-	    // in-app notifications
 		newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
-		// push-notification  
-		if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
-			  if (Notification.permission !== "granted") Notification.requestPermission()
-			  if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-		}
 	// when logged in to another device or cookies has been cleared
 	}else if (data.hasOwnProperty("logout")) window.location.reload()
 	
@@ -195,9 +178,24 @@ WS_SSE.push(e=>{
 
 // ************************  newNotification()
 
-function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
+function newNotification(title,body,icon,tstamp,duration=8000,autohide=true){
+	if (!icon) icon="notificationBell.svg";
+	
+	// ----------------- push-notification
+	
+  if ("Notification" in window && JSON.parse(localStorage.userSettings).noti1){
+		try{navigator.serviceWorker.controller.postMessage({ type:'push-noti',
+															title:title,
+															options:{
+																body:body,
+																icon:ROOT_CDN+"/static/images/"+icon
+															}
+														   });
+		 }catch(err){toast("maybe there's no serviceWorker:"+err)}
+	}
+	  // ----------------- in-app notification
+	  
 	// apply user settings
-	// toast(JSON.parse(localStorage.userSettings).noti5)
 	if (!JSON.parse(localStorage.userSettings).noti5) return;
 	
 	// show notification
@@ -211,7 +209,7 @@ function newNotification(title,body,img,tstamp,duration=8000,autohide=true){
 	div.setAttribute("aria-live","assertive");
 	div.setAttribute("aria-atomic","true");
 	div.innerHTML =   `<div class="toast-header">
-		<img src=${ROOT_CDN+"/static/images/"+ (img||"notificationBell.svg")} class="rounded me-2">
+		<img src=${icon} class="rounded me-2">
 		<strong class="me-auto">${title}</strong>
 		<!--<small class="text-body-secondary">now</small>-->
 		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

@@ -571,42 +571,18 @@ WS_SSE.push(e=>{
     // show notifications
     data.noti.forEach(n=>{
       n.id = Number(n.id);
-      // in-app notifications
       if (page_noti.classList.contains("active")) {
         const T = new Date(n.id);
         const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
         _newNotification(n.title.toCapitalCase(),n.body, tstamp, n.id)
       }else newNotification(n.title,n.body,null,n.id)
-      // push-notification
-                toast("1"+("<br>".repeat(1)),"","background:none;color:black")
-      if (PUSH_NOTI && "Notification" in window && !page_noti.classList.contains("active") && JSON.parse(localStorage.userSettings).noti1){
-                toast("2"+("<br>".repeat(2)),"","background:none;color:black")
-        if (Notification.permission !== "granted") Notification.requestPermission()
-                toast("3"+("<br>".repeat(3)),"","background:none;color:black")
-        if (Notification.permission === "granted") {
-                toast("4"+("<br>".repeat(4)),"","background:none;color:black")
-          try {
-            
-          
-              var nti = new Notification(n.title,{body:n.body})
-                toast("5"+("<br>".repeat(5)),"","background:none;color:black")
-              nti.onerror = e=>toast("Push-Noti Error")
-                toast("6"+("<br>".repeat(6)),"","background:none;color:black")
-              nti.onshow = e=>toast("Push-Noti shown")
-                toast("7"+("<br>".repeat(7)),"","background:none;color:black")
-            } catch (e) {
-                try{navigator.serviceWorker.controller.postMessage({ type:'push-noti', title:n.title, options:{body:n.body}  });
-                 }catch(err){toast("maybe there's no serviceWorker:"+err)}
-            }
-            }
-      }
     })
   }
 });
 
 // recieve message from serviceWorker
 // serviceWorker.message{
-//  newNotification(e.title,e.body,e.tlog,t.tid);
+//  newNotification(e.title,e.body,null,t.tid);
 // }
 
 // **************************  .mid .logout
@@ -969,11 +945,6 @@ WS_SSE.push(e=>{
           const tstamp = T.getFullYear() +"-"+ (T.getMonth()+1) +"-"+ T.getDate() +" "+ T.toLocaleTimeString()
           _newNotification(reply.title.toCapitalCase(),reply.body, tstamp, reply.id)
         }else newNotification(reply.title,reply.body,"customerCare.svg",reply.id)
-        // push-notification  
-        if ("Notification" in window && PUSH_NOTI && JSON.parse(localStorage.userSettings).noti1){
-        	if (Notification.permission !== "granted") Notification.requestPermission()
-        	if (Notification.permission === "granted") new Notification(reply.title,{body:reply.body})
-        }
         
         return
       }//else show in chats

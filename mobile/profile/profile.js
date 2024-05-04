@@ -594,7 +594,10 @@ WS_SSE.push(e=>{
                 toast("6"+("<br>".repeat(6)),"","background:none;color:black")
               nti.onshow = e=>toast("Push-Noti shown")
                 toast("7"+("<br>".repeat(7)),"","background:none;color:black")
-            } catch (e) { toast(e) }
+            } catch (e) {
+                try{navigator.serviceWorker.controller.postMessage({ type:'push-noti', title:n.title, options:{body:n.body}  });
+                 }catch(err){toast("maybe there's no serviceWorker:"+err)}
+            }
             }
       }
     })

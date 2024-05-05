@@ -588,19 +588,27 @@ WS_SSE.push(e=>{
 // **************************  .mid .logout
 
 const LOGOUT = async ()=>{
+toast("1"+("<br>".repeat(1)),"","background:none;color:black")  
   try {await SYNC(pass=true);
+toast("2"+("<br>".repeat(2)),"","background:none;color:black")
   } catch (err) {    
+toast("3"+("<br>".repeat(3)),"","background:none;color:black")
     fetch('../logout/')
     .then(response=>{
+toast("4"+("<br>".repeat(4)),"","background:none;color:black")
       if (!response.ok) throw Error(response.status)      
+toast("5"+("<br>".repeat(5)),"","background:none;color:black")
       // clear userdata and session
       localStorage.clear();
       sessionStorage.clear();
+toast("6"+("<br>".repeat(6)),"","background:none;color:black")
       WS_Obj.close(1000,"User Logged Out Successfully!"); //websocket
+toast("7"+("<br>".repeat(7)),"","background:none;color:black")
       window.open("../login/","_self");
       
     }).catch(e=>{toast("Logout Failed!")})
       
+toast("8"+("<br>".repeat(8)),"","background:none;color:black")
   }
 };//END: LOGOUT
 

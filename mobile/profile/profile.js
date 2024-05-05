@@ -591,7 +591,7 @@ const LOGOUT = async ()=>{
 toast("1"+("<br>".repeat(1)),"","background:none;color:black")  
   try {await SYNC(pass=true);
 toast("2"+("<br>".repeat(2)),"","background:none;color:black")
-  } catch (err) {    
+  } catch (err) {}    
 toast("3"+("<br>".repeat(3)),"","background:none;color:black")
     fetch('../logout/')
     .then(response=>{
@@ -609,7 +609,6 @@ toast("7"+("<br>".repeat(7)),"","background:none;color:black")
     }).catch(e=>{toast("Logout Failed!")})
       
 toast("8"+("<br>".repeat(8)),"","background:none;color:black")
-  }
 };//END: LOGOUT
 
 // **************************  Modal- #feedback

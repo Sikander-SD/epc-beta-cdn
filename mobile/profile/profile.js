@@ -588,19 +588,21 @@ WS_SSE.push(e=>{
 // **************************  .mid .logout
 
 const LOGOUT = async ()=>{
-  await SYNC(pass=true);
-  fetch('../logout/')
-  .then(response=>{
-    if (!response.ok) throw Error(response.status)      
-    // clear userdata and session
-    localStorage.clear();
-    sessionStorage.clear();
-    WS_Obj.close(1000,"User Logged Out Successfully!"); //websocket
-    window.open("../login/","_self");
-    
-  }).catch(e=>{toast("Logout Failed!")})
-    
-}
+  try {await SYNC(pass=true);
+  } catch (err) {    
+    fetch('../logout/')
+    .then(response=>{
+      if (!response.ok) throw Error(response.status)      
+      // clear userdata and session
+      localStorage.clear();
+      sessionStorage.clear();
+      WS_Obj.close(1000,"User Logged Out Successfully!"); //websocket
+      window.open("../login/","_self");
+      
+    }).catch(e=>{toast("Logout Failed!")})
+      
+  }
+};//END: LOGOUT
 
 // **************************  Modal- #feedback
 const modal_feedback = document.querySelector(".modal#feedback");
@@ -707,7 +709,7 @@ feedback_form.addEventListener("submit",async e=>{
   })
     // save to localStorage
   .catch(err=>{
-  	console.log("handle this with localStrage")
+  	console.error("handle this with localStrage")
     // fform = JSON.parse(localStorage.feedbackForm || '[]')
     // fform.push(data)
     // localStorage.feedbackForm = JSON.stringify(fform)

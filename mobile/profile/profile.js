@@ -591,7 +591,7 @@ const LOGOUT = async ()=>{
 toast("1"+("<br>".repeat(1)),"","background:none;color:black")  
   try {await SYNC(pass=true);
 toast("2"+("<br>".repeat(2)),"","background:none;color:black")
-  } catch (err) {}    
+  } catch (err) {toast(err)}
 toast("3"+("<br>".repeat(3)),"","background:none;color:black")
     fetch('../logout/')
     .then(response=>{
